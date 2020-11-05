@@ -1,0 +1,187 @@
+import 'package:flutter/material.dart';
+import 'package:invoice/pages/widget/custom_dialog_box.dart';
+
+import 'choose_order_details.dart';
+
+class BookTaxInvoice extends StatefulWidget {
+  BookTaxInvoice({Key key}) : super(key: key);
+
+  @override
+  _BookTaxInvoiceState createState() => _BookTaxInvoiceState();
+}
+
+class _BookTaxInvoiceState extends State<BookTaxInvoice> {
+  bool _checkVal = false;
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Container(
+        child: Center(
+          child: Column(
+            children: [
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Container(
+                    color: Colors.teal,
+                    child: Center(
+                      child: Container(
+                        child: Container(),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              Expanded(
+                flex: 4,
+                child: Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text("รายละเอียดการจองใบกำกับภาษี"),
+                      Container(
+                        decoration: BoxDecoration(
+                            border: Border.all(color: Colors.black12),
+                            borderRadius: BorderRadius.circular(20)),
+                        child: DataTable(
+                          columnSpacing: 150,
+                          dataRowHeight: 65,
+                          columns: [
+                            DataColumn(label: Text('เลือก')),
+                            DataColumn(label: Text('เลขที่ใบกำกับภาษี')),
+                            DataColumn(label: Text('วันที่บันทึก')),
+                            DataColumn(label: Text('ผู้บันทึก')),
+                          ],
+                          rows: [
+                            DataRow(
+                              onSelectChanged: (bool value) {
+                                setState(() {
+                                  _checkVal = value;
+                                });
+                              },
+                              cells: <DataCell>[
+                                DataCell(
+                                  Checkbox(
+                                    checkColor: Color(0XFFFFD05B),
+                                    activeColor: Color(0XFFFFD05B),
+                                    onChanged: (bool value) {
+                                      setState(() {
+                                        _checkVal = value;
+                                      });
+                                    },
+                                    value: _checkVal,
+                                  ),
+                                  onTap: () {
+                                    setState(() {
+                                      _checkVal = !_checkVal;
+                                    });
+                                  },
+                                ),
+                                DataCell(Text('SI005/0088239')),
+                                DataCell(Text('02/12/2016')),
+                                DataCell(Text('System Administrator')),
+                              ],
+                            ),
+                            DataRow(
+                              cells: <DataCell>[
+                                DataCell(Text('0')),
+                                DataCell(Text('SI005/0088240')),
+                                DataCell(Text('02/12/2016')),
+                                DataCell(Text('System Administrator')),
+                              ],
+                            ),
+                            DataRow(
+                              cells: <DataCell>[
+                                DataCell(Text('0')),
+                                DataCell(Text('SI005/0088240')),
+                                DataCell(Text('02/12/2016')),
+                                DataCell(Text('System Administrator')),
+                              ],
+                            ),
+                            DataRow(
+                              cells: <DataCell>[
+                                DataCell(Text('0')),
+                                DataCell(Text('SI005/0088240')),
+                                DataCell(Text('02/12/2016')),
+                                DataCell(Text('System Administrator')),
+                              ],
+                            ),
+                            DataRow(
+                              cells: <DataCell>[
+                                DataCell(Text('0')),
+                                DataCell(Text('SI005/0088240')),
+                                DataCell(Text('02/12/2016')),
+                                DataCell(Text('System Administrator')),
+                              ],
+                            ),
+                            DataRow(
+                              cells: <DataCell>[
+                                DataCell(Text('0')),
+                                DataCell(Text('SI005/0088240')),
+                                DataCell(Text('02/12/2016')),
+                                DataCell(Text('System Administrator')),
+                              ],
+                            ),
+                            DataRow(
+                              cells: <DataCell>[
+                                DataCell(Text('0')),
+                                DataCell(Text('SI005/0088240')),
+                                DataCell(Text('02/12/2016')),
+                                DataCell(Text('System Administrator')),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Container(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        RaisedButton(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(14.5)),
+                          color: Color(0XFFFFD05B),
+                          onPressed: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ChooseOrderDetails(),
+                            ),
+                          ),
+                          child: Text("เลือก",
+                              style:
+                                  TextStyle(fontSize: 13, color: Colors.white)),
+                        ),
+                        SizedBox(
+                          width: 37,
+                        ),
+                        RaisedButton(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(14.5)),
+                          color: Color(0XFF29EAA4),
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                          child: Text("ยกเลิก",
+                              style:
+                                  TextStyle(fontSize: 13, color: Colors.white)),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}

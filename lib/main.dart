@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:invoice/pages/tool-page.dart';
+import 'package:invoice/pages/tool_page.dart';
 
 void main() {
   runApp(MyApp());

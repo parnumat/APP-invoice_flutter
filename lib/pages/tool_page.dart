@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:invoice/pages/widget/custom-card-tool.dart';
+import 'package:invoice/animations/fade_animation.dart';
+import 'package:invoice/pages/widget/custom_card_tool.dart';
 
 class ToolsPage extends StatelessWidget {
   ToolsPage({Key key}) : super(key: key);
@@ -13,13 +14,16 @@ class ToolsPage extends StatelessWidget {
           child: Column(
             children: [
               Expanded(
-                child: Container(
-                  child: Align(
-                    alignment: Alignment(-0.7, 0.8),
-                    child: Text(
-                      "Invoice Tools",
-                      style:
-                          TextStyle(fontSize: 54, fontWeight: FontWeight.w700),
+                child: FadeXAnimation(
+                  delay: 0.3,
+                  child: Container(
+                    child: Align(
+                      alignment: Alignment(-0.7, 0.8),
+                      child: Text(
+                        "Invoice Tools",
+                        style: TextStyle(
+                            fontSize: 54, fontWeight: FontWeight.w700),
+                      ),
                     ),
                   ),
                 ),
