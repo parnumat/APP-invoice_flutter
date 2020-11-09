@@ -1,6 +1,8 @@
 import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:invoice/pages/sale_order/choose_order_details.dart';
+import 'package:invoice/pages/tool_page.dart';
 
 import 'constants.dart';
 
@@ -12,7 +14,9 @@ class CustomDialogBox extends StatefulWidget {
 }
 
 class _CustomDialogBoxState extends State<CustomDialogBox> {
+  final _formKey = GlobalKey<FormState>();
   TextEditingController _codeTool = new TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -68,8 +72,9 @@ class _CustomDialogBoxState extends State<CustomDialogBox> {
                     border: Border.all(color: Colors.black12),
                     borderRadius: BorderRadius.circular(20)),
                 child: DataTable(
+                  headingRowHeight: 35,
                   columnSpacing: 20,
-                  dataRowHeight: 65,
+                  dataRowHeight: 55,
                   columns: [
                     DataColumn(label: Text('รหัสสินค้า')),
                     DataColumn(label: Text('ชื่อสินค้า')),
@@ -78,26 +83,8 @@ class _CustomDialogBoxState extends State<CustomDialogBox> {
                     DataColumn(label: Text('กำหนดส่งสินค้า')),
                   ],
                   rows: [
-                    DataRow(
-                      cells: <DataCell>[
-                        DataCell(Text('POF9Q0190000')),
-                        DataCell(Text(
-                            'POF Shrink Regular 19u x 290 mm x 6,402 m. แกน 3 นิ้ว 3รอยต่อ Flat/Non-Perforateเกรด A')),
-                        DataCell(Text('26.52')),
-                        DataCell(Text('Kilogram')),
-                        DataCell(Text('25/09/2020')),
-                      ],
-                    ),
-                    DataRow(
-                      cells: <DataCell>[
-                        DataCell(Text('POF9Q0190000')),
-                        DataCell(Text(
-                            'POF Shrink Regular 19u x 290 mm x 6,402 m. แกน 3 นิ้ว 3รอยต่อ Flat/Non-Perforateเกรด A')),
-                        DataCell(Text('26.52')),
-                        DataCell(Text('Kilogram')),
-                        DataCell(Text('25/09/2020')),
-                      ],
-                    ),
+                    _customRow(),
+                    _customRow(),
                   ],
                 ),
               ),
@@ -129,6 +116,7 @@ class _CustomDialogBoxState extends State<CustomDialogBox> {
                     border: Border.all(color: Colors.black12),
                     borderRadius: BorderRadius.circular(20)),
                 child: DataTable(
+                  headingRowHeight: 35,
                   columnSpacing: 20,
                   dataRowHeight: 65,
                   columns: [
@@ -139,26 +127,8 @@ class _CustomDialogBoxState extends State<CustomDialogBox> {
                     DataColumn(label: Text('กำหนดส่งสินค้า')),
                   ],
                   rows: [
-                    DataRow(
-                      cells: <DataCell>[
-                        DataCell(Text('POF9Q0190000')),
-                        DataCell(Text(
-                            'POF Shrink Regular 19u x 290 mm x 6,402 m. แกน 3 นิ้ว 3รอยต่อ Flat/Non-Perforateเกรด A')),
-                        DataCell(Text('26.52')),
-                        DataCell(Text('Kilogram')),
-                        DataCell(Text('25/09/2020')),
-                      ],
-                    ),
-                    DataRow(
-                      cells: <DataCell>[
-                        DataCell(Text('POF9Q0190000')),
-                        DataCell(Text(
-                            'POF Shrink Regular 19u x 290 mm x 6,402 m. แกน 3 นิ้ว 3รอยต่อ Flat/Non-Perforateเกรด A')),
-                        DataCell(Text('26.52')),
-                        DataCell(Text('Kilogram')),
-                        DataCell(Text('25/09/2020')),
-                      ],
-                    ),
+                    _customRow(),
+                    _customRow(),
                   ],
                 ),
               ),
@@ -172,9 +142,12 @@ class _CustomDialogBoxState extends State<CustomDialogBox> {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(14.5)),
                     color: Color(0XFFFFD05B),
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
+                    onPressed: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ChooseOrderDetails(),
+                      ),
+                    ),
                     child: Text("เลือก",
                         style: TextStyle(fontSize: 13, color: Colors.white)),
                   ),
@@ -198,5 +171,22 @@ class _CustomDialogBoxState extends State<CustomDialogBox> {
         ),
       ],
     );
+  }
+
+  _customRow() {
+    var dataRow = DataRow(
+      cells: <DataCell>[
+        DataCell(Text('POF9Q0190000')),
+        DataCell(Text(
+          'POF Shrink Regular 19u x 290 mm x 6,402 m. แกน 3 นิ้ว 3รอยต่อ Flat/Non-Perforateเกรด A',
+          maxLines: 2,
+          overflow: TextOverflow.ellipsis,
+        )),
+        DataCell(Text('26.52')),
+        DataCell(Text('Kilogram')),
+        DataCell(Text('25/09/2020')),
+      ],
+    );
+    return dataRow;
   }
 }

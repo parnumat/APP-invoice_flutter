@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:invoice/animations/fade_animation.dart';
-import 'package:invoice/pages/sale_order/book_tax_invoice.dart';
-import 'package:invoice/pages/sale_order/choose_order_details.dart';
+import 'package:invoice/pages/sale_order/main_detail.dart';
 
 //ipad size 1366x1024
 class ToolCard extends StatelessWidget {
@@ -23,7 +22,7 @@ class ToolCard extends StatelessWidget {
           onTap: () => Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => BookTaxInvoice(),
+              builder: (context) => MainOrderDetail(),
             ),
           ),
           child: Container(
@@ -33,32 +32,31 @@ class ToolCard extends StatelessWidget {
             ),
             child: Center(
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Expanded(
-                    flex: 3,
-                    child: Padding(
-                      padding: const EdgeInsets.fromLTRB(20, 20, 0, 0),
-                      child: Image.asset(
-                        assetImage,
-                      ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(20, 5, 0, 0),
+                    child: Image.asset(
+                      assetImage,
+                      height: 100,
                     ),
                   ),
-                  Expanded(
-                    flex: 2,
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        message,
-                        style: TextStyle(
-                            fontSize: 28, fontWeight: FontWeight.w700),
-                      ),
-                    ),
-                  ),
-                  Expanded(
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 0),
                     child: Text(
-                      code,
-                      style: TextStyle(fontSize: 24),
+                      message,
+                      textAlign: TextAlign.center,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                          fontSize: 22,
+                          fontWeight: FontWeight.w700,
+                          height: 1.1),
                     ),
+                  ),
+                  Text(
+                    code,
+                    style: TextStyle(fontSize: 18, color: Colors.black45),
                   ),
                 ],
               ),

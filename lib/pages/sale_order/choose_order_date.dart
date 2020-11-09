@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:invoice/pages/sale_order/choose_order_date.dart';
 import 'package:invoice/pages/tool_page.dart';
 
-class ChooseOrderDetails extends StatefulWidget {
-  ChooseOrderDetails({Key key}) : super(key: key);
+class ChooseOrderDate extends StatefulWidget {
+  ChooseOrderDate({Key key}) : super(key: key);
 
   @override
-  _ChooseOrderDetailsState createState() => _ChooseOrderDetailsState();
+  _ChooseOrderDateState createState() => _ChooseOrderDateState();
 }
 
-class _ChooseOrderDetailsState extends State<ChooseOrderDetails> {
-  TextEditingController _codeTool = new TextEditingController();
+class _ChooseOrderDateState extends State<ChooseOrderDate> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,24 +41,20 @@ class _ChooseOrderDetailsState extends State<ChooseOrderDetails> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Text("เลขที่ใบสั่งขาย",
-                                  style: TextStyle(
-                                      fontSize: 22,
-                                      fontWeight: FontWeight.w500)),
-                              // TextField(
-                              //   decoration: new InputDecoration(
-                              //     focusedBorder: OutlineInputBorder(
-                              //       borderSide: BorderSide(
-                              //           color: Colors.greenAccent, width: 5.0),
-                              //     ),
-                              //     enabledBorder: OutlineInputBorder(
-                              //       borderSide: BorderSide(
-                              //           color: Colors.red, width: 5.0),
-                              //     ),
-                              //     hintText: 'Mobile Number',
-                              //   ),
-                              //   controller: _codeTool,
-                              // )
+                              Text(
+                                "วันที่ส่งสินค้า",
+                                style: TextStyle(
+                                    fontSize: 22, fontWeight: FontWeight.w500),
+                              ),
+                              //https://medium.com/flutter-community/a-deep-dive-into-datepicker-in-flutter-37e84f7d8d6c
+                              SizedBox(
+                                width: 50,
+                              ),
+                              Text(
+                                "เลขที่ใบสั่งขาย",
+                                style: TextStyle(
+                                    fontSize: 22, fontWeight: FontWeight.w500),
+                              ),
                             ],
                           ),
                           SizedBox(
@@ -152,12 +146,11 @@ class _ChooseOrderDetailsState extends State<ChooseOrderDetails> {
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(14.5)),
                               color: Color(0XFFFFD05B),
-                              onPressed: () => Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => ChooseOrderDate(),
-                                ),
-                              ),
+                              onPressed: () => Navigator.of(context)
+                                  .pushAndRemoveUntil(
+                                      MaterialPageRoute(
+                                          builder: (context) => ToolsPage()),
+                                      (Route<dynamic> route) => false),
                               child: Text("เลือก",
                                   style: TextStyle(
                                       fontSize: 13, color: Colors.white)),
