@@ -58,14 +58,25 @@ class _CustomDialogBoxState extends State<CustomDialogBox> {
                 children: [
                   Text("เลขที่ใบสั่งขาย",
                       style:
-                          TextStyle(fontSize: 22, fontWeight: FontWeight.w600)),
-                  // TextField(
-                  //   controller: _codeTool,
-                  // )
+                          TextStyle(fontSize: 28, fontWeight: FontWeight.w400)),
+                  SizedBox(
+                    width: 20,
+                  ),
+                  Container(
+                    width: 340,
+                    height: 46,
+                    child: TextField(
+                      style: TextStyle(fontSize: 17),
+                      // controller: _codeTool,
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(),
+                      ),
+                    ),
+                  ),
                 ],
               ),
               SizedBox(
-                height: 15,
+                height: 25,
               ),
               Container(
                 decoration: BoxDecoration(

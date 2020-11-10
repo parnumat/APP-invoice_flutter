@@ -23,7 +23,7 @@ class ToolsPage extends StatelessWidget {
                         child: Text(
                           "Invoice Tools",
                           style: TextStyle(
-                              fontSize: 44, fontWeight: FontWeight.w700),
+                              fontSize: 44, fontWeight: FontWeight.w600),
                         ),
                       ),
                     ),

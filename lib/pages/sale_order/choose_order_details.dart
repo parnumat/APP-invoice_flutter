@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:invoice/pages/sale_order/choose_order_date.dart';
-import 'package:invoice/pages/tool_page.dart';
 
 class ChooseOrderDetails extends StatefulWidget {
   ChooseOrderDetails({Key key}) : super(key: key);
@@ -47,20 +46,21 @@ class _ChooseOrderDetailsState extends State<ChooseOrderDetails> {
                                   style: TextStyle(
                                       fontSize: 22,
                                       fontWeight: FontWeight.w500)),
-                              // TextField(
-                              //   decoration: new InputDecoration(
-                              //     focusedBorder: OutlineInputBorder(
-                              //       borderSide: BorderSide(
-                              //           color: Colors.greenAccent, width: 5.0),
-                              //     ),
-                              //     enabledBorder: OutlineInputBorder(
-                              //       borderSide: BorderSide(
-                              //           color: Colors.red, width: 5.0),
-                              //     ),
-                              //     hintText: 'Mobile Number',
-                              //   ),
-                              //   controller: _codeTool,
-                              // )
+                              SizedBox(
+                                width: 20,
+                              ),
+                              Container(
+                                width: 500,
+                                height: 46,
+                                child: TextField(
+                                  style: TextStyle(fontSize: 17),
+                                  controller: _codeTool,
+                                  decoration: InputDecoration(
+                                    border: OutlineInputBorder(),
+                                    labelText: 'หมายเลขใบสั่งขาย',
+                                  ),
+                                ),
+                              ),
                             ],
                           ),
                           SizedBox(
