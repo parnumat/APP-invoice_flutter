@@ -68,19 +68,25 @@ class _ChooseOrderDateState extends State<ChooseOrderDate> {
                               Container(
                                 width: 166,
                                 height: 50,
-                                child: OutlinedButton.icon(
+                                child: OutlineButton(
                                   onPressed: () {
                                     _selectDate(context);
                                   },
-                                  icon: Icon(
-                                    Icons.date_range,
-                                    color: Colors.black45,
-                                  ),
-                                  label: Text(
-                                    formatDate(
-                                        selectedDate, [dd, '/', mm, '/', yyyy]),
-                                    style: TextStyle(
-                                        color: Colors.black, fontSize: 17),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        formatDate(selectedDate,
+                                            [dd, '/', mm, '/', yyyy]),
+                                        style: TextStyle(
+                                            color: Colors.black, fontSize: 17),
+                                      ),
+                                      SizedBox(width: 10),
+                                      Icon(
+                                        Icons.date_range,
+                                        color: Colors.black45,
+                                      ),
+                                    ],
                                   ),
                                 ),
                               ),

@@ -1,31 +1,17 @@
-import 'package:date_format/date_format.dart';
 import 'package:flutter/material.dart';
+import 'package:invoice/pages/success/success_page.dart';
 import 'package:invoice/pages/tool_page.dart';
 
-class Goods extends StatefulWidget {
-  Goods({Key key}) : super(key: key);
+class GoodsPage extends StatefulWidget {
+  GoodsPage({Key key}) : super(key: key);
 
   @override
-  _GoodsState createState() => _GoodsState();
+  _GoodsPageState createState() => _GoodsPageState();
 }
 
-class _GoodsState extends State<Goods> {
+class _GoodsPageState extends State<GoodsPage> {
   TextEditingController _controller = TextEditingController();
   DateTime selectedDate = DateTime.now();
-  _selectDate(BuildContext context) async {
-    final DateTime picked = await showDatePicker(
-      context: context,
-      initialDate: selectedDate,
-      firstDate: DateTime(selectedDate.year - 5),
-      lastDate: DateTime(selectedDate.year + 5),
-    );
-    if (picked != null && picked != selectedDate)
-      setState(() {
-        selectedDate = picked;
-      });
-  }
-
-  int _value = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -209,11 +195,10 @@ class _GoodsState extends State<Goods> {
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(14.5)),
                           color: Color(0XFFFFD05B),
-                          onPressed: () => Navigator.of(context)
-                              .pushAndRemoveUntil(
-                                  MaterialPageRoute(
-                                      builder: (context) => ToolsPage()),
-                                  (Route<dynamic> route) => false),
+                          onPressed: () => Navigator.of(context).push(
+                            MaterialPageRoute(
+                                builder: (context) => SuccessPage()),
+                          ),
                           child: Text("เลือก",
                               style:
                                   TextStyle(fontSize: 13, color: Colors.white)),

@@ -1,7 +1,7 @@
 import 'package:date_format/date_format.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rounded_date_picker/rounded_picker.dart';
-import 'package:invoice/pages/goods/goods.dart';
+import 'package:invoice/pages/goods/goods_page.dart';
 import 'package:invoice/pages/tool_page.dart';
 
 class ChooseOrderDate2 extends StatefulWidget {
@@ -72,19 +72,25 @@ class _ChooseOrderDate2State extends State<ChooseOrderDate2> {
                               Container(
                                 width: 166,
                                 height: 50,
-                                child: OutlinedButton.icon(
+                                child: OutlineButton(
                                   onPressed: () {
                                     _selectDate(context);
                                   },
-                                  icon: Icon(
-                                    Icons.date_range,
-                                    color: Colors.black45,
-                                  ),
-                                  label: Text(
-                                    formatDate(
-                                        selectedDate, [dd, '/', mm, '/', yyyy]),
-                                    style: TextStyle(
-                                        color: Colors.black, fontSize: 17),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        formatDate(selectedDate,
+                                            [dd, '/', mm, '/', yyyy]),
+                                        style: TextStyle(
+                                            color: Colors.black, fontSize: 17),
+                                      ),
+                                      SizedBox(width: 10),
+                                      Icon(
+                                        Icons.date_range,
+                                        color: Colors.black45,
+                                      ),
+                                    ],
                                   ),
                                 ),
                               ),
@@ -202,7 +208,7 @@ class _ChooseOrderDate2State extends State<ChooseOrderDate2> {
                               color: Color(0XFFFFD05B),
                               onPressed: () => Navigator.of(context).push(
                                 MaterialPageRoute(
-                                    builder: (context) => Goods()),
+                                    builder: (context) => GoodsPage()),
                               ),
                               child: Text("เลือก",
                                   style: TextStyle(
