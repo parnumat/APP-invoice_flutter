@@ -204,7 +204,7 @@ class _ChooseOrderDate2State extends State<ChooseOrderDate2> {
                           children: [
                             RaisedButton(
                               shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(14.5)),
+                                  borderRadius: BorderRadius.circular(20)),
                               color: Color(0XFFFFD05B),
                               onPressed: () => Navigator.of(context).push(
                                 MaterialPageRoute(
@@ -219,7 +219,7 @@ class _ChooseOrderDate2State extends State<ChooseOrderDate2> {
                             ),
                             RaisedButton(
                               shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(14.5)),
+                                  borderRadius: BorderRadius.circular(20)),
                               color: Color(0XFF29EAA4),
                               onPressed: () {
                                 Navigator.of(context).pop();
@@ -230,7 +230,7 @@ class _ChooseOrderDate2State extends State<ChooseOrderDate2> {
                             ),
                             // RaisedButton(
                             //   shape: RoundedRectangleBorder(
-                            //       borderRadius: BorderRadius.circular(14.5)),
+                            //       borderRadius: BorderRadius.circular(20)),
                             //   onPressed: () {
                             //     showRoundedTimePicker(
                             //       context: context,

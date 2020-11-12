@@ -15,321 +15,300 @@ class _MainOrderDetailState extends State<MainOrderDetail> {
       body: SafeArea(
         child: Container(
           child: Center(
-            child: Stack(
+            child: Wrap(
               children: [
-                Positioned(
-                  child: Column(
-                    children: [
-                      Expanded(
-                        child: Padding(
-                          padding: const EdgeInsets.all(20.0),
-                          child: Container(
-                            color: Colors.teal,
-                            child: Center(
-                              child: Container(
-                                child: Container(),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        flex: 5,
-                        child: Container(),
-                      ),
-                    ],
+                Container(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Center(
+                    child: Container(
+                      height: 100,
+                      color: Colors.amber,
+                    ),
                   ),
                 ),
-                Column(
-                  children: [
-                    Expanded(
-                      child: Container(),
-                    ),
-                    Expanded(
-                      flex: 4,
-                      child: Padding(
-                        padding: const EdgeInsets.all(20.0),
-                        child: Container(
-                          child: Center(
-                            child: Column(
-                              children: [
-                                Expanded(
-                                  child: Form(
-                                    child: Column(
+                Container(
+                  // flex: 4,
+                  child: Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: Container(
+                      child: Center(
+                        child: Column(
+                          children: [
+                            Container(
+                              child: Form(
+                                child: Column(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceAround,
+                                  children: [
+                                    Row(
                                       mainAxisAlignment:
-                                          MainAxisAlignment.spaceAround,
+                                          MainAxisAlignment.spaceBetween,
                                       children: [
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Text('เลขที่ใบกำกับภาษี'),
-                                            Container(
-                                              margin: EdgeInsets.all(5),
-                                              width: 240,
-                                              height: 28,
-                                              child: TextField(
-                                                style: TextStyle(fontSize: 17),
-                                                // controller: _codeTool,
-                                                decoration: InputDecoration(
-                                                  suffixIcon: Icon(Icons.menu),
-                                                  border: OutlineInputBorder(),
-                                                ),
-                                              ),
+                                        Text('เลขที่ใบกำกับภาษี'),
+                                        Container(
+                                          margin: EdgeInsets.all(5),
+                                          width: 240,
+                                          height: 28,
+                                          child: TextField(
+                                            style: TextStyle(fontSize: 17),
+                                            // controller: _codeTool,
+                                            decoration: InputDecoration(
+                                              suffixIcon: Icon(Icons.menu),
+                                              border: OutlineInputBorder(),
                                             ),
-                                            Text('วันที่ในใบกำกับภาษี'),
-                                            Container(
-                                              margin: EdgeInsets.all(5),
-                                              width: 200,
-                                              height: 28,
-                                              child: TextField(
-                                                style: TextStyle(fontSize: 17),
-                                                // controller: _codeTool,
-                                                decoration: InputDecoration(
-                                                  suffixIcon: Icon(Icons
-                                                      .date_range_outlined),
-                                                  border: OutlineInputBorder(),
-                                                ),
-                                              ),
-                                            ),
-                                            Text('วันครบกำหนดชำระ'),
-                                            Container(
-                                              margin: EdgeInsets.all(5),
-                                              width: 175,
-                                              height: 28,
-                                              child: TextField(
-                                                style: TextStyle(fontSize: 17),
-                                                // controller: _codeTool,
-                                                decoration: InputDecoration(
-                                                  border: OutlineInputBorder(),
-                                                ),
-                                              ),
-                                            ),
-                                          ],
+                                          ),
                                         ),
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Text('เลขที่ใบสั่งขาย'),
-                                            Container(
-                                              margin: EdgeInsets.all(5),
-                                              width: 240,
-                                              height: 28,
-                                              child: TextField(
-                                                style: TextStyle(fontSize: 17),
-                                                // controller: _codeTool,
-                                                decoration: InputDecoration(
-                                                  suffixIcon: Icon(Icons.menu),
-                                                  border: OutlineInputBorder(),
-                                                ),
-                                              ),
+                                        Text('วันที่ในใบกำกับภาษี'),
+                                        Container(
+                                          margin: EdgeInsets.all(5),
+                                          width: 200,
+                                          height: 28,
+                                          child: TextField(
+                                            style: TextStyle(fontSize: 17),
+                                            // controller: _codeTool,
+                                            decoration: InputDecoration(
+                                              suffixIcon: Icon(
+                                                  Icons.date_range_outlined),
+                                              border: OutlineInputBorder(),
                                             ),
-                                            Text('ใบสั่งซื้อเลขที่'),
-                                            Container(
-                                              margin: EdgeInsets.all(5),
-                                              width: 200,
-                                              height: 28,
-                                              child: TextField(
-                                                style: TextStyle(fontSize: 17),
-                                                // controller: _codeTool,
-                                                decoration: InputDecoration(
-                                                  border: OutlineInputBorder(),
-                                                ),
-                                              ),
-                                            ),
-                                            Text('เครดิต'),
-                                            Container(
-                                              margin: EdgeInsets.all(5),
-                                              width: 74,
-                                              height: 28,
-                                              child: TextField(
-                                                style: TextStyle(fontSize: 17),
-                                                // controller: _codeTool,
-                                                decoration: InputDecoration(
-                                                  border: OutlineInputBorder(),
-                                                ),
-                                              ),
-                                            ),
-                                            Text('วัน'),
-                                            SizedBox(
-                                              width: 80,
-                                            )
-                                          ],
+                                          ),
                                         ),
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Text('ลูกค้า'),
-                                            Container(
-                                              margin: EdgeInsets.all(5),
-                                              width: 870,
-                                              height: 28,
-                                              child: TextField(
-                                                style: TextStyle(fontSize: 17),
-                                                // controller: _codeTool,
-                                                decoration: InputDecoration(
-                                                  border: OutlineInputBorder(),
-                                                ),
-                                              ),
+                                        Text('วันครบกำหนดชำระ'),
+                                        Container(
+                                          margin: EdgeInsets.all(5),
+                                          width: 175,
+                                          height: 28,
+                                          child: TextField(
+                                            style: TextStyle(fontSize: 17),
+                                            // controller: _codeTool,
+                                            decoration: InputDecoration(
+                                              border: OutlineInputBorder(),
                                             ),
-                                          ],
+                                          ),
                                         ),
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Text('ที่อยู่'),
-                                            Container(
-                                              margin: EdgeInsets.all(5),
-                                              width: 870,
-                                              height: 28,
-                                              child: TextField(
-                                                style: TextStyle(fontSize: 17),
-                                                // controller: _codeTool,
-                                                decoration: InputDecoration(
-                                                  border: OutlineInputBorder(),
-                                                ),
-                                              ),
+                                      ],
+                                    ),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text('เลขที่ใบสั่งขาย'),
+                                        Container(
+                                          margin: EdgeInsets.all(5),
+                                          width: 240,
+                                          height: 28,
+                                          child: TextField(
+                                            style: TextStyle(fontSize: 17),
+                                            // controller: _codeTool,
+                                            decoration: InputDecoration(
+                                              suffixIcon: Icon(Icons.menu),
+                                              border: OutlineInputBorder(),
                                             ),
-                                          ],
+                                          ),
                                         ),
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Text('สถานที่ส่งของ'),
-                                            Container(
-                                              margin: EdgeInsets.all(5),
-                                              width: 870,
-                                              height: 28,
-                                              child: TextField(
-                                                style: TextStyle(fontSize: 17),
-                                                // controller: _codeTool,
-                                                decoration: InputDecoration(
-                                                  border: OutlineInputBorder(),
-                                                ),
-                                              ),
+                                        Text('ใบสั่งซื้อเลขที่'),
+                                        Container(
+                                          margin: EdgeInsets.all(5),
+                                          width: 200,
+                                          height: 28,
+                                          child: TextField(
+                                            style: TextStyle(fontSize: 17),
+                                            // controller: _codeTool,
+                                            decoration: InputDecoration(
+                                              border: OutlineInputBorder(),
                                             ),
-                                          ],
+                                          ),
                                         ),
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Text('รหัสผู้ส่ง'),
-                                            SizedBox(width: 28),
-                                            Container(
-                                              margin: EdgeInsets.all(5),
-                                              width: 118,
-                                              height: 28,
-                                              child: TextField(
-                                                style: TextStyle(fontSize: 17),
-                                                // controller: _codeTool,
-                                                decoration: InputDecoration(
-                                                  suffixIcon: Icon(Icons.menu),
-                                                  border: OutlineInputBorder(),
-                                                ),
-                                              ),
+                                        Text('เครดิต'),
+                                        Container(
+                                          margin: EdgeInsets.all(5),
+                                          width: 74,
+                                          height: 28,
+                                          child: TextField(
+                                            style: TextStyle(fontSize: 17),
+                                            // controller: _codeTool,
+                                            decoration: InputDecoration(
+                                              border: OutlineInputBorder(),
                                             ),
-                                            Text('ชื่อผู้ส่ง'),
-                                            Container(
-                                              margin: EdgeInsets.all(5),
-                                              width: 180,
-                                              height: 28,
-                                              child: TextField(
-                                                style: TextStyle(fontSize: 17),
-                                                // controller: _codeTool,
-                                                decoration: InputDecoration(
-                                                  border: OutlineInputBorder(),
-                                                ),
-                                              ),
-                                            ),
-                                            Text('ทะเบียนรถ'),
-                                            Container(
-                                              margin: EdgeInsets.all(5),
-                                              width: 140,
-                                              height: 28,
-                                              child: TextField(
-                                                style: TextStyle(fontSize: 17),
-                                                // controller: _codeTool,
-                                                decoration: InputDecoration(
-                                                  border: OutlineInputBorder(),
-                                                ),
-                                              ),
-                                            ),
-                                            Text('ชื่อผู้รับ'),
-                                            Container(
-                                              margin: EdgeInsets.all(5),
-                                              width: 180,
-                                              height: 28,
-                                              child: TextField(
-                                                style: TextStyle(fontSize: 17),
-                                                // controller: _codeTool,
-                                                decoration: InputDecoration(
-                                                  border: OutlineInputBorder(),
-                                                ),
-                                              ),
-                                            ),
-                                          ],
+                                          ),
                                         ),
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Text('หมายเหตุ'),
-                                            Container(
-                                              margin: EdgeInsets.all(5),
-                                              width: 870,
-                                              height: 28,
-                                              child: TextField(
-                                                style: TextStyle(fontSize: 17),
-                                                // controller: _codeTool,
-                                                decoration: InputDecoration(
-                                                  suffixIcon: Icon(Icons.menu),
-                                                  border: OutlineInputBorder(),
-                                                ),
-                                              ),
-                                            ),
-                                          ],
+                                        Text('วัน'),
+                                        SizedBox(
+                                          width: 80,
                                         )
                                       ],
                                     ),
-                                  ),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text('ลูกค้า'),
+                                        Container(
+                                          margin: EdgeInsets.all(5),
+                                          width: 870,
+                                          height: 28,
+                                          child: TextField(
+                                            style: TextStyle(fontSize: 17),
+                                            // controller: _codeTool,
+                                            decoration: InputDecoration(
+                                              border: OutlineInputBorder(),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text('ที่อยู่'),
+                                        Container(
+                                          margin: EdgeInsets.all(5),
+                                          width: 870,
+                                          height: 28,
+                                          child: TextField(
+                                            style: TextStyle(fontSize: 17),
+                                            // controller: _codeTool,
+                                            decoration: InputDecoration(
+                                              border: OutlineInputBorder(),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text('สถานที่ส่งของ'),
+                                        Container(
+                                          margin: EdgeInsets.all(5),
+                                          width: 870,
+                                          height: 28,
+                                          child: TextField(
+                                            style: TextStyle(fontSize: 17),
+                                            // controller: _codeTool,
+                                            decoration: InputDecoration(
+                                              border: OutlineInputBorder(),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text('รหัสผู้ส่ง'),
+                                        SizedBox(width: 28),
+                                        Container(
+                                          margin: EdgeInsets.all(5),
+                                          width: 118,
+                                          height: 28,
+                                          child: TextField(
+                                            style: TextStyle(fontSize: 17),
+                                            // controller: _codeTool,
+                                            decoration: InputDecoration(
+                                              suffixIcon: Icon(Icons.menu),
+                                              border: OutlineInputBorder(),
+                                            ),
+                                          ),
+                                        ),
+                                        Text('ชื่อผู้ส่ง'),
+                                        Container(
+                                          margin: EdgeInsets.all(5),
+                                          width: 180,
+                                          height: 28,
+                                          child: TextField(
+                                            style: TextStyle(fontSize: 17),
+                                            // controller: _codeTool,
+                                            decoration: InputDecoration(
+                                              border: OutlineInputBorder(),
+                                            ),
+                                          ),
+                                        ),
+                                        Text('ทะเบียนรถ'),
+                                        Container(
+                                          margin: EdgeInsets.all(5),
+                                          width: 140,
+                                          height: 28,
+                                          child: TextField(
+                                            style: TextStyle(fontSize: 17),
+                                            // controller: _codeTool,
+                                            decoration: InputDecoration(
+                                              border: OutlineInputBorder(),
+                                            ),
+                                          ),
+                                        ),
+                                        Text('ชื่อผู้รับ'),
+                                        Container(
+                                          margin: EdgeInsets.all(5),
+                                          width: 180,
+                                          height: 28,
+                                          child: TextField(
+                                            style: TextStyle(fontSize: 17),
+                                            // controller: _codeTool,
+                                            decoration: InputDecoration(
+                                              border: OutlineInputBorder(),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text('หมายเหตุ'),
+                                        Container(
+                                          margin: EdgeInsets.all(5),
+                                          width: 870,
+                                          height: 28,
+                                          child: TextField(
+                                            style: TextStyle(fontSize: 17),
+                                            // controller: _codeTool,
+                                            decoration: InputDecoration(
+                                              suffixIcon: Icon(Icons.menu),
+                                              border: OutlineInputBorder(),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    )
+                                  ],
                                 ),
-                              ],
+                              ),
                             ),
-                          ),
+                          ],
                         ),
                       ),
                     ),
-                    Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.all(20.0),
-                        child: Container(
-                          child: Center(
-                            child: RaisedButton(
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(14.5)),
-                              color: Color(0XFFFFD05B),
-                              onPressed: () => Navigator.of(context)
-                                  .push(_createRoute(BookTaxInvoice())),
+                  ),
+                ),
+                Container(
+                  child: Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: Container(
+                      child: Center(
+                        child: RaisedButton(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20)),
+                          color: Color(0XFFFFD05B),
+                          onPressed: () => Navigator.of(context)
+                              .push(_createRoute(BookTaxInvoice())),
 
-                              // Navigator.of(context)
-                              //     .pushAndRemoveUntil(
-                              //         MaterialPageRoute(
-                              //             builder: (context) => BookTaxInvoice()),
-                              //         (Route<dynamic> route) => false),
-                              child: Text("ต่อไป",
-                                  style: TextStyle(
-                                      fontSize: 13, color: Colors.white)),
-                            ),
-                          ),
+                          // Navigator.of(context)
+                          //     .pushAndRemoveUntil(
+                          //         MaterialPageRoute(
+                          //             builder: (context) => BookTaxInvoice()),
+                          //         (Route<dynamic> route) => false),
+                          child: Text("ต่อไป",
+                              style:
+                                  TextStyle(fontSize: 13, color: Colors.white)),
                         ),
                       ),
                     ),
-                  ],
+                  ),
                 ),
               ],
             ),

@@ -90,7 +90,7 @@ class _BookTaxInvoiceState extends State<BookTaxInvoice> {
                         children: [
                           RaisedButton(
                             shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(14.5)),
+                                borderRadius: BorderRadius.circular(20)),
                             color: Color(0XFFFFD05B),
                             onPressed: () {
                               Navigator.pop(context);
@@ -110,7 +110,7 @@ class _BookTaxInvoiceState extends State<BookTaxInvoice> {
                           ),
                           RaisedButton(
                             shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(14.5)),
+                                borderRadius: BorderRadius.circular(20)),
                             color: Color(0XFF29EAA4),
                             onPressed: () => Navigator.of(context).pop(),
                             child: Text("ยกเลิก",

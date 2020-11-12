@@ -286,10 +286,12 @@ class _InvoiceToolsPageState extends State<InvoiceToolsPage> {
     );
   }
 
-  _customRow(numb) {
+  _customRow(index) {
     var dataRow = DataRow(
+      color: MaterialStateProperty.all(
+          (index % 2 == 0) ? Color(0XFFFFD05B) : Color(0XFFFFFFFF)),
       cells: <DataCell>[
-        DataCell(Text('$numb', style: TextStyle(fontSize: 11))),
+        DataCell(Text('$index', style: TextStyle(fontSize: 11))),
         DataCell(Text('S630900000013', style: TextStyle(fontSize: 11))),
         DataCell(Text('630900024', style: TextStyle(fontSize: 11))),
         DataCell(Text('1', style: TextStyle(fontSize: 11))),

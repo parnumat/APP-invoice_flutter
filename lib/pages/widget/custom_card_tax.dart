@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:invoice/animations/test/test_animation.dart';
+import 'package:invoice/pages/invoice_details/invoice_details.dart';
 import 'package:invoice/pages/sale_order/main_detail.dart';
 
 class CustomCardTax extends StatelessWidget {
@@ -13,7 +14,7 @@ class CustomCardTax extends StatelessWidget {
       onTap: () => Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => TransitionsHomePage(),
+          builder: (context) => InvoiceToolDetailPage(),
         ),
       ),
       child: Container(

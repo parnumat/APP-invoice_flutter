@@ -193,12 +193,9 @@ class _GoodsPageState extends State<GoodsPage> {
                       children: [
                         RaisedButton(
                           shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(14.5)),
+                              borderRadius: BorderRadius.circular(20)),
                           color: Color(0XFFFFD05B),
-                          onPressed: () => Navigator.of(context).push(
-                            MaterialPageRoute(
-                                builder: (context) => SuccessPage()),
-                          ),
+                          onPressed: () => _showDialog(context),
                           child: Text("เลือก",
                               style:
                                   TextStyle(fontSize: 13, color: Colors.white)),
@@ -208,7 +205,7 @@ class _GoodsPageState extends State<GoodsPage> {
                         ),
                         RaisedButton(
                           shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(14.5)),
+                              borderRadius: BorderRadius.circular(20)),
                           color: Color(0XFF29EAA4),
                           onPressed: () {
                             Navigator.of(context).pop();
@@ -251,4 +248,53 @@ class _GoodsPageState extends State<GoodsPage> {
     );
     return dataRow;
   }
+}
+
+_showDialog(BuildContext context) {
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        shape: RoundedRectangleBorder(
+            side: BorderSide(color: Color(0XFFFFD05B), width: 2.0),
+            borderRadius: BorderRadius.all(Radius.circular(10.0))),
+        title: Text('บันทึก'),
+        content: SingleChildScrollView(
+          child: ListBody(
+            // reverse: true,
+            children: <Widget>[
+              Center(child: Text('บันทึกข้อมูล เลขที่เอกสารใบกำกับภาษีเลขที่')),
+              Center(
+                  child: Text(
+                      'SI005/0105054 และใบเบิกสินค้าเลขที่ IO63106F0006 เรียบร้อยแล้ว')),
+            ],
+          ),
+        ),
+        actions: <Widget>[
+          RaisedButton(
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+            color: Color(0XFFFFD05B),
+            onPressed: () => Navigator.of(context).push(
+              MaterialPageRoute(builder: (context) => SuccessPage()),
+            ),
+            child: Text("ตกลง",
+                style: TextStyle(fontSize: 13, color: Colors.white)),
+          ),
+          SizedBox(
+            width: 20,
+          )
+          // TextButton(
+          //   child: Text('Approve'),
+          //   onPressed: () {
+          //     Navigator.of(context).pop();
+          //     Navigator.of(context).push(
+          //       MaterialPageRoute(builder: (context) => SuccessPage()),
+          //     );
+          //   },
+          // ),
+        ],
+      );
+    },
+  );
 }

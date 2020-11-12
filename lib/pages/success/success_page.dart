@@ -39,7 +39,10 @@ class _SuccessPageState extends State<SuccessPage> {
                   child: Padding(
                     padding: const EdgeInsets.all(20.0),
                     child: Container(
-                      child: CustomCardSuccess(),
+                      child: CustomCardSuccess(
+                        w: 0.7,
+                        h: 0.8,
+                      ),
                     ),
                   ),
                 ),
@@ -53,7 +56,7 @@ class _SuccessPageState extends State<SuccessPage> {
                           children: [
                             RaisedButton(
                               shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(14.5)),
+                                  borderRadius: BorderRadius.circular(20)),
                               color: Color(0XFFFFD05B),
                               onPressed: () => Navigator.push(
                                 context,
@@ -66,7 +69,7 @@ class _SuccessPageState extends State<SuccessPage> {
                               //         MaterialPageRoute(
                               //             builder: (context) => ToolsPage()),
                               //         (Route<dynamic> route) => false),
-                              child: Text("เลือก",
+                              child: Text("พิมพ์",
                                   style: TextStyle(
                                       fontSize: 13, color: Colors.white)),
                             ),
@@ -75,12 +78,12 @@ class _SuccessPageState extends State<SuccessPage> {
                             ),
                             RaisedButton(
                               shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(14.5)),
-                              color: Color(0XFF29EAA4),
+                                  borderRadius: BorderRadius.circular(20)),
+                              color: Color(0XFFFFD05B),
                               onPressed: () {
                                 Navigator.of(context).pop();
                               },
-                              child: Text("ยกเลิก",
+                              child: Text("Packing List",
                                   style: TextStyle(
                                       fontSize: 13, color: Colors.white)),
                             ),

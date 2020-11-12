@@ -150,7 +150,7 @@ class _ChooseOrderDetailsState extends State<ChooseOrderDetails> {
                           children: [
                             RaisedButton(
                               shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(14.5)),
+                                  borderRadius: BorderRadius.circular(20)),
                               color: Color(0XFFFFD05B),
                               onPressed: () => Navigator.push(
                                 context,
@@ -167,7 +167,7 @@ class _ChooseOrderDetailsState extends State<ChooseOrderDetails> {
                             ),
                             RaisedButton(
                               shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(14.5)),
+                                  borderRadius: BorderRadius.circular(20)),
                               color: Color(0XFF29EAA4),
                               onPressed: () {
                                 Navigator.of(context).pop();
