@@ -64,8 +64,9 @@ class _CustomDialogBoxState extends State<CustomDialogBox> {
                   ),
                   Container(
                     width: 340,
-                    height: 46,
+                    height: 40,
                     child: TextField(
+                      textAlignVertical: TextAlignVertical.top,
                       style: TextStyle(fontSize: 17),
                       // controller: _codeTool,
                       decoration: InputDecoration(

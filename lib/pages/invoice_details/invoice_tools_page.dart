@@ -55,7 +55,7 @@ class _InvoiceToolsPageState extends State<InvoiceToolsPage> {
                       decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(15)),
-                      width: 216,
+                      width: 230,
                       height: 29,
                       child: OutlineButton(
                         borderSide: BorderSide(color: Colors.white),

@@ -61,8 +61,9 @@ class _GoodsPageState extends State<GoodsPage> {
                               ),
                               Container(
                                 width: 450,
-                                height: 46,
+                                height: 40,
                                 child: TextField(
+                                  textAlignVertical: TextAlignVertical.top,
                                   style: TextStyle(fontSize: 17),
                                   // controller: _codeTool,
                                   decoration: InputDecoration(
@@ -82,8 +83,9 @@ class _GoodsPageState extends State<GoodsPage> {
                               ),
                               Container(
                                 width: 100,
-                                height: 46,
+                                height: 40,
                                 child: TextField(
+                                  textAlignVertical: TextAlignVertical.top,
                                   style: TextStyle(fontSize: 17),
                                   // controller: _codeTool,
                                   decoration: InputDecoration(
@@ -103,8 +105,9 @@ class _GoodsPageState extends State<GoodsPage> {
                               ),
                               Container(
                                 width: 100,
-                                height: 46,
+                                height: 40,
                                 child: TextField(
+                                  textAlignVertical: TextAlignVertical.top,
                                   style: TextStyle(fontSize: 17),
                                   // controller: _codeTool,
                                   decoration: InputDecoration(
@@ -137,8 +140,9 @@ class _GoodsPageState extends State<GoodsPage> {
                               ),
                               Container(
                                 width: 500,
-                                height: 46,
+                                height: 40,
                                 child: TextField(
+                                  textAlignVertical: TextAlignVertical.top,
                                   style: TextStyle(fontSize: 17),
                                   // controller: _codeTool,
                                   decoration: InputDecoration(

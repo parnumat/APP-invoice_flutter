@@ -207,6 +207,7 @@ class _SignInPage extends StatelessWidget {
                     bottom: 10.0,
                   ),
                   child: TextField(
+                    textAlignVertical: TextAlignVertical.top,
                     decoration: InputDecoration(
                       suffixIcon: Icon(
                         Icons.visibility,

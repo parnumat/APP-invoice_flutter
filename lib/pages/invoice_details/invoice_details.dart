@@ -52,92 +52,142 @@ class _InvoiceToolDetailPageState extends State<InvoiceToolDetailPage> {
                   ),
                 ),
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text("วันที่ใบกำกับภาษี"),
-                    SizedBox(width: 10),
-                    Container(
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(15)),
-                      width: 216,
-                      height: 29,
-                      child: OutlineButton(
-                        borderSide: BorderSide(color: Colors.white),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(15.0)),
-                        onPressed: () {
-                          _selectDate(context);
-                        },
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              formatDate(
-                                      selectedDate, [dd, '/', mm, '/', yyyy]) +
-                                  "-" +
-                                  formatDate(
-                                      selectedDate, [dd, '/', mm, '/', yyyy]),
+                    Row(
+                      children: [
+                        Text("วันที่ใบกำกับภาษี"),
+                        SizedBox(width: 10),
+                        Container(
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(15)),
+                          width: 230,
+                          height: 29,
+                          child: OutlineButton(
+                            borderSide: BorderSide(color: Colors.white),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(15.0)),
+                            onPressed: () {
+                              _selectDate(context);
+                            },
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  formatDate(selectedDate,
+                                          [dd, '/', mm, '/', yyyy]) +
+                                      "-" +
+                                      formatDate(selectedDate,
+                                          [dd, '/', mm, '/', yyyy]),
+                                  style: TextStyle(
+                                      color: Colors.black, fontSize: 14),
+                                ),
+                                SizedBox(width: 5),
+                                Icon(
+                                  Icons.date_range,
+                                  color: Colors.black26,
+                                  size: 20,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        SizedBox(width: 10),
+                        Text("เลขที่ใบกำกับภาษี"),
+                        SizedBox(width: 10),
+                        Text("ตั้งแต่"),
+                        SizedBox(width: 10),
+                        Container(
+                          width: 120,
+                          height: 29,
+                          child: TextField(
+                            style: TextStyle(fontSize: 17),
+                            // controller: _controller,
+                            decoration: InputDecoration(
+                              filled: true,
+                              fillColor: Colors.white,
+                              enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.white),
+                                  borderRadius: BorderRadius.circular(15)),
+                              focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.white),
+                                  borderRadius: BorderRadius.circular(15)),
+                            ),
+                          ),
+                        ),
+                        SizedBox(width: 10),
+                        Text("ถึง"),
+                        SizedBox(width: 10),
+                        Container(
+                          width: 120,
+                          height: 29,
+                          child: TextField(
+                            style: TextStyle(fontSize: 17),
+                            // controller: _controller,
+                            decoration: InputDecoration(
+                              filled: true,
+                              fillColor: Colors.white,
+                              enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.white),
+                                  borderRadius: BorderRadius.circular(15)),
+                              focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.white),
+                                  borderRadius: BorderRadius.circular(15)),
+                            ),
+                          ),
+                        ),
+                        SizedBox(width: 10),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        ButtonTheme(
+                          minWidth: 35,
+                          height: 25,
+                          child: RaisedButton(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20)),
+                            color: Color(0XFFFFD05B),
+                            onPressed: () {
+                              Navigator.of(context).pushAndRemoveUntil(
+                                  MaterialPageRoute(
+                                      builder: (context) => ToolsPage()),
+                                  (Route<dynamic> route) => false);
+                            },
+                            child: Text(
+                              "ค้นหา",
                               style:
-                                  TextStyle(color: Colors.black, fontSize: 14),
+                                  TextStyle(fontSize: 13, color: Colors.white),
                             ),
-                            SizedBox(width: 5),
-                            Icon(
-                              Icons.date_range,
-                              color: Colors.black26,
-                              size: 20,
+                          ),
+                        ),
+                        SizedBox(width: 10),
+                        ButtonTheme(
+                          minWidth: 35,
+                          height: 25,
+                          child: RaisedButton(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20)),
+                            color: Color(0XFFFFFFFF),
+                            onPressed: () {
+                              Navigator.of(context).pushAndRemoveUntil(
+                                  MaterialPageRoute(
+                                      builder: (context) => ToolsPage()),
+                                  (Route<dynamic> route) => false);
+                            },
+                            child: Text(
+                              "ล้าง",
+                              style: TextStyle(
+                                  fontSize: 13, color: Color(0XFFFFD05B)),
                             ),
-                          ],
+                          ),
                         ),
-                      ),
-                    ),
-                    SizedBox(width: 10),
-                    Text("เลขที่ใบกำกับภาษี"),
-                    SizedBox(width: 10),
-                    Text("ตั้งแต่"),
-                    SizedBox(width: 10),
-                    Container(
-                      width: 160,
-                      height: 29,
-                      child: TextField(
-                        style: TextStyle(fontSize: 17),
-                        // controller: _controller,
-                        decoration: InputDecoration(
-                          filled: true,
-                          fillColor: Colors.white,
-                          enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.white),
-                              borderRadius: BorderRadius.circular(15)),
-                          focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.white),
-                              borderRadius: BorderRadius.circular(15)),
-                        ),
-                      ),
-                    ),
-                    SizedBox(width: 10),
-                    Text("ถึง"),
-                    SizedBox(width: 10),
-                    Container(
-                      width: 160,
-                      height: 29,
-                      child: TextField(
-                        style: TextStyle(fontSize: 17),
-                        // controller: _controller,
-                        decoration: InputDecoration(
-                          filled: true,
-                          fillColor: Colors.white,
-                          enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.white),
-                              borderRadius: BorderRadius.circular(15)),
-                          focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.white),
-                              borderRadius: BorderRadius.circular(15)),
-                        ),
-                      ),
-                    ),
-                    SizedBox(width: 10),
+                      ],
+                    )
                   ],
                 ),
-                SizedBox(height: 20),
+                // SizedBox(height: 20),
                 Padding(
                   padding: const EdgeInsets.only(left: 65),
                   child: Row(
@@ -253,8 +303,10 @@ class _InvoiceToolDetailPageState extends State<InvoiceToolDetailPage> {
                                   ],
                                 ),
                               ),
-                              SizedBox(height: 10),
-                              Text("OOOOO")
+                              Container(
+                                  padding: EdgeInsets.only(top: 10),
+                                  height: 30,
+                                  child: Center(child: Text("OOOOO")))
                             ],
                           )
                         : Container(
@@ -365,7 +417,7 @@ class _InvoiceToolDetailPageState extends State<InvoiceToolDetailPage> {
                                       ),
                                     ),
                                   ],
-                                )
+                                ),
                               ],
                             ),
                             decoration: BoxDecoration(
@@ -381,8 +433,11 @@ class _InvoiceToolDetailPageState extends State<InvoiceToolDetailPage> {
                                 ),
                               ],
                             ),
-                          )
+                          ),
                   ],
+                ),
+                SizedBox(
+                  height: 30,
                 )
               ],
             ),

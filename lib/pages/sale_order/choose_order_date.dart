@@ -67,7 +67,7 @@ class _ChooseOrderDateState extends State<ChooseOrderDate> {
                               ),
                               Container(
                                 width: 166,
-                                height: 50,
+                                height: 40,
                                 child: OutlineButton(
                                   onPressed: () {
                                     _selectDate(context);
@@ -103,8 +103,9 @@ class _ChooseOrderDateState extends State<ChooseOrderDate> {
                               ),
                               Container(
                                 width: 220,
-                                height: 46,
+                                height: 40,
                                 child: TextField(
+                                  textAlignVertical: TextAlignVertical.top,
                                   style: TextStyle(fontSize: 17),
                                   controller: _controller,
                                   // obscureText: true,

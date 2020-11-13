@@ -71,7 +71,7 @@ class _ChooseOrderDate2State extends State<ChooseOrderDate2> {
                               ),
                               Container(
                                 width: 166,
-                                height: 50,
+                                height: 40,
                                 child: OutlineButton(
                                   onPressed: () {
                                     _selectDate(context);
@@ -108,7 +108,7 @@ class _ChooseOrderDate2State extends State<ChooseOrderDate2> {
                               Container(
                                   padding: EdgeInsets.only(left: 15),
                                   width: 145,
-                                  height: 46,
+                                  height: 50,
                                   decoration: BoxDecoration(
                                       border: Border.all(color: Colors.black12),
                                       borderRadius: BorderRadius.circular(5)),
@@ -119,6 +119,8 @@ class _ChooseOrderDate2State extends State<ChooseOrderDate2> {
                                                 color: Colors.white))),
                                     icon: Icon(Icons.arrow_drop_down),
                                     value: _value,
+                                    // style: TextStyle(
+                                    //     fontSize: 14, color: Colors.black),
                                     items: [
                                       DropdownMenuItem(
                                         child: Text("FM63090011"),
