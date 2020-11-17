@@ -25,11 +25,11 @@ class CustomProgressBar extends StatelessWidget {
         Stack(
           children: [
             Container(
-              margin: EdgeInsets.only(top: 20),
+              margin: EdgeInsets.only(top: 20, right: 10, left: 10),
               width: width,
               height: height,
               decoration: BoxDecoration(
-                  color: Color(0XFFC4C4C4),
+                  color: Color(0XFFE5E5E5),
                   borderRadius: BorderRadius.circular(radius)),
             ),
             Column(
@@ -38,6 +38,7 @@ class CustomProgressBar extends StatelessWidget {
                 Material(
                   borderRadius: BorderRadius.circular(radius),
                   child: AnimatedContainer(
+                    margin: EdgeInsets.only(left: 10, right: 10),
                     height: height,
                     width: width * ratio,
                     duration: Duration(milliseconds: 500),
@@ -54,35 +55,70 @@ class CustomProgressBar extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Container(
-                    width: 50,
-                    height: 50,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(90),
-                      color: Color(0XFFFFD05B),
-                    ),
+                  Column(
+                    children: [
+                      AnimatedContainer(
+                        duration: Duration(milliseconds: 500),
+                        child: Container(
+                          width: 50,
+                          height: 50,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(90),
+                            color: Color(0XFFFFD05B),
+                          ),
+                        ),
+                      ),
+                      Text(
+                        "เลือกใบสั่งขาย",
+                        style: TextStyle(fontSize: 15),
+                      )
+                    ],
                   ),
-                  Container(
-                    width: 50,
-                    height: 50,
-                    decoration: BoxDecoration(
-                      border: Border.all(width: 5, color: Color(0XFFFFD05B)),
-                      borderRadius: BorderRadius.circular(90),
-                      color: (width * ratio < width / 2)
-                          ? Color(0XFFE5E5E5)
-                          : Color(0XFFFFD05B),
-                    ),
+                  Column(
+                    children: [
+                      AnimatedContainer(
+                        duration: Duration(milliseconds: 500),
+                        child: Container(
+                          width: 50,
+                          height: 50,
+                          decoration: BoxDecoration(
+                            border:
+                                Border.all(width: 5, color: Color(0XFFFFD05B)),
+                            borderRadius: BorderRadius.circular(90),
+                            color: (width * ratio < width / 2)
+                                ? Colors.white
+                                : Color(0XFFFFD05B),
+                          ),
+                        ),
+                      ),
+                      Text(
+                        "ระบุสินค้า",
+                        style: TextStyle(fontSize: 15),
+                      )
+                    ],
                   ),
-                  Container(
-                    width: 50,
-                    height: 50,
-                    decoration: BoxDecoration(
-                      border: Border.all(width: 5, color: Color(0XFFFFD05B)),
-                      borderRadius: BorderRadius.circular(90),
-                      color: (width * ratio < width)
-                          ? Color(0XFFE5E5E5)
-                          : Color(0XFFFFD05B),
-                    ),
+                  Column(
+                    children: [
+                      AnimatedContainer(
+                        duration: Duration(milliseconds: 500),
+                        child: Container(
+                          width: 50,
+                          height: 50,
+                          decoration: BoxDecoration(
+                            border:
+                                Border.all(width: 5, color: Color(0XFFFFD05B)),
+                            borderRadius: BorderRadius.circular(90),
+                            color: (width * ratio < width)
+                                ? Colors.white
+                                : Color(0XFFFFD05B),
+                          ),
+                        ),
+                      ),
+                      Text(
+                        "สำเร็จ",
+                        style: TextStyle(fontSize: 15),
+                      )
+                    ],
                   ),
                 ],
               ),

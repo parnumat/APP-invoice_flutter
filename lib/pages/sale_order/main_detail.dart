@@ -1,3 +1,4 @@
+import 'package:date_format/date_format.dart';
 import 'package:flutter/material.dart';
 import 'package:invoice/pages/sale_order/book_tax_invoice.dart';
 import 'package:invoice/pages/widget/custom_progressbar.dart';
@@ -11,12 +12,26 @@ class MainOrderDetail extends StatefulWidget {
 
 class _MainOrderDetailState extends State<MainOrderDetail> {
   double _value = 0;
+  DateTime selectedDate = DateTime.now();
+  _selectDate(BuildContext context) async {
+    final DateTime picked = await showDatePicker(
+      context: context,
+      initialDate: selectedDate,
+      firstDate: DateTime(selectedDate.year - 5),
+      lastDate: DateTime(selectedDate.year + 5),
+    );
+    if (picked != null && picked != selectedDate)
+      setState(() {
+        selectedDate = picked;
+      });
+  }
+
   @override
   Widget build(BuildContext context) {
     double _width = MediaQuery.of(context).size.width;
     double _height = MediaQuery.of(context).size.height;
     return Scaffold(
-      backgroundColor: Color(0XFFE5E5E5),
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: Container(
           // color: Colors.blue,
@@ -29,7 +44,7 @@ class _MainOrderDetailState extends State<MainOrderDetail> {
                 Container(
                   // color: Colors.red,
                   padding: const EdgeInsets.all(20.0),
-                  height: 100,
+                  height: 120,
                   child: Center(
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -41,7 +56,6 @@ class _MainOrderDetailState extends State<MainOrderDetail> {
                                 _value = _value + 5;
                               else
                                 _value = 0;
-                              print(_value);
                             });
                           },
                           child: CustomProgressBar(
@@ -77,12 +91,20 @@ class _MainOrderDetailState extends State<MainOrderDetail> {
                                 Container(
                                   margin: EdgeInsets.all(5),
                                   width: 240,
-                                  height: 28,
+                                  height: 50,
                                   child: TextField(
+                                    // strutStyle: StrutStyle.disabled,
+                                    maxLength: 8,
+                                    maxLines: 1,
+                                    maxLengthEnforced: true,
+
+                                    // autofocus: true,
                                     style: TextStyle(fontSize: 17),
+                                    textAlignVertical: TextAlignVertical.top,
                                     // controller: _codeTool,
                                     decoration: InputDecoration(
                                       suffixIcon: Icon(Icons.menu),
+                                      counter: SizedBox.shrink(),
                                       border: OutlineInputBorder(
                                           borderSide:
                                               BorderSide(color: Colors.red)),
@@ -94,13 +116,32 @@ class _MainOrderDetailState extends State<MainOrderDetail> {
                                   margin: EdgeInsets.all(5),
                                   width: 200,
                                   height: 28,
-                                  child: TextField(
-                                    style: TextStyle(fontSize: 17),
-                                    // controller: _codeTool,
-                                    decoration: InputDecoration(
-                                      suffixIcon:
-                                          Icon(Icons.date_range_outlined),
-                                      border: OutlineInputBorder(),
+                                  child: OutlineButton(
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(4.0),
+                                    ),
+                                    borderSide:
+                                        BorderSide(color: Colors.black54),
+                                    onPressed: () {
+                                      _selectDate(context);
+                                    },
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          formatDate(selectedDate,
+                                              [dd, '/', mm, '/', yyyy]),
+                                          style: TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 17),
+                                        ),
+                                        SizedBox(width: 10),
+                                        Icon(
+                                          Icons.date_range,
+                                          color: Colors.black45,
+                                        ),
+                                      ],
                                     ),
                                   ),
                                 ),

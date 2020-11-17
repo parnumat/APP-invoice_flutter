@@ -12,7 +12,7 @@ class InvoiceToolDetailPage extends StatefulWidget {
 }
 
 class _InvoiceToolDetailPageState extends State<InvoiceToolDetailPage> {
-  TextEditingController _controller = TextEditingController();
+  // TextEditingController _controller = TextEditingController();
   DateTime selectedDate = DateTime.now();
   _selectDate(BuildContext context) async {
     final DateTime picked = await showDatePicker(

@@ -1,10 +1,8 @@
 import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:invoice/constants/constants.dart';
 import 'package:invoice/pages/sale_order/choose_order_details.dart';
-import 'package:invoice/pages/tool_page.dart';
-
-import 'constants.dart';
 
 class CustomDialogBox extends StatefulWidget {
   const CustomDialogBox({Key key}) : super(key: key);
@@ -14,8 +12,8 @@ class CustomDialogBox extends StatefulWidget {
 }
 
 class _CustomDialogBoxState extends State<CustomDialogBox> {
-  final _formKey = GlobalKey<FormState>();
-  TextEditingController _codeTool = new TextEditingController();
+  // final _formKey = GlobalKey<FormState>();
+  // TextEditingController _codeTool = new TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +30,7 @@ class _CustomDialogBoxState extends State<CustomDialogBox> {
   }
 
   contentBox(context) {
-    return Stack(
+    return Wrap(
       children: <Widget>[
         Container(
           width: 800,
@@ -63,8 +61,8 @@ class _CustomDialogBoxState extends State<CustomDialogBox> {
                     width: 20,
                   ),
                   Container(
-                    width: 340,
-                    height: 40,
+                    width: 250,
+                    height: 35,
                     child: TextField(
                       textAlignVertical: TextAlignVertical.top,
                       style: TextStyle(fontSize: 17),

@@ -1,6 +1,7 @@
 import 'package:date_format/date_format.dart';
 import 'package:flutter/material.dart';
 import 'package:invoice/pages/sale_order/choose_order_date2.dart';
+import 'package:invoice/pages/widget/custom_progressbar.dart';
 
 class ChooseOrderDate extends StatefulWidget {
   ChooseOrderDate({Key key}) : super(key: key);
@@ -25,22 +26,44 @@ class _ChooseOrderDateState extends State<ChooseOrderDate> {
       });
   }
 
+  double _value = 0;
+
   @override
   Widget build(BuildContext context) {
+    double _width = MediaQuery.of(context).size.width;
     return Scaffold(
       body: SafeArea(
         child: Container(
           child: Center(
-            child: Column(
+            child: Wrap(
               children: [
                 Expanded(
                   child: Padding(
                     padding: const EdgeInsets.all(20.0),
                     child: Container(
-                      color: Colors.teal,
+                      // color: Colors.teal,
                       child: Center(
-                        child: Container(
-                          child: Container(),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  if (_value < 10)
+                                    _value = _value + 5;
+                                  else
+                                    _value = 0;
+                                });
+                              },
+                              child: CustomProgressBar(
+                                width: _width * 0.6,
+                                height: 10,
+                                radius: 20,
+                                value: _value,
+                                totalValue: 10,
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ),

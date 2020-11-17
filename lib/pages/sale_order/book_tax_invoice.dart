@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:invoice/pages/tool_page.dart';
 import 'package:invoice/pages/widget/custom_dialog_box.dart';
-
-import 'choose_order_details.dart';
+import 'package:invoice/pages/widget/custom_progressbar.dart';
 
 class BookTaxInvoice extends StatefulWidget {
   BookTaxInvoice({Key key}) : super(key: key);
@@ -12,10 +10,15 @@ class BookTaxInvoice extends StatefulWidget {
 }
 
 class _BookTaxInvoiceState extends State<BookTaxInvoice> {
+  double _value = 0;
   static const int numItems = 8;
+
   List<bool> selected = List<bool>.generate(numItems, (index) => false);
+  // List<DataCell> dataCell = ;
   @override
   Widget build(BuildContext context) {
+    double _width = MediaQuery.of(context).size.width;
+    // double _height = MediaQuery.of(context).size.height;
     return Scaffold(
       body: SafeArea(
         child: Container(
@@ -26,8 +29,31 @@ class _BookTaxInvoiceState extends State<BookTaxInvoice> {
                   child: Padding(
                     padding: const EdgeInsets.all(20.0),
                     child: Container(
-                      color: Colors.teal,
-                      child: Center(),
+                      // color: Colors.teal,
+                      child: Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  if (_value < 10)
+                                    _value = _value + 5;
+                                  else
+                                    _value = 0;
+                                });
+                              },
+                              child: CustomProgressBar(
+                                width: _width * 0.6,
+                                height: 10,
+                                radius: 20,
+                                value: _value,
+                                totalValue: 10,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
                     ),
                   ),
                 ),

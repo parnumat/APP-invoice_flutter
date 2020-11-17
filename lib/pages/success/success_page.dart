@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:invoice/pages/invoice_details/invoice_tools_page.dart';
-import 'package:invoice/pages/sale_order/choose_order_date.dart';
-import 'package:invoice/pages/tool_page.dart';
 import 'package:invoice/pages/widget/custom_card_success.dart';
+import 'package:invoice/pages/widget/custom_progressbar.dart';
 
 class SuccessPage extends StatefulWidget {
   SuccessPage({Key key}) : super(key: key);
@@ -12,9 +11,11 @@ class SuccessPage extends StatefulWidget {
 }
 
 class _SuccessPageState extends State<SuccessPage> {
-  TextEditingController _codeTool = new TextEditingController();
+  double _value = 10;
+  // TextEditingController _codeTool = new TextEditingController();
   @override
   Widget build(BuildContext context) {
+    double _width = MediaQuery.of(context).size.width;
     return Scaffold(
       body: SafeArea(
         child: Container(
@@ -25,10 +26,29 @@ class _SuccessPageState extends State<SuccessPage> {
                   child: Padding(
                     padding: const EdgeInsets.all(20.0),
                     child: Container(
-                      color: Colors.teal,
+                      // color: Colors.teal,
                       child: Center(
-                        child: Container(
-                          child: Container(),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  if (_value < 10)
+                                    _value = _value + 5;
+                                  else
+                                    _value = 0;
+                                });
+                              },
+                              child: CustomProgressBar(
+                                width: _width * 0.6,
+                                height: 10,
+                                radius: 20,
+                                value: _value,
+                                totalValue: 10,
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ),
@@ -101,22 +121,22 @@ class _SuccessPageState extends State<SuccessPage> {
     );
   }
 
-  _customRow() {
-    var dataRow = DataRow(
-      cells: <DataCell>[
-        DataCell(Text('PO29102020')),
-        DataCell(Text('29/10/2020')),
-        DataCell(Text('POF9Q0190000')),
-        DataCell(Text(
-          'POF Shrink Regular 19u x 290 mm x 6,402 m. แกน 3 นิ้ว 3รอยต่อ Flat/Non-Perforateเกรด A',
-          maxLines: 2,
-          overflow: TextOverflow.ellipsis,
-        )),
-        DataCell(Text('1')),
-        DataCell(Text('26.52')),
-        DataCell(Text('Kilogram')),
-      ],
-    );
-    return dataRow;
-  }
+  // _customRow() {
+  //   var dataRow = DataRow(
+  //     cells: <DataCell>[
+  //       DataCell(Text('PO29102020')),
+  //       DataCell(Text('29/10/2020')),
+  //       DataCell(Text('POF9Q0190000')),
+  //       DataCell(Text(
+  //         'POF Shrink Regular 19u x 290 mm x 6,402 m. แกน 3 นิ้ว 3รอยต่อ Flat/Non-Perforateเกรด A',
+  //         maxLines: 2,
+  //         overflow: TextOverflow.ellipsis,
+  //       )),
+  //       DataCell(Text('1')),
+  //       DataCell(Text('26.52')),
+  //       DataCell(Text('Kilogram')),
+  //     ],
+  //   );
+  //   return dataRow;
+  // }
 }

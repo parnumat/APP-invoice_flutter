@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:invoice/pages/success/success_page.dart';
-import 'package:invoice/pages/tool_page.dart';
+import 'package:invoice/pages/widget/custom_progressbar.dart';
 
 class GoodsPage extends StatefulWidget {
   GoodsPage({Key key}) : super(key: key);
@@ -10,26 +10,46 @@ class GoodsPage extends StatefulWidget {
 }
 
 class _GoodsPageState extends State<GoodsPage> {
-  TextEditingController _controller = TextEditingController();
+  // TextEditingController _controller = TextEditingController();
   DateTime selectedDate = DateTime.now();
+  double _value = 5;
 
   @override
   Widget build(BuildContext context) {
+    double _width = MediaQuery.of(context).size.width;
+
     return Scaffold(
       body: SafeArea(
         child: Container(
           child: Center(
-            child: Column(
+            child: Wrap(
               children: [
                 Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.all(20.0),
-                    child: Container(
-                      color: Colors.teal,
-                      child: Center(
-                        child: Container(
-                          child: Container(),
-                        ),
+                  child: Container(
+                    height: 100,
+                    // color: Colors.teal,
+                    child: Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                if (_value < 10)
+                                  _value = _value + 5;
+                                else
+                                  _value = 0;
+                              });
+                            },
+                            child: CustomProgressBar(
+                              width: _width * 0.6,
+                              height: 10,
+                              radius: 20,
+                              value: _value,
+                              totalValue: 10,
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ),
@@ -60,8 +80,8 @@ class _GoodsPageState extends State<GoodsPage> {
                                 width: 10,
                               ),
                               Container(
-                                width: 450,
-                                height: 40,
+                                width: 350,
+                                height: 35,
                                 child: TextField(
                                   textAlignVertical: TextAlignVertical.top,
                                   style: TextStyle(fontSize: 17),
@@ -82,8 +102,8 @@ class _GoodsPageState extends State<GoodsPage> {
                                 width: 10,
                               ),
                               Container(
-                                width: 100,
-                                height: 40,
+                                width: 75,
+                                height: 35,
                                 child: TextField(
                                   textAlignVertical: TextAlignVertical.top,
                                   style: TextStyle(fontSize: 17),
@@ -104,8 +124,8 @@ class _GoodsPageState extends State<GoodsPage> {
                                 width: 10,
                               ),
                               Container(
-                                width: 100,
-                                height: 40,
+                                width: 75,
+                                height: 35,
                                 child: TextField(
                                   textAlignVertical: TextAlignVertical.top,
                                   style: TextStyle(fontSize: 17),
@@ -139,8 +159,8 @@ class _GoodsPageState extends State<GoodsPage> {
                                 width: 10,
                               ),
                               Container(
-                                width: 500,
-                                height: 40,
+                                width: 350,
+                                height: 35,
                                 child: TextField(
                                   textAlignVertical: TextAlignVertical.top,
                                   style: TextStyle(fontSize: 17),

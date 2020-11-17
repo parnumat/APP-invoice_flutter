@@ -9,7 +9,7 @@ class FadeXAnimation extends StatelessWidget {
   FadeXAnimation({this.delay, this.child});
   @override
   Widget build(BuildContext context) {
-    final tween = MultiTrackTween([
+    var multiTrackTween = MultiTrackTween([
       Track("opacity").add(
         Duration(milliseconds: 500),
         Tween(begin: 0.0, end: 1.0),
@@ -18,6 +18,7 @@ class FadeXAnimation extends StatelessWidget {
           Duration(milliseconds: 500), Tween(begin: 300.0, end: 0.9),
           curve: Curves.easeOut)
     ]);
+    final tween = multiTrackTween;
 
     return ControlledAnimation(
       delay: Duration(milliseconds: (500 * delay).round()),

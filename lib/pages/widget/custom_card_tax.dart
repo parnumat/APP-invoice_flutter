@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:invoice/animations/test/test_animation.dart';
 import 'package:invoice/pages/invoice_details/invoice_details.dart';
-import 'package:invoice/pages/sale_order/main_detail.dart';
 
 class CustomCardTax extends StatelessWidget {
   CustomCardTax({Key key}) : super(key: key);

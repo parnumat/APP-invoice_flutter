@@ -1,8 +1,7 @@
 import 'package:date_format/date_format.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_rounded_date_picker/rounded_picker.dart';
 import 'package:invoice/pages/goods/goods_page.dart';
-import 'package:invoice/pages/tool_page.dart';
+import 'package:invoice/pages/widget/custom_progressbar.dart';
 
 class ChooseOrderDate2 extends StatefulWidget {
   ChooseOrderDate2({Key key}) : super(key: key);
@@ -12,7 +11,7 @@ class ChooseOrderDate2 extends StatefulWidget {
 }
 
 class _ChooseOrderDate2State extends State<ChooseOrderDate2> {
-  TextEditingController _controller = TextEditingController();
+  // TextEditingController _controller = TextEditingController();
   DateTime selectedDate = DateTime.now();
   _selectDate(BuildContext context) async {
     final DateTime picked = await showDatePicker(
@@ -27,24 +26,46 @@ class _ChooseOrderDate2State extends State<ChooseOrderDate2> {
       });
   }
 
-  int _value = 1;
+  int _values = 1;
+  double _value = 0;
 
   @override
   Widget build(BuildContext context) {
+    double _width = MediaQuery.of(context).size.width;
+
     return Scaffold(
       body: SafeArea(
         child: Container(
           child: Center(
-            child: Column(
+            child: Wrap(
               children: [
                 Expanded(
                   child: Padding(
                     padding: const EdgeInsets.all(20.0),
                     child: Container(
-                      color: Colors.teal,
+                      // color: Colors.teal,
                       child: Center(
-                        child: Container(
-                          child: Container(),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  if (_value < 10)
+                                    _value = _value + 5;
+                                  else
+                                    _value = 0;
+                                });
+                              },
+                              child: CustomProgressBar(
+                                width: _width * 0.6,
+                                height: 10,
+                                radius: 20,
+                                value: _value,
+                                totalValue: 10,
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ),
@@ -118,7 +139,7 @@ class _ChooseOrderDate2State extends State<ChooseOrderDate2> {
                                             borderSide: BorderSide(
                                                 color: Colors.white))),
                                     icon: Icon(Icons.arrow_drop_down),
-                                    value: _value,
+                                    value: _values,
                                     // style: TextStyle(
                                     //     fontSize: 14, color: Colors.black),
                                     items: [
@@ -153,7 +174,7 @@ class _ChooseOrderDate2State extends State<ChooseOrderDate2> {
                                     ],
                                     onChanged: (value) {
                                       setState(() {
-                                        _value = value;
+                                        _values = value;
                                       });
                                     },
                                   )),
@@ -185,7 +206,7 @@ class _ChooseOrderDate2State extends State<ChooseOrderDate2> {
                                 DataColumn(label: Text('หน่วย')),
                               ],
                               rows: [
-                                // _customRow(),
+                                _customRow(),
                                 // _customRow(),
                                 // _customRow(),
                               ],
