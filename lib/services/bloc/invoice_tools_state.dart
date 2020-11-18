@@ -6,27 +6,20 @@ String invoiceTools =
 @immutable
 abstract class InvoiceToolsState {}
 
-// List<InvoiceTools> invoiceToolsMap = invoiceToolsFromJson(invoiceTools);
-
 class InvoiceToolsInitial extends InvoiceToolsState {
   @override
-  String toString() {
-    return super.toString();
-  }
+  String toString() => super.toString();
 }
 
 class LoadingInvoiceToolsState extends InvoiceToolsState {
   @override
-  String toString() {
-    return super.toString();
-  }
+  String toString() => super.toString();
 }
 
-class LoaedInvoiceToolsState extends InvoiceToolsState {
+class LoadedInvoiceToolsState extends InvoiceToolsState {
   final List<InvoiceTools> invoiceToolsMap;
-  LoaedInvoiceToolsState(this.invoiceToolsMap);
+  // List<InvoiceTools> invoiceToolsMap = invoiceToolsFromJson(invoiceTools);
+  LoadedInvoiceToolsState(this.invoiceToolsMap);
   @override
-  String toString() {
-    return super.toString();
-  }
+  String toString() => super.toString() + "\nDATA: $invoiceToolsMap";
 }

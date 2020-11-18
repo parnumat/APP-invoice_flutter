@@ -1,8 +1,10 @@
 import 'package:date_format/date_format.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:invoice/pages/tool_page.dart';
 import 'package:invoice/pages/widget/custom_card_success.dart';
 import 'package:invoice/pages/widget/custom_card_tax.dart';
+import 'package:invoice/services/bloc/invoice_tools_bloc.dart';
 
 class InvoiceToolDetailPage extends StatefulWidget {
   InvoiceToolDetailPage({Key key}) : super(key: key);
@@ -152,7 +154,11 @@ class _InvoiceToolDetailPageState extends State<InvoiceToolDetailPage> {
                             onPressed: () {
                               Navigator.of(context).pushAndRemoveUntil(
                                   MaterialPageRoute(
-                                      builder: (context) => ToolsPage()),
+                                      builder: (context) => BlocProvider(
+                                            create: (context) =>
+                                                InvoiceToolsBloc(),
+                                            child: ToolsPage(),
+                                          )),
                                   (Route<dynamic> route) => false);
                             },
                             child: Text(
@@ -173,7 +179,11 @@ class _InvoiceToolDetailPageState extends State<InvoiceToolDetailPage> {
                             onPressed: () {
                               Navigator.of(context).pushAndRemoveUntil(
                                   MaterialPageRoute(
-                                      builder: (context) => ToolsPage()),
+                                      builder: (context) => BlocProvider(
+                                            create: (context) =>
+                                                InvoiceToolsBloc(),
+                                            child: ToolsPage(),
+                                          )),
                                   (Route<dynamic> route) => false);
                             },
                             child: Text(

@@ -7,22 +7,26 @@ import 'package:meta/meta.dart';
 part 'invoice_tools_event.dart';
 part 'invoice_tools_state.dart';
 
-List<InvoiceTools> invoiceToolsMap = invoiceToolsFromJson(invoiceTools);
-
 class InvoiceToolsBloc extends Bloc<InvoiceToolsEvent, InvoiceToolsState> {
   InvoiceToolsBloc() : super(InvoiceToolsInitial());
-
+  // InvoiceToolsBloc() : super(null);
   @override
   Stream<InvoiceToolsState> mapEventToState(
     InvoiceToolsEvent event,
   ) async* {
     if (event is GetInvoiceTools) {
-      print(state);
-      yield state;
+      List<InvoiceTools> invoiceToolsMap = invoiceToolsFromJson(invoiceTools);
+      // yield invoiceToolsMap;
+      yield* _getInvoiceToolsToState(event);
+    } else {
+      yield null;
     }
   }
 
-  Stream<InvoiceToolsState> _getInvoiceTool(InvoiceToolsEvent event) async* {
-    yield state;
+  Stream<InvoiceToolsState> _getInvoiceToolsToState(
+      GetInvoiceTools event) async* {
+    // var invoiceToolsEvent = (state as LoadedInvoiceToolsState).invoiceToolsMap;
+    List<InvoiceTools> invoiceToolsMap = invoiceToolsFromJson(invoiceTools);
+    yield LoadedInvoiceToolsState(invoiceToolsMap);
   }
 }

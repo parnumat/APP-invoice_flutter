@@ -9,3 +9,10 @@ class GetInvoiceTools extends InvoiceToolsEvent {
     return super.toString();
   }
 }
+
+class LoadInvoiceTools extends InvoiceToolsEvent {
+  @override
+  String toString() {
+    return super.toString();
+  }
+}
