@@ -25,7 +25,7 @@ class CustomProgressBar extends StatelessWidget {
         Stack(
           children: [
             Container(
-              margin: EdgeInsets.only(top: 20, right: 10, left: 10),
+              margin: EdgeInsets.only(top: 20, left: 30),
               width: width,
               height: height,
               decoration: BoxDecoration(
@@ -38,7 +38,7 @@ class CustomProgressBar extends StatelessWidget {
                 Material(
                   borderRadius: BorderRadius.circular(radius),
                   child: AnimatedContainer(
-                    margin: EdgeInsets.only(left: 10, right: 10),
+                    margin: EdgeInsets.only(left: 30),
                     height: height,
                     width: width * ratio,
                     duration: Duration(milliseconds: 500),
@@ -50,7 +50,7 @@ class CustomProgressBar extends StatelessWidget {
               ],
             ),
             Container(
-              width: width,
+              width: width + 60,
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
