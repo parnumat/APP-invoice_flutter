@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:invoice/models/tax_card.dart';
 import 'package:invoice/pages/widget/custom_dialog_box.dart';
 import 'package:invoice/pages/widget/custom_progressbar.dart';
+import 'package:invoice/services/dummy/dummy.dart';
 
 class BookTaxInvoice extends StatefulWidget {
   BookTaxInvoice({Key key}) : super(key: key);
@@ -9,11 +11,14 @@ class BookTaxInvoice extends StatefulWidget {
   _BookTaxInvoiceState createState() => _BookTaxInvoiceState();
 }
 
+List<TaxCard> taxDetails = taxCardFromJson(Dummy.taxCards);
+
 class _BookTaxInvoiceState extends State<BookTaxInvoice> {
   double _value = 0;
-  static const int numItems = 8;
 
-  List<bool> selected = List<bool>.generate(numItems, (index) => false);
+  List<bool> selected =
+      List<bool>.generate(taxDetails.length, (index) => false);
+
   // List<DataCell> dataCell = ;
   @override
   Widget build(BuildContext context) {
@@ -88,16 +93,16 @@ class _BookTaxInvoiceState extends State<BookTaxInvoice> {
                               DataColumn(label: Text('ผู้บันทึก')),
                             ],
                             rows: List<DataRow>.generate(
-                              numItems,
+                              taxDetails.length,
                               (index) => DataRow(
                                 selected: selected[index],
                                 onSelectChanged: (value) => setState(() {
                                   selected[index] = !selected[index];
                                 }),
                                 cells: <DataCell>[
-                                  DataCell(Text('SI005/0088239')),
-                                  DataCell(Text('02/12/2016')),
-                                  DataCell(Text('System Administrator')),
+                                  DataCell(Text(taxDetails[index].numTax)),
+                                  DataCell(Text(taxDetails[index].memDate)),
+                                  DataCell(Text(taxDetails[index].memUser)),
                                 ],
                               ),
                             ),

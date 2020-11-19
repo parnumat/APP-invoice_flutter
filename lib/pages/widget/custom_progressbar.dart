@@ -129,12 +129,3 @@ class CustomProgressBar extends StatelessWidget {
     );
   }
 }
-
-// class TimState with ChangeNotifier {
-//   int _time = 15;
-//   int get time => _time;
-//   set time(int newTime) {
-//     _time = newTime;
-//     notifyListeners();
-//   }
-// }

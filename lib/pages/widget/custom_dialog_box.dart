@@ -93,8 +93,20 @@ class _CustomDialogBoxState extends State<CustomDialogBox> {
                     DataColumn(label: Text('กำหนดส่งสินค้า')),
                   ],
                   rows: [
-                    _customRow(),
-                    _customRow(),
+                    _customRow(
+                        goodsCode: 'POF9Q0190000',
+                        goodsName:
+                            'POF Shrink Regular 19u x 290 mm x 6,402 m. แกน 3 นิ้ว 3รอยต่อ Flat/Non-Perforateเกรด A',
+                        number: '26.52',
+                        unit: 'Kilogram',
+                        returnDate: "25/09/2020"),
+                    _customRow(
+                        goodsCode: 'POF9Q0190000',
+                        goodsName:
+                            'POF Shrink Regular 19u x 290 mm x 6,402 m. แกน 3 นิ้ว 3รอยต่อ Flat/Non-Perforateเกรด A',
+                        number: '26.52',
+                        unit: 'Kilogram',
+                        returnDate: "25/09/2020"),
                   ],
                 ),
               ),
@@ -137,8 +149,20 @@ class _CustomDialogBoxState extends State<CustomDialogBox> {
                     DataColumn(label: Text('กำหนดส่งสินค้า')),
                   ],
                   rows: [
-                    _customRow(),
-                    _customRow(),
+                    _customRow(
+                        goodsCode: 'POF9Q0190000',
+                        goodsName:
+                            'POF Shrink Regular 19u x 290 mm x 6,402 m. แกน 3 นิ้ว 3รอยต่อ Flat/Non-Perforateเกรด A',
+                        number: '26.52',
+                        unit: 'Kilogram',
+                        returnDate: "25/09/2020"),
+                    _customRow(
+                        goodsCode: 'POF9Q0190000',
+                        goodsName:
+                            'POF Shrink Regular 19u x 290 mm x 6,402 m. แกน 3 นิ้ว 3รอยต่อ Flat/Non-Perforateเกรด A',
+                        number: '26.52',
+                        unit: 'Kilogram',
+                        returnDate: "25/09/2020"),
                   ],
                 ),
               ),
@@ -183,18 +207,18 @@ class _CustomDialogBoxState extends State<CustomDialogBox> {
     );
   }
 
-  _customRow() {
+  _customRow({goodsCode, goodsName, number, unit, returnDate}) {
     var dataRow = DataRow(
       cells: <DataCell>[
-        DataCell(Text('POF9Q0190000')),
+        DataCell(Text(goodsCode)),
         DataCell(Text(
-          'POF Shrink Regular 19u x 290 mm x 6,402 m. แกน 3 นิ้ว 3รอยต่อ Flat/Non-Perforateเกรด A',
+          goodsName,
           maxLines: 2,
           overflow: TextOverflow.ellipsis,
         )),
-        DataCell(Text('26.52')),
-        DataCell(Text('Kilogram')),
-        DataCell(Text('25/09/2020')),
+        DataCell(Text(number)),
+        DataCell(Text(unit)),
+        DataCell(Text(returnDate)),
       ],
     );
     return dataRow;

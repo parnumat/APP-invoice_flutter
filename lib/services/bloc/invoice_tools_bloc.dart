@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:invoice/models/invoice_tools.dart';
+import 'package:invoice/services/dummy/dummy.dart';
 import 'package:meta/meta.dart';
 
 part 'invoice_tools_event.dart';
@@ -15,8 +16,6 @@ class InvoiceToolsBloc extends Bloc<InvoiceToolsEvent, InvoiceToolsState> {
     InvoiceToolsEvent event,
   ) async* {
     if (event is GetInvoiceTools) {
-      List<InvoiceTools> invoiceToolsMap = invoiceToolsFromJson(invoiceTools);
-      // yield invoiceToolsMap;
       yield* _getInvoiceToolsToState(event);
     } else {
       yield null;
@@ -25,8 +24,8 @@ class InvoiceToolsBloc extends Bloc<InvoiceToolsEvent, InvoiceToolsState> {
 
   Stream<InvoiceToolsState> _getInvoiceToolsToState(
       GetInvoiceTools event) async* {
-    // var invoiceToolsEvent = (state as LoadedInvoiceToolsState).invoiceToolsMap;
-    List<InvoiceTools> invoiceToolsMap = invoiceToolsFromJson(invoiceTools);
+    List<InvoiceTools> invoiceToolsMap =
+        invoiceToolsFromJson(Dummy.invoiceTools);
     yield LoadedInvoiceToolsState(invoiceToolsMap);
   }
 }
