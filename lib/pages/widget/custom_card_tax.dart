@@ -2,7 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:invoice/pages/invoice_details/invoice_details.dart';
 
 class CustomCardTax extends StatelessWidget {
-  CustomCardTax({Key key}) : super(key: key);
+  String numTax;
+  String codeTax;
+  String nameTax;
+
+  CustomCardTax({Key key, this.numTax, this.codeTax, this.nameTax})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,6 +21,7 @@ class CustomCardTax extends StatelessWidget {
         ),
       ),
       child: Container(
+        margin: EdgeInsets.only(left: 15, top: 15),
         width: _width * 0.18,
         height: _height * 0.11,
         decoration: BoxDecoration(
@@ -45,13 +51,13 @@ class CustomCardTax extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text("CT255", style: TextStyle(fontSize: 14)),
+                      Text(codeTax, style: TextStyle(fontSize: 14)),
                       SizedBox(width: 25),
-                      Text("FM63091152", style: TextStyle(fontSize: 14)),
+                      Text(nameTax, style: TextStyle(fontSize: 14)),
                     ],
                   ),
                   Text(
-                    "SI005/0056158",
+                    numTax,
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
                   ),
                 ],

@@ -66,6 +66,15 @@ class CustomProgressBar extends StatelessWidget {
                             borderRadius: BorderRadius.circular(90),
                             color: Color(0XFFFFD05B),
                           ),
+                          child: Center(
+                            child: (width * ratio > width / 3)
+                                ? Icon(
+                                    Icons.check,
+                                    color: Colors.white,
+                                    size: 35,
+                                  )
+                                : Container(),
+                          ),
                         ),
                       ),
                       Text(
@@ -89,6 +98,15 @@ class CustomProgressBar extends StatelessWidget {
                                 ? Colors.white
                                 : Color(0XFFFFD05B),
                           ),
+                          child: Center(
+                            child: (width * ratio > width / 2)
+                                ? Icon(
+                                    Icons.check,
+                                    color: Colors.white,
+                                    size: 35,
+                                  )
+                                : Container(),
+                          ),
                         ),
                       ),
                       Text(
@@ -111,6 +129,15 @@ class CustomProgressBar extends StatelessWidget {
                             color: (width * ratio < width)
                                 ? Colors.white
                                 : Color(0XFFFFD05B),
+                          ),
+                          child: Center(
+                            child: (width * ratio == width)
+                                ? Icon(
+                                    Icons.check,
+                                    color: Colors.white,
+                                    size: 35,
+                                  )
+                                : Container(),
                           ),
                         ),
                       ),

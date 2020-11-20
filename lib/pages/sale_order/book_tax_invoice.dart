@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:invoice/models/tax_card.dart';
+import 'package:invoice/models/book_tax.dart';
 import 'package:invoice/pages/widget/custom_dialog_box.dart';
 import 'package:invoice/pages/widget/custom_progressbar.dart';
 import 'package:invoice/services/dummy/dummy.dart';
@@ -11,7 +11,7 @@ class BookTaxInvoice extends StatefulWidget {
   _BookTaxInvoiceState createState() => _BookTaxInvoiceState();
 }
 
-List<TaxCard> taxDetails = taxCardFromJson(Dummy.taxCards);
+List<BookTax> taxDetails = bookTaxFromJson(Dummy.bookTax);
 
 class _BookTaxInvoiceState extends State<BookTaxInvoice> {
   double _value = 0;

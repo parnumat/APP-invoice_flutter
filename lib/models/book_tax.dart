@@ -1,13 +1,13 @@
 import 'dart:convert';
 
-List<TaxCard> taxCardFromJson(String str) =>
-    List<TaxCard>.from(json.decode(str).map((x) => TaxCard.fromJson(x)));
+List<BookTax> bookTaxFromJson(String str) =>
+    List<BookTax>.from(json.decode(str).map((x) => BookTax.fromJson(x)));
 
-String taxCardToJson(List<TaxCard> data) =>
+String bookTaxToJson(List<BookTax> data) =>
     json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
-class TaxCard {
-  TaxCard({
+class BookTax {
+  BookTax({
     this.numTax,
     this.memDate,
     this.memUser,
@@ -17,7 +17,7 @@ class TaxCard {
   String memDate;
   String memUser;
 
-  factory TaxCard.fromJson(Map<String, dynamic> json) => TaxCard(
+  factory BookTax.fromJson(Map<String, dynamic> json) => BookTax(
         numTax: json["numTax"],
         memDate: json["memDate"],
         memUser: json["memUser"],

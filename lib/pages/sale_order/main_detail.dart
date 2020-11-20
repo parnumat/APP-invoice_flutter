@@ -90,6 +90,7 @@ class _MainOrderDetailState extends State<MainOrderDetail> {
                                 width: 220,
                                 height: 45,
                                 child: TextField(
+                                  // enabled: false,
                                   maxLength: 8,
                                   maxLines: 1,
                                   // maxLengthEnforced: true,

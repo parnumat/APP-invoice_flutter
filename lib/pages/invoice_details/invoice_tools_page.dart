@@ -1,6 +1,9 @@
 import 'package:date_format/date_format.dart';
 import 'package:flutter/material.dart';
+import 'package:invoice/models/good_orders.dart';
+import 'package:invoice/models/tax_cards.dart';
 import 'package:invoice/pages/widget/custom_card_tax.dart';
+import 'package:invoice/services/dummy/dummy.dart';
 
 class InvoiceToolsPage extends StatefulWidget {
   InvoiceToolsPage({Key key}) : super(key: key);
@@ -11,6 +14,9 @@ class InvoiceToolsPage extends StatefulWidget {
 
 class _InvoiceToolsPageState extends State<InvoiceToolsPage> {
   // TextEditingController _controller = TextEditingController();
+  List<TaxCards> taxCards = taxCardsFromJson(Dummy.taxCards);
+  List<GoodOrders> goodOrders = goodOrdersFromJson(Dummy.goodOrders);
+
   DateTime selectedDate = DateTime.now();
   _selectDate(BuildContext context) async {
     final DateTime picked = await showDatePicker(
@@ -140,32 +146,21 @@ class _InvoiceToolsPageState extends State<InvoiceToolsPage> {
                     Column(
                       children: [
                         Container(
-                          padding: EdgeInsets.all(12),
+                          padding: EdgeInsets.only(
+                              left: 10, top: 8, right: 10, bottom: 10),
                           width: _width * 0.62,
                           height: _height * 0.70,
                           child: Wrap(
-                            alignment: WrapAlignment.spaceAround,
-                            runAlignment: WrapAlignment.spaceAround,
-                            // spacing: 12,
-                            // runSpacing: 12,
-                            children: [
-                              CustomCardTax(),
-                              CustomCardTax(),
-                              CustomCardTax(),
-                              CustomCardTax(),
-                              CustomCardTax(),
-                              CustomCardTax(),
-                              CustomCardTax(),
-                              CustomCardTax(),
-                              CustomCardTax(),
-                              CustomCardTax(),
-                              CustomCardTax(),
-                              CustomCardTax(),
-                              CustomCardTax(),
-                              CustomCardTax(),
-                              CustomCardTax(),
-                            ],
-                          ),
+                              alignment: WrapAlignment.start,
+                              runAlignment: WrapAlignment.start,
+                              children: List.generate(
+                                taxCards.length,
+                                (index) => CustomCardTax(
+                                  codeTax: taxCards[index].codeTax,
+                                  nameTax: taxCards[index].nameTax,
+                                  numTax: taxCards[index].numTax,
+                                ),
+                              )),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
                             color: Colors.white,
@@ -217,47 +212,35 @@ class _InvoiceToolsPageState extends State<InvoiceToolsPage> {
                               border: Border.all(color: Colors.black12),
                             ),
                             child: DataTable(
-                              headingRowHeight: 20,
-                              columnSpacing: 5,
-                              dataRowHeight: 22,
-                              columns: [
-                                DataColumn(
-                                    label: Text('ลำดับ',
-                                        style: TextStyle(fontSize: 12))),
-                                DataColumn(
-                                    label: Text('Barcode',
-                                        style: TextStyle(fontSize: 12))),
-                                DataColumn(
-                                    label: Text('LOT',
-                                        style: TextStyle(fontSize: 12))),
-                                DataColumn(
-                                    label: Text('จำนวน',
-                                        style: TextStyle(fontSize: 12))),
-                                DataColumn(
-                                    label: Text('น้ำหนักรวม',
-                                        style: TextStyle(fontSize: 12))),
-                              ],
-                              rows: [
-                                _customRow(1),
-                                _customRow(2),
-                                _customRow(3),
-                                _customRow(4),
-                                _customRow(5),
-                                _customRow(6),
-                                _customRow(7),
-                                _customRow(8),
-                                _customRow(9),
-                                _customRow(10),
-                                _customRow(11),
-                                _customRow(12),
-                                _customRow(13),
-                                _customRow(14),
-                                _customRow(15),
-                                _customRow(16),
-                                _customRow(17),
-                                _customRow(18),
-                              ],
-                            ),
+                                headingRowHeight: 20,
+                                columnSpacing: 5,
+                                dataRowHeight: 22,
+                                columns: [
+                                  DataColumn(
+                                      label: Text('ลำดับ',
+                                          style: TextStyle(fontSize: 12))),
+                                  DataColumn(
+                                      label: Text('Barcode',
+                                          style: TextStyle(fontSize: 12))),
+                                  DataColumn(
+                                      label: Text('LOT',
+                                          style: TextStyle(fontSize: 12))),
+                                  DataColumn(
+                                      label: Text('จำนวน',
+                                          style: TextStyle(fontSize: 12))),
+                                  DataColumn(
+                                      label: Text('น้ำหนักรวม',
+                                          style: TextStyle(fontSize: 12))),
+                                ],
+                                rows: List.generate(
+                                  goodOrders.length,
+                                  (index) => _customRow(
+                                      index: index + 1,
+                                      barCode: goodOrders[index].barCode,
+                                      lot: goodOrders[index].lot,
+                                      number: goodOrders[index].number,
+                                      weight: goodOrders[index].weight),
+                                )),
                           ),
                           SizedBox(height: 4.5),
                           Text("OOOOO")
@@ -286,16 +269,16 @@ class _InvoiceToolsPageState extends State<InvoiceToolsPage> {
     );
   }
 
-  _customRow(index) {
+  _customRow({index, barCode, lot, number, weight}) {
     var dataRow = DataRow(
       color: MaterialStateProperty.all(
           (index % 2 == 0) ? Color(0XFFFFD05B) : Color(0XFFFFFFFF)),
       cells: <DataCell>[
         DataCell(Text('$index', style: TextStyle(fontSize: 11))),
-        DataCell(Text('S630900000013', style: TextStyle(fontSize: 11))),
-        DataCell(Text('630900024', style: TextStyle(fontSize: 11))),
-        DataCell(Text('1', style: TextStyle(fontSize: 11))),
-        DataCell(Text('6.63', style: TextStyle(fontSize: 11))),
+        DataCell(Text(barCode, style: TextStyle(fontSize: 11))),
+        DataCell(Text(lot, style: TextStyle(fontSize: 11))),
+        DataCell(Text(number, style: TextStyle(fontSize: 11))),
+        DataCell(Text(weight, style: TextStyle(fontSize: 11))),
       ],
     );
     return dataRow;

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:invoice/models/goods.dart';
 import 'package:invoice/pages/success/success_page.dart';
 import 'package:invoice/pages/widget/custom_progressbar.dart';
+import 'package:invoice/services/dummy/dummy.dart';
 
 class GoodsPage extends StatefulWidget {
   GoodsPage({Key key}) : super(key: key);
@@ -16,6 +18,7 @@ class _GoodsPageState extends State<GoodsPage> {
 
   @override
   Widget build(BuildContext context) {
+    List<Goods> goods = goodsFromJson(Dummy.goods);
     double _width = MediaQuery.of(context).size.width;
 
     return Scaffold(
@@ -24,262 +27,181 @@ class _GoodsPageState extends State<GoodsPage> {
           child: Center(
             child: Wrap(
               children: [
-                Expanded(
-                  child: Container(
-                    height: 100,
-                    // color: Colors.teal,
-                    child: Center(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          GestureDetector(
-                            onTap: () {
-                              setState(() {
-                                if (_value < 10)
-                                  _value = _value + 5;
-                                else
-                                  _value = 0;
-                              });
-                            },
-                            child: CustomProgressBar(
-                              width: _width * 0.6,
-                              height: 10,
-                              radius: 20,
-                              value: _value,
-                              totalValue: 10,
-                            ),
+                Container(
+                  height: 100,
+                  // color: Colors.teal,
+                  child: Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              if (_value < 10)
+                                _value = _value + 5;
+                              else
+                                _value = 0;
+                            });
+                          },
+                          child: CustomProgressBar(
+                            width: _width * 0.6,
+                            height: 10,
+                            radius: 20,
+                            value: _value,
+                            totalValue: 10,
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   ),
                 ),
-                Expanded(
-                  flex: 5,
-                  child: Padding(
-                    padding: const EdgeInsets.all(20.0),
-                    child: Container(
-                      decoration: BoxDecoration(
-                          border: Border.all(color: Colors.black12),
-                          borderRadius: BorderRadius.circular(20)),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: <Widget>[
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                "ชื่อสินค้า",
-                                style: TextStyle(
-                                    fontSize: 22, fontWeight: FontWeight.w500),
-                              ),
-                              SizedBox(
-                                width: 10,
-                              ),
-                              Container(
-                                width: 350,
-                                height: 35,
-                                child: TextField(
-                                  textAlignVertical: TextAlignVertical.top,
-                                  style: TextStyle(fontSize: 17),
-                                  // controller: _codeTool,
-                                  decoration: InputDecoration(
-                                      border: OutlineInputBorder()),
-                                ),
-                              ),
-                              SizedBox(
-                                width: 10,
-                              ),
-                              Text(
-                                "จำนวน",
-                                style: TextStyle(
-                                    fontSize: 22, fontWeight: FontWeight.w500),
-                              ),
-                              SizedBox(
-                                width: 10,
-                              ),
-                              Container(
-                                width: 75,
-                                height: 35,
-                                child: TextField(
-                                  textAlignVertical: TextAlignVertical.top,
-                                  style: TextStyle(fontSize: 17),
-                                  // controller: _codeTool,
-                                  decoration: InputDecoration(
-                                      border: OutlineInputBorder()),
-                                ),
-                              ),
-                              SizedBox(
-                                width: 10,
-                              ),
-                              Text(
-                                "น้ำหนัก",
-                                style: TextStyle(
-                                    fontSize: 22, fontWeight: FontWeight.w500),
-                              ),
-                              SizedBox(
-                                width: 10,
-                              ),
-                              Container(
-                                width: 75,
-                                height: 35,
-                                child: TextField(
-                                  textAlignVertical: TextAlignVertical.top,
-                                  style: TextStyle(fontSize: 17),
-                                  // controller: _codeTool,
-                                  decoration: InputDecoration(
-                                      border: OutlineInputBorder()),
-                                ),
-                              ),
-                              SizedBox(
-                                width: 10,
-                              ),
-                              Text(
-                                "KG.",
-                                style: TextStyle(
-                                    fontSize: 22, fontWeight: FontWeight.w500),
-                              ),
-                              SizedBox(
-                                width: 10,
-                              ),
-                            ],
+                Container(
+                  margin: const EdgeInsets.all(20.0),
+                  decoration: BoxDecoration(
+                      border: Border.all(color: Colors.black12),
+                      borderRadius: BorderRadius.circular(20)),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            "ชื่อสินค้า",
+                            style: TextStyle(
+                                fontSize: 22, fontWeight: FontWeight.w500),
                           ),
                           SizedBox(
-                            height: 15,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text("ระบุ Barcode",
-                                  style: TextStyle(fontSize: 22)),
-                              SizedBox(
-                                width: 10,
-                              ),
-                              Container(
-                                width: 350,
-                                height: 35,
-                                child: TextField(
-                                  textAlignVertical: TextAlignVertical.top,
-                                  style: TextStyle(fontSize: 17),
-                                  // controller: _codeTool,
-                                  decoration: InputDecoration(
-                                      border: OutlineInputBorder(),
-                                      suffixIcon: Icon(Icons.qr_code_outlined)),
-                                ),
-                              ),
-                            ],
-                          ),
-                          SizedBox(
-                            height: 15,
+                            width: 10,
                           ),
                           Container(
-                            width: 1000,
-                            height: 350,
-                            child: DataTable(
-                              headingRowHeight: 35,
-                              columnSpacing: 20,
-                              dataRowHeight: 35,
-                              columns: [
-                                DataColumn(label: Text('อันดับ')),
-                                DataColumn(label: Text('เลขที่ Barcode')),
-                                DataColumn(label: Text('ลำดับผลิตภัณฑ์')),
-                                DataColumn(label: Text('Lot ผู้ขาย')),
-                                DataColumn(label: Text('พาเลท')),
-                                DataColumn(label: Text('Part Number')),
-                                DataColumn(label: Text('จำนวน')),
-                                DataColumn(label: Text('น้ำหนัก')),
-                              ],
-                              rows: [
-                                _customRow(
-                                    index: 1,
-                                    barCode: 'P63090000016',
-                                    numProduct: '630900023',
-                                    saleLot: 'PS66309002',
-                                    pallet: 'O63090002',
-                                    partNum: 'POF(CD046)',
-                                    number: '1',
-                                    weight: '9999.99'),
-                                _customRow(
-                                    index: 2,
-                                    barCode: 'P63090000016',
-                                    numProduct: '630900023',
-                                    saleLot: 'PS66309002',
-                                    pallet: 'O63090002',
-                                    partNum: 'POF(CD046)',
-                                    number: '1',
-                                    weight: '9999.99'),
-                                _customRow(
-                                    index: 3,
-                                    barCode: 'P63090000016',
-                                    numProduct: '630900023',
-                                    saleLot: 'PS66309002',
-                                    pallet: 'O63090002',
-                                    partNum: 'POF(CD046)',
-                                    number: '1',
-                                    weight: '9999.99'),
-                                _customRow(
-                                    index: 4,
-                                    barCode: 'P63090000016',
-                                    numProduct: '630900023',
-                                    saleLot: 'PS66309002',
-                                    pallet: 'O63090002',
-                                    partNum: 'POF(CD046)',
-                                    number: '1',
-                                    weight: '9999.99'),
-                                _customRow(
-                                    index: 5,
-                                    barCode: 'P63090000016',
-                                    numProduct: '630900023',
-                                    saleLot: 'PS66309002',
-                                    pallet: 'O63090002',
-                                    partNum: 'POF(CD046)',
-                                    number: '1',
-                                    weight: '9999.99'),
-                                _customRow(
-                                    index: 6,
-                                    barCode: 'P63090000016',
-                                    numProduct: '630900023',
-                                    saleLot: 'PS66309002',
-                                    pallet: 'O63090002',
-                                    partNum: 'POF(CD046)',
-                                    number: '1',
-                                    weight: '9999.99'),
-                                _customRow(
-                                    index: 7,
-                                    barCode: 'P63090000016',
-                                    numProduct: '630900023',
-                                    saleLot: 'PS66309002',
-                                    pallet: 'O63090002',
-                                    partNum: 'POF(CD046)',
-                                    number: '1',
-                                    weight: '9999.99'),
-                                _customRow(
-                                    index: 8,
-                                    barCode: 'P63090000016',
-                                    numProduct: '630900023',
-                                    saleLot: 'PS66309002',
-                                    pallet: 'O63090002',
-                                    partNum: 'POF(CD046)',
-                                    number: '1',
-                                    weight: '9999.99'),
-                                _customRow(
-                                    index: 9,
-                                    barCode: 'P63090000016',
-                                    numProduct: '630900023',
-                                    saleLot: 'PS66309002',
-                                    pallet: 'O63090002',
-                                    partNum: 'POF(CD046)',
-                                    number: '1',
-                                    weight: '9999.99'),
-                              ],
+                            width: 350,
+                            height: 35,
+                            child: TextField(
+                              textAlignVertical: TextAlignVertical.top,
+                              style: TextStyle(fontSize: 17),
+                              // controller: _codeTool,
+                              decoration:
+                                  InputDecoration(border: OutlineInputBorder()),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Text(
+                            "จำนวน",
+                            style: TextStyle(
+                                fontSize: 22, fontWeight: FontWeight.w500),
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Container(
+                            width: 75,
+                            height: 35,
+                            child: TextField(
+                              textAlignVertical: TextAlignVertical.top,
+                              style: TextStyle(fontSize: 17),
+                              // controller: _codeTool,
+                              decoration:
+                                  InputDecoration(border: OutlineInputBorder()),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Text(
+                            "น้ำหนัก",
+                            style: TextStyle(
+                                fontSize: 22, fontWeight: FontWeight.w500),
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Container(
+                            width: 75,
+                            height: 35,
+                            child: TextField(
+                              textAlignVertical: TextAlignVertical.top,
+                              style: TextStyle(fontSize: 17),
+                              // controller: _codeTool,
+                              decoration:
+                                  InputDecoration(border: OutlineInputBorder()),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Text(
+                            "KG.",
+                            style: TextStyle(
+                                fontSize: 22, fontWeight: FontWeight.w500),
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 15,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text("ระบุ Barcode", style: TextStyle(fontSize: 22)),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Container(
+                            width: 350,
+                            height: 35,
+                            child: TextField(
+                              textAlignVertical: TextAlignVertical.top,
+                              style: TextStyle(fontSize: 17),
+                              // controller: _codeTool,
+                              decoration: InputDecoration(
+                                  border: OutlineInputBorder(),
+                                  suffixIcon: Icon(Icons.qr_code_outlined)),
                             ),
                           ),
                         ],
                       ),
-                    ),
+                      SizedBox(
+                        height: 15,
+                      ),
+                      Container(
+                        width: 1000,
+                        height: 350,
+                        child: DataTable(
+                            headingRowHeight: 35,
+                            columnSpacing: 20,
+                            dataRowHeight: 35,
+                            columns: [
+                              DataColumn(label: Text('อันดับ')),
+                              DataColumn(label: Text('เลขที่ Barcode')),
+                              DataColumn(label: Text('ลำดับผลิตภัณฑ์')),
+                              DataColumn(label: Text('Lot ผู้ขาย')),
+                              DataColumn(label: Text('พาเลท')),
+                              DataColumn(label: Text('Part Number')),
+                              DataColumn(label: Text('จำนวน')),
+                              DataColumn(label: Text('น้ำหนัก')),
+                            ],
+                            rows: List.generate(
+                                goods.length,
+                                (index) => _customRow(
+                                    index: index + 1,
+                                    barCode: goods[index].barCode,
+                                    numProduct: goods[index].numProduct,
+                                    saleLot: goods[index].saleLot,
+                                    pallet: goods[index].pallet,
+                                    partNum: goods[index].partNum,
+                                    number: goods[index].number,
+                                    weight: goods[index].weight))),
+                      ),
+                    ],
                   ),
                 ),
                 Container(
