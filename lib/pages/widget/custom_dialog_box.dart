@@ -140,7 +140,7 @@ class _CustomDialogBoxState extends State<CustomDialogBox> {
                 child: DataTable(
                   headingRowHeight: 35,
                   columnSpacing: 20,
-                  dataRowHeight: 65,
+                  dataRowHeight: 55,
                   columns: [
                     DataColumn(label: Text('รหัสสินค้า')),
                     DataColumn(label: Text('ชื่อสินค้า')),

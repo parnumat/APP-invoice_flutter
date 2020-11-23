@@ -12,14 +12,20 @@ class InvoiceToolsBloc extends Bloc<InvoiceToolsEvent, InvoiceToolsState> {
   InvoiceToolsBloc() : super(InvoiceToolsInitial());
   // InvoiceToolsBloc() : super(null);
   @override
-  Stream<InvoiceToolsState> mapEventToState(
-    InvoiceToolsEvent event,
-  ) async* {
+  Stream<InvoiceToolsState> mapEventToState(InvoiceToolsEvent event) async* {
     if (event is GetInvoiceTools) {
       yield* _getInvoiceToolsToState(event);
     } else {
       yield null;
     }
+    // if (event is FromInvoice) {
+    // yield* _saveDataFrom(event.txt);
+    // }
+    // switch (event){
+    //   case FromInvoice:{
+    //     yield null;
+    //     break;
+    // }
   }
 
   Stream<InvoiceToolsState> _getInvoiceToolsToState(

@@ -1,7 +1,12 @@
+import 'dart:convert';
+import 'dart:math';
+
 import 'package:date_format/date_format.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:invoice/pages/sale_order/book_tax_invoice.dart';
 import 'package:invoice/pages/widget/custom_progressbar.dart';
+import 'package:invoice/services/maxLenght.dart';
 
 class MainOrderDetail extends StatefulWidget {
   MainOrderDetail({Key key}) : super(key: key);
@@ -13,6 +18,7 @@ class MainOrderDetail extends StatefulWidget {
 class _MainOrderDetailState extends State<MainOrderDetail> {
   double _value = 0;
   DateTime selectedDate = DateTime.now();
+  TextEditingController _conNumTax = TextEditingController();
   _selectDate(BuildContext context) async {
     final DateTime picked = await showDatePicker(
       context: context,
@@ -90,20 +96,21 @@ class _MainOrderDetailState extends State<MainOrderDetail> {
                                 width: 220,
                                 height: 45,
                                 child: TextField(
-                                  // enabled: false,
+                                  controller: _conNumTax,
+                                  onChanged: (String value) {
+                                    print(_conNumTax.text);
+                                  },
                                   maxLength: 8,
                                   maxLines: 1,
-                                  // maxLengthEnforced: true,
+                                  inputFormatters: [
+                                    Utf8LengthLimitingTextInputFormatter(8),
+                                  ],
                                   style: TextStyle(fontSize: 17),
                                   textAlignVertical: TextAlignVertical.top,
-
-                                  // controller: _codeTool,
                                   decoration: InputDecoration(
                                     suffixIcon: Icon(Icons.menu),
                                     counter: SizedBox.shrink(),
-                                    border: OutlineInputBorder(
-                                        borderSide:
-                                            BorderSide(color: Colors.red)),
+                                    border: OutlineInputBorder(),
                                   ),
                                 ),
                               ),
@@ -142,11 +149,17 @@ class _MainOrderDetailState extends State<MainOrderDetail> {
                               Container(
                                 margin: EdgeInsets.all(5),
                                 width: 175,
-                                height: 35,
+                                height: 45,
                                 child: TextField(
                                   style: TextStyle(fontSize: 17),
+                                  textAlignVertical: TextAlignVertical.top,
                                   // controller: _codeTool,
+                                  maxLength: 8,
+                                  inputFormatters: [
+                                    Utf8LengthLimitingTextInputFormatter(8),
+                                  ],
                                   decoration: InputDecoration(
+                                    counter: SizedBox.shrink(),
                                     border: OutlineInputBorder(),
                                   ),
                                 ),
@@ -160,12 +173,18 @@ class _MainOrderDetailState extends State<MainOrderDetail> {
                               Container(
                                 margin: EdgeInsets.all(5),
                                 width: 240,
-                                height: 35,
+                                height: 45,
                                 child: TextField(
+                                  maxLength: 8,
+                                  maxLines: 1,
+                                  inputFormatters: [
+                                    Utf8LengthLimitingTextInputFormatter(8),
+                                  ],
                                   style: TextStyle(fontSize: 17),
-                                  // controller: _codeTool,
+                                  textAlignVertical: TextAlignVertical.top,
                                   decoration: InputDecoration(
                                     suffixIcon: Icon(Icons.menu),
+                                    counter: SizedBox.shrink(),
                                     border: OutlineInputBorder(),
                                   ),
                                 ),

@@ -18,7 +18,6 @@ class LoadingInvoiceToolsState extends InvoiceToolsState {
 
 class LoadedInvoiceToolsState extends InvoiceToolsState {
   final List<InvoiceTools> invoiceToolsMap;
-  // List<InvoiceTools> invoiceToolsMap = invoiceToolsFromJson(invoiceTools);
   LoadedInvoiceToolsState(this.invoiceToolsMap);
   @override
   String toString() => super.toString() + "\nDATA: $invoiceToolsMap";
