@@ -229,12 +229,29 @@ class _MainOrderDetailState extends State<MainOrderDetail> {
                                 margin: EdgeInsets.all(5),
                                 width: 870,
                                 height: 35,
-                                child: TextField(
-                                  style: TextStyle(fontSize: 17),
-                                  // controller: _codeTool,
-                                  decoration: InputDecoration(
-                                    border: OutlineInputBorder(),
-                                  ),
+                                child: Row(
+                                  children: [
+                                    Container(
+                                      width: 150,
+                                      child: TextField(
+                                        style: TextStyle(fontSize: 17),
+                                        // controller: _codeTool,
+                                        decoration: InputDecoration(
+                                          border: OutlineInputBorder(),
+                                        ),
+                                      ),
+                                    ),
+                                    Container(
+                                      width: 720,
+                                      child: TextField(
+                                        style: TextStyle(fontSize: 17),
+                                        // controller: _codeTool,
+                                        decoration: InputDecoration(
+                                          border: OutlineInputBorder(),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ),
                             ],
@@ -265,12 +282,29 @@ class _MainOrderDetailState extends State<MainOrderDetail> {
                                 margin: EdgeInsets.all(5),
                                 width: 870,
                                 height: 35,
-                                child: TextField(
-                                  style: TextStyle(fontSize: 17),
-                                  // controller: _codeTool,
-                                  decoration: InputDecoration(
-                                    border: OutlineInputBorder(),
-                                  ),
+                                child: Row(
+                                  children: [
+                                    Container(
+                                      width: 150,
+                                      child: TextField(
+                                        style: TextStyle(fontSize: 17),
+                                        // controller: _codeTool,
+                                        decoration: InputDecoration(
+                                          border: OutlineInputBorder(),
+                                        ),
+                                      ),
+                                    ),
+                                    Container(
+                                      width: 720,
+                                      child: TextField(
+                                        style: TextStyle(fontSize: 17),
+                                        // controller: _codeTool,
+                                        decoration: InputDecoration(
+                                          border: OutlineInputBorder(),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ),
                             ],

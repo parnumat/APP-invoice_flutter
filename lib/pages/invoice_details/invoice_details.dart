@@ -1,6 +1,7 @@
 import 'package:date_format/date_format.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:invoice/animations/test/test_animation.dart';
 import 'package:invoice/models/good_orders.dart';
 import 'package:invoice/models/tax_cards.dart';
 import 'package:invoice/pages/tool_page.dart';
@@ -397,11 +398,12 @@ class _InvoiceToolDetailPageState extends State<InvoiceToolDetailPage> {
                                               BorderRadius.circular(20)),
                                       color: Color(0XFFFFD05B),
                                       onPressed: () {
-                                        Navigator.of(context)
+                                        Navigator.of(
+                                                context)
                                             .pushAndRemoveUntil(
                                                 MaterialPageRoute(
                                                     builder: (context) =>
-                                                        ToolsPage()),
+                                                        TransitionsHomePage()),
                                                 (Route<dynamic> route) =>
                                                     false);
                                       },
