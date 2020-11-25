@@ -1,9 +1,8 @@
-import 'dart:convert';
-import 'dart:math';
-
 import 'package:date_format/date_format.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:invoice/animations/routes/route_animation.dart';
+import 'package:invoice/constants/constants.dart';
+import 'package:invoice/pages/invoice_details/invoice_tools_page.dart';
 import 'package:invoice/pages/sale_order/book_tax_invoice.dart';
 import 'package:invoice/pages/widget/custom_progressbar.dart';
 import 'package:invoice/services/maxLenght.dart';
@@ -36,19 +35,17 @@ class _MainOrderDetailState extends State<MainOrderDetail> {
   Widget build(BuildContext context) {
     double _width = MediaQuery.of(context).size.width;
     double _height = MediaQuery.of(context).size.height;
+    bool _show = false;
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
         child: Container(
-          // color: Colors.blue,
           height: _height,
           child: Center(
             child: Wrap(
-              // runSpacing: 30,
               direction: Axis.horizontal,
               children: [
                 Container(
-                  // color: Colors.red,
                   padding: const EdgeInsets.all(20.0),
                   height: 120,
                   child: Center(
@@ -81,7 +78,7 @@ class _MainOrderDetailState extends State<MainOrderDetail> {
                 ),
                 Container(
                   height: _height * 0.65,
-                  padding: const EdgeInsets.all(20.0),
+                  padding: const EdgeInsets.all(Constants.iDefaultPadding),
                   child: Center(
                     child: Form(
                       child: Column(
@@ -90,38 +87,62 @@ class _MainOrderDetailState extends State<MainOrderDetail> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text('เลขที่ใบกำกับภาษี'),
-                              Container(
-                                margin: EdgeInsets.all(5),
-                                width: 220,
-                                height: 45,
-                                child: TextField(
-                                  controller: _conNumTax,
-                                  onChanged: (String value) {
-                                    print(_conNumTax.text);
-                                  },
-                                  maxLength: 8,
-                                  maxLines: 1,
-                                  inputFormatters: [
-                                    Utf8LengthLimitingTextInputFormatter(8),
-                                  ],
-                                  style: TextStyle(fontSize: 17),
-                                  textAlignVertical: TextAlignVertical.top,
-                                  decoration: InputDecoration(
-                                    suffixIcon: Icon(Icons.menu),
-                                    counter: SizedBox.shrink(),
-                                    border: OutlineInputBorder(),
-                                  ),
+                              Text(
+                                'เลขที่ใบกำกับภาษี',
+                                style: TextStyle(
+                                  fontSize: Constants.iTextSize,
+                                  color: Constants.iTextColor,
                                 ),
                               ),
-                              Text('วันที่ในใบกำกับภาษี'),
                               Container(
-                                margin: EdgeInsets.all(5),
-                                width: 200,
-                                height: 35,
+                                margin: EdgeInsets.all(
+                                    Constants.iDefaultPadding / 4),
+                                width: 175,
+                                height: 28,
+                                decoration: BoxDecoration(
+                                  border:
+                                      Border.all(color: Constants.iTextColor),
+                                  borderRadius: BorderRadius.circular(
+                                      Constants.iBorderRadius),
+                                ),
+                                child: Center(
+                                    child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal:
+                                          Constants.iDefaultPadding / 3),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        "SI005/0056158",
+                                        style: TextStyle(
+                                          fontSize: Constants.iTextSize,
+                                          color: Constants.iTextColor,
+                                        ),
+                                      ),
+                                      Icon(
+                                        Icons.menu,
+                                        size: Constants.iConSize,
+                                        color: Constants.iConColor,
+                                      )
+                                    ],
+                                  ),
+                                )),
+                              ),
+                              Text(
+                                'วันที่ในใบกำกับภาษี',
+                                style: TextStyle(fontSize: Constants.iTextSize),
+                              ),
+                              Container(
+                                margin: EdgeInsets.all(
+                                    Constants.iDefaultPadding / 4),
+                                width: 175,
+                                height: 28,
                                 child: OutlineButton(
                                   shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(4.0),
+                                    borderRadius: BorderRadius.circular(
+                                        Constants.iBorderRadius),
                                   ),
                                   borderSide: BorderSide(color: Colors.black54),
                                   onPressed: () {
@@ -134,88 +155,167 @@ class _MainOrderDetailState extends State<MainOrderDetail> {
                                         formatDate(selectedDate,
                                             [dd, '/', mm, '/', yyyy]),
                                         style: TextStyle(
-                                            color: Colors.black, fontSize: 17),
+                                            color: Constants.iTextColor,
+                                            fontSize: Constants.iTextSize),
                                       ),
                                       SizedBox(width: 10),
                                       Icon(
                                         Icons.date_range,
-                                        color: Colors.black45,
+                                        color: Constants.iConColor,
+                                        size: Constants.iConSize,
                                       ),
                                     ],
                                   ),
                                 ),
                               ),
-                              Text('วันครบกำหนดชำระ'),
-                              Container(
-                                margin: EdgeInsets.all(5),
-                                width: 175,
-                                height: 45,
-                                child: TextField(
-                                  style: TextStyle(fontSize: 17),
-                                  textAlignVertical: TextAlignVertical.top,
-                                  // controller: _codeTool,
-                                  maxLength: 8,
-                                  inputFormatters: [
-                                    Utf8LengthLimitingTextInputFormatter(8),
-                                  ],
-                                  decoration: InputDecoration(
-                                    counter: SizedBox.shrink(),
-                                    border: OutlineInputBorder(),
-                                  ),
-                                ),
+                              Text(
+                                'วันครบกำหนดชำระ',
+                                style: TextStyle(
+                                    color: Constants.iTextColor,
+                                    fontSize: Constants.iTextSize),
                               ),
+                              Container(
+                                  margin: EdgeInsets.all(
+                                      Constants.iDefaultPadding / 4),
+                                  width: 160,
+                                  height: 28,
+                                  decoration: BoxDecoration(
+                                    border:
+                                        Border.all(color: Constants.iTextColor),
+                                    borderRadius: BorderRadius.circular(
+                                        Constants.iBorderRadius),
+                                  ),
+                                  child: Center(
+                                      child: Text(
+                                    "05/11/2015",
+                                    style: TextStyle(
+                                        color: Constants.iTextColor,
+                                        fontSize: Constants.iTextSize),
+                                  ))),
                             ],
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text('เลขที่ใบสั่งขาย'),
-                              Container(
-                                margin: EdgeInsets.all(5),
-                                width: 240,
-                                height: 45,
-                                child: TextField(
-                                  maxLength: 8,
-                                  maxLines: 1,
-                                  inputFormatters: [
-                                    Utf8LengthLimitingTextInputFormatter(8),
-                                  ],
-                                  style: TextStyle(fontSize: 17),
-                                  textAlignVertical: TextAlignVertical.top,
-                                  decoration: InputDecoration(
-                                    suffixIcon: Icon(Icons.menu),
-                                    counter: SizedBox.shrink(),
-                                    border: OutlineInputBorder(),
-                                  ),
+                              Text(
+                                'เลขที่ใบสั่งขาย',
+                                style: TextStyle(
+                                    color: Constants.iTextColor,
+                                    fontSize: Constants.iTextSize),
+                              ),
+                              GestureDetector(
+                                onTap: () => Navigator.of(context)
+                                    .push(createRoute(BookTaxInvoice())),
+                                child: Container(
+                                  margin: EdgeInsets.all(
+                                      Constants.iDefaultPadding / 4),
+                                  width: 175,
+                                  height: 28,
+                                  decoration: BoxDecoration(
+                                      border: Border.all(
+                                          color: Constants.iTextColor),
+                                      borderRadius: BorderRadius.circular(
+                                          Constants.iBorderRadius)),
+                                  child: Center(
+                                      child: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal:
+                                            Constants.iDefaultPadding / 3),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        SizedBox(
+                                          width: Constants.iDefaultPadding / 4,
+                                        ),
+                                        Text(
+                                          "FM63090005",
+                                          style: TextStyle(
+                                            fontSize: Constants.iTextSize,
+                                            color: Constants.iTextColor,
+                                          ),
+                                        ),
+                                        Icon(
+                                          Icons.menu,
+                                          size: Constants.iConSize,
+                                          color: Constants.iConColor,
+                                        )
+                                      ],
+                                    ),
+                                  )),
                                 ),
                               ),
-                              Text('ใบสั่งซื้อเลขที่'),
+                              Text(
+                                'ใบสั่งซื้อเลขที่',
+                                style: TextStyle(
+                                    color: Constants.iTextColor,
+                                    fontSize: Constants.iTextSize),
+                              ),
                               Container(
-                                margin: EdgeInsets.all(5),
+                                margin: EdgeInsets.all(
+                                    Constants.iDefaultPadding / 4),
                                 width: 200,
-                                height: 35,
-                                child: TextField(
-                                  style: TextStyle(fontSize: 17),
-                                  // controller: _codeTool,
-                                  decoration: InputDecoration(
-                                    border: OutlineInputBorder(),
+                                height: 28,
+                                decoration: BoxDecoration(
+                                    border:
+                                        Border.all(color: Constants.iTextColor),
+                                    borderRadius: BorderRadius.circular(
+                                        Constants.iBorderRadius)),
+                                child: Center(
+                                  child: Text(
+                                    "PO09102020",
+                                    style: TextStyle(
+                                        color: Constants.iTextColor,
+                                        fontSize: Constants.iTextSize),
                                   ),
                                 ),
+                                // child: TextField(
+                                //   enabled: _show,
+                                //   maxLength: 8,
+                                //   maxLines: 1,
+                                //   inputFormatters: [
+                                //     Utf8LengthLimitingTextInputFormatter(8),
+                                //   ],
+                                //   textAlignVertical: TextAlignVertical.top,
+                                //   style:
+                                //       TextStyle(fontSize: Constants.iTextSize),
+                                //   // controller: _codeTool,
+                                //   decoration: InputDecoration(
+                                //     counter: SizedBox.shrink(),
+                                //     border: OutlineInputBorder(),
+                                //   ),
+                                // ),
                               ),
-                              Text('เครดิต'),
+                              Text(
+                                'เครดิต',
+                                style: TextStyle(
+                                    color: Constants.iTextColor,
+                                    fontSize: Constants.iTextSize),
+                              ),
                               Container(
-                                margin: EdgeInsets.all(5),
-                                width: 74,
-                                height: 35,
-                                child: TextField(
-                                  style: TextStyle(fontSize: 17),
-                                  // controller: _codeTool,
-                                  decoration: InputDecoration(
-                                    border: OutlineInputBorder(),
-                                  ),
-                                ),
+                                  margin: EdgeInsets.all(
+                                      Constants.iDefaultPadding / 4),
+                                  width: 74,
+                                  height: 45,
+                                  decoration: BoxDecoration(
+                                      border: Border.all(
+                                          color: Constants.iTextColor),
+                                      borderRadius: BorderRadius.circular(
+                                          Constants.iBorderRadius)),
+                                  child: Center(
+                                    child: Text(
+                                      '60',
+                                      style: TextStyle(
+                                          color: Constants.iTextColor,
+                                          fontSize: Constants.iTextSize),
+                                    ),
+                                  )),
+                              Text(
+                                'วัน',
+                                style: TextStyle(
+                                    color: Constants.iTextColor,
+                                    fontSize: Constants.iTextSize),
                               ),
-                              Text('วัน'),
                               SizedBox(
                                 width: 80,
                               )
@@ -224,30 +324,57 @@ class _MainOrderDetailState extends State<MainOrderDetail> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text('ลูกค้า'),
+                              Text(
+                                'ลูกค้า',
+                                style: TextStyle(
+                                    color: Constants.iTextColor,
+                                    fontSize: Constants.iTextSize),
+                              ),
                               Container(
-                                margin: EdgeInsets.all(5),
+                                margin: EdgeInsets.all(
+                                    Constants.iDefaultPadding / 4),
                                 width: 870,
-                                height: 35,
+                                height: 28,
                                 child: Row(
                                   children: [
                                     Container(
                                       width: 150,
-                                      child: TextField(
-                                        style: TextStyle(fontSize: 17),
-                                        // controller: _codeTool,
-                                        decoration: InputDecoration(
-                                          border: OutlineInputBorder(),
+                                      decoration: BoxDecoration(
+                                          border: Border.all(
+                                              color: Constants.iTextColor),
+                                          borderRadius: BorderRadius.only(
+                                              topLeft: Radius.circular(
+                                                  Constants.iBorderRadius),
+                                              bottomLeft: Radius.circular(
+                                                  Constants.iBorderRadius))),
+                                      child: Center(
+                                        child: Text(
+                                          'CC032',
+                                          style: TextStyle(
+                                              color: Constants.iTextColor,
+                                              fontSize: Constants.iTextSize),
                                         ),
                                       ),
                                     ),
                                     Container(
                                       width: 720,
-                                      child: TextField(
-                                        style: TextStyle(fontSize: 17),
-                                        // controller: _codeTool,
-                                        decoration: InputDecoration(
-                                          border: OutlineInputBorder(),
+                                      decoration: BoxDecoration(
+                                          border: Border.all(
+                                              color: Constants.iTextColor),
+                                          borderRadius: BorderRadius.only(
+                                              topRight: Radius.circular(
+                                                  Constants.iBorderRadius),
+                                              bottomRight: Radius.circular(
+                                                  Constants.iBorderRadius))),
+                                      child: Padding(
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal:
+                                                Constants.iDefaultPadding / 2),
+                                        child: Text(
+                                          'คอลเกตปาล์มโอลีฟ(ประเทศไทย) บจ.',
+                                          style: TextStyle(
+                                              color: Constants.iTextColor,
+                                              fontSize: Constants.iTextSize),
                                         ),
                                       ),
                                     ),
@@ -259,16 +386,31 @@ class _MainOrderDetailState extends State<MainOrderDetail> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text('ที่อยู่'),
+                              Text(
+                                'ที่อยู่',
+                                style: TextStyle(
+                                    color: Constants.iTextColor,
+                                    fontSize: Constants.iTextSize),
+                              ),
                               Container(
-                                margin: EdgeInsets.all(5),
+                                margin: EdgeInsets.all(
+                                    Constants.iDefaultPadding / 4),
                                 width: 870,
-                                height: 35,
-                                child: TextField(
-                                  style: TextStyle(fontSize: 17),
-                                  // controller: _codeTool,
-                                  decoration: InputDecoration(
-                                    border: OutlineInputBorder(),
+                                height: 28,
+                                decoration: BoxDecoration(
+                                    border:
+                                        Border.all(color: Constants.iTextColor),
+                                    borderRadius: BorderRadius.circular(
+                                        Constants.iBorderRadius)),
+                                child: Padding(
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal:
+                                          Constants.iDefaultPadding / 2),
+                                  child: Text(
+                                    '19 ซอยแยกถนน ณ ระนอง ถ.สุนทรโกษา แขวงคลองเตย เขตคลองเตย กรุงเทพมหานคร 10110',
+                                    style: TextStyle(
+                                        color: Constants.iTextColor,
+                                        fontSize: Constants.iTextSize),
                                   ),
                                 ),
                               ),
@@ -277,30 +419,57 @@ class _MainOrderDetailState extends State<MainOrderDetail> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text('สถานที่ส่งของ'),
+                              Text(
+                                'สถานที่ส่งของ',
+                                style: TextStyle(
+                                    color: Constants.iTextColor,
+                                    fontSize: Constants.iTextSize),
+                              ),
                               Container(
-                                margin: EdgeInsets.all(5),
+                                margin: EdgeInsets.all(
+                                    Constants.iDefaultPadding / 4),
                                 width: 870,
-                                height: 35,
+                                height: 28,
                                 child: Row(
                                   children: [
                                     Container(
                                       width: 150,
-                                      child: TextField(
-                                        style: TextStyle(fontSize: 17),
-                                        // controller: _codeTool,
-                                        decoration: InputDecoration(
-                                          border: OutlineInputBorder(),
+                                      decoration: BoxDecoration(
+                                          border: Border.all(
+                                              color: Constants.iTextColor),
+                                          borderRadius: BorderRadius.only(
+                                              topLeft: Radius.circular(
+                                                  Constants.iBorderRadius),
+                                              bottomLeft: Radius.circular(
+                                                  Constants.iBorderRadius))),
+                                      child: Center(
+                                        child: Text(
+                                          '000',
+                                          style: TextStyle(
+                                              color: Constants.iTextColor,
+                                              fontSize: Constants.iTextSize),
                                         ),
                                       ),
                                     ),
                                     Container(
                                       width: 720,
-                                      child: TextField(
-                                        style: TextStyle(fontSize: 17),
-                                        // controller: _codeTool,
-                                        decoration: InputDecoration(
-                                          border: OutlineInputBorder(),
+                                      decoration: BoxDecoration(
+                                          border: Border.all(
+                                              color: Constants.iTextColor),
+                                          borderRadius: BorderRadius.only(
+                                              topRight: Radius.circular(
+                                                  Constants.iBorderRadius),
+                                              bottomRight: Radius.circular(
+                                                  Constants.iBorderRadius))),
+                                      child: Padding(
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal:
+                                                Constants.iDefaultPadding / 2),
+                                        child: Text(
+                                          '19 ซอย แยกถนน ณ ระนอง ถ.สุนทรโกษา แขวง คลองเตย กรุงเทพมหานคร 10110',
+                                          style: TextStyle(
+                                              color: Constants.iTextColor,
+                                              fontSize: Constants.iTextSize),
                                         ),
                                       ),
                                     ),
@@ -312,54 +481,86 @@ class _MainOrderDetailState extends State<MainOrderDetail> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text('รหัสผู้ส่ง'),
+                              Text(
+                                'รหัสผู้ส่ง',
+                                style: TextStyle(
+                                    color: Constants.iTextColor,
+                                    fontSize: Constants.iTextSize),
+                              ),
                               SizedBox(width: 35),
                               Container(
-                                margin: EdgeInsets.all(5),
+                                margin: EdgeInsets.all(
+                                    Constants.iDefaultPadding / 4),
                                 width: 118,
                                 height: 35,
                                 child: TextField(
-                                  style: TextStyle(fontSize: 17),
+                                  style:
+                                      TextStyle(fontSize: Constants.iTextSize),
                                   // controller: _codeTool,
                                   decoration: InputDecoration(
-                                    suffixIcon: Icon(Icons.menu),
+                                    suffixIcon: Icon(
+                                      Icons.menu,
+                                      color: Constants.iConColor,
+                                      size: Constants.iConSize,
+                                    ),
                                     border: OutlineInputBorder(),
                                   ),
                                 ),
                               ),
-                              Text('ชื่อผู้ส่ง'),
+                              Text(
+                                'ชื่อผู้ส่ง',
+                                style: TextStyle(
+                                    color: Constants.iTextColor,
+                                    fontSize: Constants.iTextSize),
+                              ),
                               Container(
-                                margin: EdgeInsets.all(5),
+                                margin: EdgeInsets.all(
+                                    Constants.iDefaultPadding / 4),
                                 width: 180,
                                 height: 35,
                                 child: TextField(
-                                  style: TextStyle(fontSize: 17),
+                                  style:
+                                      TextStyle(fontSize: Constants.iTextSize),
                                   // controller: _codeTool,
                                   decoration: InputDecoration(
                                     border: OutlineInputBorder(),
                                   ),
                                 ),
                               ),
-                              Text('ทะเบียนรถ'),
+                              Text(
+                                'ทะเบียนรถ',
+                                style: TextStyle(
+                                    color: Constants.iTextColor,
+                                    fontSize: Constants.iTextSize),
+                              ),
                               Container(
-                                margin: EdgeInsets.all(5),
+                                margin: EdgeInsets.all(
+                                    Constants.iDefaultPadding / 4),
                                 width: 140,
                                 height: 35,
                                 child: TextField(
-                                  style: TextStyle(fontSize: 17),
+                                  style:
+                                      TextStyle(fontSize: Constants.iTextSize),
                                   // controller: _codeTool,
                                   decoration: InputDecoration(
                                     border: OutlineInputBorder(),
                                   ),
                                 ),
                               ),
-                              Text('ชื่อผู้รับ'),
+                              Text(
+                                'ชื่อผู้รับ',
+                                style: TextStyle(
+                                    color: Constants.iTextColor,
+                                    fontSize: Constants.iTextSize),
+                              ),
                               Container(
-                                margin: EdgeInsets.all(5),
+                                margin: EdgeInsets.all(
+                                    Constants.iDefaultPadding / 4),
                                 width: 180,
                                 height: 35,
                                 child: TextField(
-                                  style: TextStyle(fontSize: 17),
+                                  style:
+                                      TextStyle(fontSize: Constants.iTextSize),
                                   // controller: _codeTool,
                                   decoration: InputDecoration(
                                     border: OutlineInputBorder(),
@@ -371,16 +572,27 @@ class _MainOrderDetailState extends State<MainOrderDetail> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text('หมายเหตุ'),
+                              Text(
+                                'หมายเหตุ',
+                                style: TextStyle(
+                                    color: Constants.iTextColor,
+                                    fontSize: Constants.iTextSize),
+                              ),
                               Container(
-                                margin: EdgeInsets.all(5),
+                                margin: EdgeInsets.all(
+                                    Constants.iDefaultPadding / 4),
                                 width: 870,
                                 height: 35,
                                 child: TextField(
-                                  style: TextStyle(fontSize: 17),
+                                  style:
+                                      TextStyle(fontSize: Constants.iTextSize),
                                   // controller: _codeTool,
                                   decoration: InputDecoration(
-                                    suffixIcon: Icon(Icons.menu),
+                                    suffixIcon: Icon(
+                                      Icons.menu,
+                                      color: Constants.iConColor,
+                                      size: Constants.iConSize,
+                                    ),
                                     border: OutlineInputBorder(),
                                   ),
                                 ),
@@ -399,15 +611,11 @@ class _MainOrderDetailState extends State<MainOrderDetail> {
                           borderRadius: BorderRadius.circular(20)),
                       color: Color(0XFFFFD05B),
                       onPressed: () => Navigator.of(context)
-                          .push(_createRoute(BookTaxInvoice())),
-
-                      // Navigator.of(context)
-                      //     .pushAndRemoveUntil(
-                      //         MaterialPageRoute(
-                      //             builder: (context) => BookTaxInvoice()),
-                      //         (Route<dynamic> route) => false),
+                          .push(createRoute(InvoiceToolsPage())),
                       child: Text("ต่อไป",
-                          style: TextStyle(fontSize: 13, color: Colors.white)),
+                          style: TextStyle(
+                              fontSize: Constants.iTextSize,
+                              color: Colors.white)),
                     ),
                   ),
                 ),
@@ -418,20 +626,4 @@ class _MainOrderDetailState extends State<MainOrderDetail> {
       ),
     );
   }
-}
-
-Route _createRoute(Widget child) {
-  return PageRouteBuilder(
-    pageBuilder: (context, animation, secondaryAnimation) => child,
-    transitionsBuilder: (context, animation, secondaryAnimation, child) {
-      var begin = Offset(0.0, 1.0);
-      var end = Offset.zero;
-      var curve = Curves.ease;
-      var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
-      return SlideTransition(
-        position: animation.drive(tween),
-        child: child,
-      );
-    },
-  );
 }
