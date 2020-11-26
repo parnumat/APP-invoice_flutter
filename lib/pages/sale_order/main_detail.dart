@@ -2,10 +2,9 @@ import 'package:date_format/date_format.dart';
 import 'package:flutter/material.dart';
 import 'package:invoice/animations/routes/route_animation.dart';
 import 'package:invoice/constants/constants.dart';
-import 'package:invoice/pages/invoice_details/invoice_tools_page.dart';
+import 'package:invoice/pages/goods/goods_page.dart';
 import 'package:invoice/pages/sale_order/book_tax_invoice.dart';
 import 'package:invoice/pages/widget/custom_progressbar.dart';
-import 'package:invoice/services/maxLenght.dart';
 
 class MainOrderDetail extends StatefulWidget {
   MainOrderDetail({Key key}) : super(key: key);
@@ -17,7 +16,7 @@ class MainOrderDetail extends StatefulWidget {
 class _MainOrderDetailState extends State<MainOrderDetail> {
   double _value = 0;
   DateTime selectedDate = DateTime.now();
-  TextEditingController _conNumTax = TextEditingController();
+  // TextEditingController _conNumTax = TextEditingController();
   _selectDate(BuildContext context) async {
     final DateTime picked = await showDatePicker(
       context: context,
@@ -45,37 +44,7 @@ class _MainOrderDetailState extends State<MainOrderDetail> {
             child: Wrap(
               direction: Axis.horizontal,
               children: [
-                Container(
-                  padding: const EdgeInsets.all(20.0),
-                  height: 120,
-                  child: Center(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              if (_value < 10)
-                                _value = _value + 5;
-                              else
-                                _value = 0;
-                            });
-                          },
-                          child: CustomProgressBar(
-                            width: _width * 0.6,
-                            height: 10,
-                            radius: 20,
-                            value: _value,
-                            totalValue: 10,
-                          ),
-                        ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
+                buildControlProgressBar(_width),
                 Container(
                   height: _height * 0.65,
                   padding: const EdgeInsets.all(Constants.iDefaultPadding),
@@ -269,22 +238,6 @@ class _MainOrderDetailState extends State<MainOrderDetail> {
                                         fontSize: Constants.iTextSize),
                                   ),
                                 ),
-                                // child: TextField(
-                                //   enabled: _show,
-                                //   maxLength: 8,
-                                //   maxLines: 1,
-                                //   inputFormatters: [
-                                //     Utf8LengthLimitingTextInputFormatter(8),
-                                //   ],
-                                //   textAlignVertical: TextAlignVertical.top,
-                                //   style:
-                                //       TextStyle(fontSize: Constants.iTextSize),
-                                //   // controller: _codeTool,
-                                //   decoration: InputDecoration(
-                                //     counter: SizedBox.shrink(),
-                                //     border: OutlineInputBorder(),
-                                //   ),
-                                // ),
                               ),
                               Text(
                                 'เครดิต',
@@ -610,8 +563,8 @@ class _MainOrderDetailState extends State<MainOrderDetail> {
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20)),
                       color: Color(0XFFFFD05B),
-                      onPressed: () => Navigator.of(context)
-                          .push(createRoute(InvoiceToolsPage())),
+                      onPressed: () =>
+                          Navigator.of(context).push(createRoute(GoodsPage())),
                       child: Text("ต่อไป",
                           style: TextStyle(
                               fontSize: Constants.iTextSize,
@@ -622,6 +575,40 @@ class _MainOrderDetailState extends State<MainOrderDetail> {
               ],
             ),
           ),
+        ),
+      ),
+    );
+  }
+
+  Container buildControlProgressBar(double _width) {
+    return Container(
+      padding: const EdgeInsets.all(20.0),
+      height: 120,
+      child: Center(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            GestureDetector(
+              onTap: () {
+                setState(() {
+                  if (_value < 10)
+                    _value = _value + 5;
+                  else
+                    _value = 0;
+                });
+              },
+              child: CustomProgressBar(
+                width: _width * 0.6,
+                height: 10,
+                radius: 20,
+                value: _value,
+                totalValue: 10,
+              ),
+            ),
+            SizedBox(
+              width: 10,
+            ),
+          ],
         ),
       ),
     );

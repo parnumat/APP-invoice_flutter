@@ -1,8 +1,10 @@
 import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:invoice/constants/constants.dart';
 import 'package:invoice/pages/sale_order/choose_order_details.dart';
+import 'package:invoice/services/bloc/choose_goods_detail_bloc.dart';
 
 class CustomDialogBox extends StatefulWidget {
   const CustomDialogBox({Key key}) : super(key: key);
@@ -17,6 +19,9 @@ class _CustomDialogBoxState extends State<CustomDialogBox> {
 
   @override
   Widget build(BuildContext context) {
+    ChooseGoodsDetailBloc _bloc =
+        BlocProvider.of<ChooseGoodsDetailBloc>(context);
+    _bloc.add(GetOrderEvent());
     return Center(
       child: Dialog(
         shape: RoundedRectangleBorder(
@@ -24,12 +29,12 @@ class _CustomDialogBoxState extends State<CustomDialogBox> {
         ),
         elevation: 0,
         backgroundColor: Colors.transparent,
-        child: contentBox(context),
+        child: contentBox(context, _bloc),
       ),
     );
   }
 
-  contentBox(context) {
+  contentBox(context, ChooseGoodsDetailBloc _bloc) {
     return Wrap(
       children: <Widget>[
         Container(
@@ -81,33 +86,37 @@ class _CustomDialogBoxState extends State<CustomDialogBox> {
                 decoration: BoxDecoration(
                     border: Border.all(color: Colors.black12),
                     borderRadius: BorderRadius.circular(20)),
-                child: DataTable(
-                  headingRowHeight: 35,
-                  columnSpacing: 20,
-                  dataRowHeight: 55,
-                  columns: [
-                    DataColumn(label: Text('รหัสสินค้า')),
-                    DataColumn(label: Text('ชื่อสินค้า')),
-                    DataColumn(label: Text('จำนวน')),
-                    DataColumn(label: Text('หน่วย')),
-                    DataColumn(label: Text('กำหนดส่งสินค้า')),
-                  ],
-                  rows: [
-                    _customRow(
-                        goodsCode: 'POF9Q0190000',
-                        goodsName:
-                            'POF Shrink Regular 19u x 290 mm x 6,402 m. แกน 3 นิ้ว 3รอยต่อ Flat/Non-Perforateเกรด A',
-                        number: '26.52',
-                        unit: 'Kilogram',
-                        returnDate: "25/09/2020"),
-                    _customRow(
-                        goodsCode: 'POF9Q0190000',
-                        goodsName:
-                            'POF Shrink Regular 19u x 290 mm x 6,402 m. แกน 3 นิ้ว 3รอยต่อ Flat/Non-Perforateเกรด A',
-                        number: '26.52',
-                        unit: 'Kilogram',
-                        returnDate: "25/09/2020"),
-                  ],
+                child:
+                    BlocBuilder<ChooseGoodsDetailBloc, ChooseGoodsDetailState>(
+                  builder: (context, state) {
+                    return DataTable(
+                        headingRowHeight: 35,
+                        columnSpacing: 20,
+                        dataRowHeight: 55,
+                        columns: [
+                          DataColumn(label: Text('รหัสสินค้า')),
+                          DataColumn(label: Text('ชื่อสินค้า')),
+                          DataColumn(label: Text('จำนวน')),
+                          DataColumn(label: Text('หน่วย')),
+                          DataColumn(label: Text('กำหนดส่งสินค้า')),
+                        ],
+                        rows: (state is MoveDetailsState &&
+                                state.mainData != [])
+                            ? List.generate(
+                                state.mainData.length,
+                                (index) => _customRow(
+                                    press: () =>
+                                        _bloc.add(MoveToKeepEvent(index: 0)),
+                                    index: index,
+                                    bloc: _bloc,
+                                    goodsCode: state.mainData[index].goodsCode,
+                                    goodsName: state.mainData[index].goodsName,
+                                    number: state.mainData[index].number,
+                                    unit: state.mainData[index].unit,
+                                    returnDate:
+                                        state.mainData[index].returnDate))
+                            : []);
+                  },
                 ),
               ),
               Padding(
@@ -137,33 +146,37 @@ class _CustomDialogBoxState extends State<CustomDialogBox> {
                 decoration: BoxDecoration(
                     border: Border.all(color: Colors.black12),
                     borderRadius: BorderRadius.circular(20)),
-                child: DataTable(
-                  headingRowHeight: 35,
-                  columnSpacing: 20,
-                  dataRowHeight: 55,
-                  columns: [
-                    DataColumn(label: Text('รหัสสินค้า')),
-                    DataColumn(label: Text('ชื่อสินค้า')),
-                    DataColumn(label: Text('จำนวน')),
-                    DataColumn(label: Text('หน่วย')),
-                    DataColumn(label: Text('กำหนดส่งสินค้า')),
-                  ],
-                  rows: [
-                    _customRow(
-                        goodsCode: 'POF9Q0190000',
-                        goodsName:
-                            'POF Shrink Regular 19u x 290 mm x 6,402 m. แกน 3 นิ้ว 3รอยต่อ Flat/Non-Perforateเกรด A',
-                        number: '26.52',
-                        unit: 'Kilogram',
-                        returnDate: "25/09/2020"),
-                    _customRow(
-                        goodsCode: 'POF9Q0190000',
-                        goodsName:
-                            'POF Shrink Regular 19u x 290 mm x 6,402 m. แกน 3 นิ้ว 3รอยต่อ Flat/Non-Perforateเกรด A',
-                        number: '26.52',
-                        unit: 'Kilogram',
-                        returnDate: "25/09/2020"),
-                  ],
+                child:
+                    BlocBuilder<ChooseGoodsDetailBloc, ChooseGoodsDetailState>(
+                  builder: (context, state) {
+                    return DataTable(
+                        headingRowHeight: 35,
+                        columnSpacing: 20,
+                        dataRowHeight: 55,
+                        columns: [
+                          DataColumn(label: Text('รหัสสินค้า')),
+                          DataColumn(label: Text('ชื่อสินค้า')),
+                          DataColumn(label: Text('จำนวน')),
+                          DataColumn(label: Text('หน่วย')),
+                          DataColumn(label: Text('กำหนดส่งสินค้า')),
+                        ],
+                        rows: (state is MoveDetailsState &&
+                                state.keepData != [])
+                            ? List.generate(
+                                state.keepData.length,
+                                (index) => _customRow(
+                                    press: () =>
+                                        _bloc.add(KeepToMoveEvent(index: 0)),
+                                    index: index,
+                                    bloc: _bloc,
+                                    goodsCode: state.keepData[index].goodsCode,
+                                    goodsName: state.keepData[index].goodsName,
+                                    number: state.keepData[index].number,
+                                    unit: state.keepData[index].unit,
+                                    returnDate:
+                                        state.keepData[index].returnDate))
+                            : []);
+                  },
                 ),
               ),
               SizedBox(
@@ -198,6 +211,32 @@ class _CustomDialogBoxState extends State<CustomDialogBox> {
                     child: Text("ยกเลิก",
                         style: TextStyle(fontSize: 13, color: Colors.white)),
                   ),
+                  SizedBox(
+                    width: 37,
+                  ),
+                  RaisedButton(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20)),
+                    color: Color(0XFF29EAA4),
+                    onPressed: () {
+                      _bloc.add(MoveToKeepEvent(index: 0));
+                    },
+                    child: Text("MainToKeep",
+                        style: TextStyle(fontSize: 13, color: Colors.white)),
+                  ),
+                  SizedBox(
+                    width: 37,
+                  ),
+                  RaisedButton(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20)),
+                    color: Color(0XFF29EAA4),
+                    onPressed: () {
+                      _bloc.add(KeepToMoveEvent(index: 1));
+                    },
+                    child: Text("KeepToMain",
+                        style: TextStyle(fontSize: 13, color: Colors.white)),
+                  ),
                 ],
               ),
             ],
@@ -207,10 +246,19 @@ class _CustomDialogBoxState extends State<CustomDialogBox> {
     );
   }
 
-  _customRow({goodsCode, goodsName, number, unit, returnDate}) {
+  _customRow(
+      {goodsCode,
+      goodsName,
+      number,
+      unit,
+      returnDate,
+      ChooseGoodsDetailBloc bloc,
+      Function press,
+      index}) {
     var dataRow = DataRow(
+      // onSelectChanged: (value) => bloc.add(KeepToMoveEvent(index: index)),
       cells: <DataCell>[
-        DataCell(Text(goodsCode)),
+        DataCell(Text(goodsCode), onTap: press),
         DataCell(Text(
           goodsName,
           maxLines: 2,

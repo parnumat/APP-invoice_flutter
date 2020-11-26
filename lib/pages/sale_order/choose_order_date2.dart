@@ -1,7 +1,7 @@
 import 'package:date_format/date_format.dart';
 import 'package:flutter/material.dart';
 import 'package:invoice/models/order.dart';
-import 'package:invoice/pages/goods/goods_page.dart';
+import 'package:invoice/pages/sale_order/main_detail.dart';
 import 'package:invoice/pages/widget/custom_progressbar.dart';
 import 'package:invoice/services/dummy/dummy.dart';
 
@@ -228,7 +228,7 @@ class _ChooseOrderDate2State extends State<ChooseOrderDate2> {
                           color: Color(0XFFFFD05B),
                           onPressed: () => Navigator.of(context).push(
                             MaterialPageRoute(
-                                builder: (context) => GoodsPage()),
+                                builder: (context) => MainOrderDetail()),
                           ),
                           child: Text("เลือก",
                               style:

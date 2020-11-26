@@ -18,14 +18,6 @@ class InvoiceToolsBloc extends Bloc<InvoiceToolsEvent, InvoiceToolsState> {
     } else {
       yield null;
     }
-    // if (event is FromInvoice) {
-    // yield* _saveDataFrom(event.txt);
-    // }
-    // switch (event){
-    //   case FromInvoice:{
-    //     yield null;
-    //     break;
-    // }
   }
 
   Stream<InvoiceToolsState> _getInvoiceToolsToState(

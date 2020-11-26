@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:invoice/models/book_tax.dart';
 import 'package:invoice/pages/widget/custom_dialog_box.dart';
 import 'package:invoice/pages/widget/custom_progressbar.dart';
+import 'package:invoice/services/bloc/choose_goods_detail_bloc.dart';
 import 'package:invoice/services/dummy/dummy.dart';
 
 class BookTaxInvoice extends StatefulWidget {
@@ -128,7 +130,11 @@ class _BookTaxInvoiceState extends State<BookTaxInvoice> {
                               showDialog(
                                 context: context,
                                 builder: (BuildContext context) {
-                                  return CustomDialogBox();
+                                  return BlocProvider(
+                                    create: (context) =>
+                                        ChooseGoodsDetailBloc(),
+                                    child: CustomDialogBox(),
+                                  );
                                 },
                               );
                             },
