@@ -31,6 +31,7 @@ class ChooseGoodsDetailBloc
   Stream<ChooseGoodsDetailState> _loadedOrder(GetOrderEvent event) async* {
     List<Order> orderData = orderFromJson(Dummy.orders);
     mainData = orderData;
+    keepData = [];
     yield MoveDetailsState(mainData, keepData);
   }
 

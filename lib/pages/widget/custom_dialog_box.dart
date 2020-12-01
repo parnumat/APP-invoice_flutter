@@ -105,10 +105,8 @@ class _CustomDialogBoxState extends State<CustomDialogBox> {
                             ? List.generate(
                                 state.mainData.length,
                                 (index) => _customRow(
-                                    press: () =>
-                                        _bloc.add(MoveToKeepEvent(index: 0)),
-                                    index: index,
-                                    bloc: _bloc,
+                                    press: () => _bloc
+                                        .add(MoveToKeepEvent(index: index)),
                                     goodsCode: state.mainData[index].goodsCode,
                                     goodsName: state.mainData[index].goodsName,
                                     number: state.mainData[index].number,
@@ -165,10 +163,8 @@ class _CustomDialogBoxState extends State<CustomDialogBox> {
                             ? List.generate(
                                 state.keepData.length,
                                 (index) => _customRow(
-                                    press: () =>
-                                        _bloc.add(KeepToMoveEvent(index: 0)),
-                                    index: index,
-                                    bloc: _bloc,
+                                    press: () => _bloc
+                                        .add(KeepToMoveEvent(index: index)),
                                     goodsCode: state.keepData[index].goodsCode,
                                     goodsName: state.keepData[index].goodsName,
                                     number: state.keepData[index].number,
@@ -191,9 +187,12 @@ class _CustomDialogBoxState extends State<CustomDialogBox> {
                     color: Color(0XFFFFD05B),
                     onPressed: () => Navigator.push(
                       context,
-                      MaterialPageRoute(
-                        builder: (context) => ChooseOrderDetails(),
-                      ),
+                      MaterialPageRoute(builder: (BuildContext context) {
+                        return BlocProvider(
+                          create: (context) => ChooseGoodsDetailBloc(),
+                          child: ChooseOrderDetails(),
+                        );
+                      }),
                     ),
                     child: Text("เลือก",
                         style: TextStyle(fontSize: 13, color: Colors.white)),
@@ -246,27 +245,21 @@ class _CustomDialogBoxState extends State<CustomDialogBox> {
     );
   }
 
-  _customRow(
-      {goodsCode,
-      goodsName,
-      number,
-      unit,
-      returnDate,
-      ChooseGoodsDetailBloc bloc,
-      Function press,
-      index}) {
+  _customRow({goodsCode, goodsName, number, unit, returnDate, Function press}) {
     var dataRow = DataRow(
       // onSelectChanged: (value) => bloc.add(KeepToMoveEvent(index: index)),
       cells: <DataCell>[
         DataCell(Text(goodsCode), onTap: press),
-        DataCell(Text(
-          goodsName,
-          maxLines: 2,
-          overflow: TextOverflow.ellipsis,
-        )),
-        DataCell(Text(number)),
-        DataCell(Text(unit)),
-        DataCell(Text(returnDate)),
+        DataCell(
+            Text(
+              goodsName,
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+            ),
+            onTap: press),
+        DataCell(Text(number), onTap: press),
+        DataCell(Text(unit), onTap: press),
+        DataCell(Text(returnDate), onTap: press),
       ],
     );
     return dataRow;

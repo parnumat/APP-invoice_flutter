@@ -34,7 +34,7 @@ class _MainOrderDetailState extends State<MainOrderDetail> {
   Widget build(BuildContext context) {
     double _width = MediaQuery.of(context).size.width;
     double _height = MediaQuery.of(context).size.height;
-    bool _show = false;
+    // bool _show = false;
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(

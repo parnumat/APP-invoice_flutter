@@ -173,33 +173,36 @@ class _GoodsPageState extends State<GoodsPage> {
                         height: 15,
                       ),
                       Container(
-                        width: 1000,
-                        height: 350,
-                        child: DataTable(
-                            headingRowHeight: 35,
-                            columnSpacing: 20,
-                            dataRowHeight: 35,
-                            columns: [
-                              DataColumn(label: Text('อันดับ')),
-                              DataColumn(label: Text('เลขที่ Barcode')),
-                              DataColumn(label: Text('ลำดับผลิตภัณฑ์')),
-                              DataColumn(label: Text('Lot ผู้ขาย')),
-                              DataColumn(label: Text('พาเลท')),
-                              DataColumn(label: Text('Part Number')),
-                              DataColumn(label: Text('จำนวน')),
-                              DataColumn(label: Text('น้ำหนัก')),
-                            ],
-                            rows: List.generate(
-                                goods.length,
-                                (index) => _customRow(
-                                    index: index + 1,
-                                    barCode: goods[index].barCode,
-                                    numProduct: goods[index].numProduct,
-                                    saleLot: goods[index].saleLot,
-                                    pallet: goods[index].pallet,
-                                    partNum: goods[index].partNum,
-                                    number: goods[index].number,
-                                    weight: goods[index].weight))),
+                        // width: 900,
+                        // height: 350,
+                        child: SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: DataTable(
+                              headingRowHeight: 35,
+                              columnSpacing: 20,
+                              dataRowHeight: 35,
+                              columns: [
+                                DataColumn(label: Text('อันดับ')),
+                                DataColumn(label: Text('เลขที่ Barcode')),
+                                DataColumn(label: Text('ลำดับผลิตภัณฑ์')),
+                                DataColumn(label: Text('Lot ผู้ขาย')),
+                                DataColumn(label: Text('พาเลท')),
+                                DataColumn(label: Text('Part Number')),
+                                DataColumn(label: Text('จำนวน')),
+                                DataColumn(label: Text('น้ำหนัก')),
+                              ],
+                              rows: List.generate(
+                                  goods.length,
+                                  (index) => _customRow(
+                                      index: index + 1,
+                                      barCode: goods[index].barCode,
+                                      numProduct: goods[index].numProduct,
+                                      saleLot: goods[index].saleLot,
+                                      pallet: goods[index].pallet,
+                                      partNum: goods[index].partNum,
+                                      number: goods[index].number,
+                                      weight: goods[index].weight))),
+                        ),
                       ),
                     ],
                   ),
@@ -269,7 +272,16 @@ class _GoodsPageState extends State<GoodsPage> {
         )),
         DataCell(Text(partNum)),
         DataCell(Text(number)),
-        DataCell(Text(weight)),
+        DataCell(Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            Text(weight),
+            IconButton(
+              icon: Icon(Icons.delete),
+              onPressed: () {},
+            )
+          ],
+        )),
       ],
     );
     return dataRow;
@@ -310,15 +322,6 @@ _showDialog(BuildContext context) {
           SizedBox(
             width: 20,
           )
-          // TextButton(
-          //   child: Text('Approve'),
-          //   onPressed: () {
-          //     Navigator.of(context).pop();
-          //     Navigator.of(context).push(
-          //       MaterialPageRoute(builder: (context) => SuccessPage()),
-          //     );
-          //   },
-          // ),
         ],
       );
     },
