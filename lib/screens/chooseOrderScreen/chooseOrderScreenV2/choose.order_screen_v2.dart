@@ -1,18 +1,18 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:invoice/pages/sale_order/choose_order_date.dart';
-import 'package:invoice/pages/widget/custom_progressbar.dart';
+import 'package:invoice/screens/widgets/custom_progressbar.dart';
+import 'package:invoice/screens/formOrderScreen/form_order_screen.dart';
 import 'package:invoice/services/bloc/choose_goods_detail_bloc.dart';
 
-class ChooseOrderDetails extends StatefulWidget {
-  ChooseOrderDetails({Key key}) : super(key: key);
+class ChooseOrderScreenV2 extends StatefulWidget {
+  ChooseOrderScreenV2({Key key}) : super(key: key);
 
   @override
-  _ChooseOrderDetailsState createState() => _ChooseOrderDetailsState();
+  _ChooseOrderScreenV2State createState() => _ChooseOrderScreenV2State();
 }
 
-class _ChooseOrderDetailsState extends State<ChooseOrderDetails> {
+class _ChooseOrderScreenV2State extends State<ChooseOrderScreenV2> {
   TextEditingController _codeTool = new TextEditingController();
   double _value = 0;
   @override
@@ -212,7 +212,7 @@ class _ChooseOrderDetailsState extends State<ChooseOrderDetails> {
                           onPressed: () => Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => ChooseOrderDate(),
+                              builder: (context) => FormOrderScreen(),
                             ),
                           ),
                           child: Text("เลือก",

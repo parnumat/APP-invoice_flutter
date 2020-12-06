@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:invoice/animations/routes/route_animation.dart';
-import 'package:invoice/pages/invoice_details/invoice_tools_page.dart';
-import 'package:invoice/pages/widget/custom_card_success.dart';
-import 'package:invoice/pages/widget/custom_progressbar.dart';
+import 'package:invoice/screens/widgets/custom_card_success.dart';
+import 'package:invoice/screens/detailScreen/detailScreenV1/detail.screen_v1.dart';
+import 'package:invoice/screens/detailScreen/detailScreenV2/detail.screen_v2.dart';
+import 'package:invoice/screens/widgets/custom_progressbar.dart';
 
-class SuccessPage extends StatefulWidget {
-  SuccessPage({Key key}) : super(key: key);
+class SuccessScreen extends StatefulWidget {
+  SuccessScreen({Key key}) : super(key: key);
 
   @override
-  _SuccessPageState createState() => _SuccessPageState();
+  _SuccessScreenState createState() => _SuccessScreenState();
 }
 
-class _SuccessPageState extends State<SuccessPage> {
+class _SuccessScreenState extends State<SuccessScreen> {
   double _value = 10;
   // TextEditingController _codeTool = new TextEditingController();
   @override
@@ -98,10 +99,26 @@ class _SuccessPageState extends State<SuccessPage> {
                               color: Color(0XFFFFD05B),
                               onPressed: () => Navigator.of(context).push(
                                 createRoute(
-                                  InvoiceToolsPage(),
+                                  DetailScreenV1(),
                                 ),
                               ),
-                              child: Text("Packing List",
+                              child: Text("Packing List V1",
+                                  style: TextStyle(
+                                      fontSize: 13, color: Colors.white)),
+                            ),
+                            SizedBox(
+                              width: 37,
+                            ),
+                            RaisedButton(
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(20)),
+                              color: Color(0XFFFFD05B),
+                              onPressed: () => Navigator.of(context).push(
+                                createRoute(
+                                  DetailScreenV2(),
+                                ),
+                              ),
+                              child: Text("Packing List V2",
                                   style: TextStyle(
                                       fontSize: 13, color: Colors.white)),
                             ),

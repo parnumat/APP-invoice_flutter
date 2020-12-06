@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:invoice/pages/invoice_details/invoice_details.dart';
 
 class CustomCardTax extends StatelessWidget {
   String numTax;
@@ -14,12 +13,13 @@ class CustomCardTax extends StatelessWidget {
     double _width = MediaQuery.of(context).size.width;
     double _height = MediaQuery.of(context).size.height;
     return GestureDetector(
-      onTap: () => Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => InvoiceToolDetailPage(),
-        ),
-      ),
+      onTap: () => Navigator.pop(context),
+      // Navigator.push(
+      //   context,
+      //   MaterialPageRoute(
+      //     builder: (context) => InvoiceToolDetailPage(),
+      //   ),
+      // ),
       child: Container(
         margin: EdgeInsets.only(left: 15, top: 15),
         width: _width * 0.18,

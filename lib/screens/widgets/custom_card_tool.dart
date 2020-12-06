@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:invoice/animations/fade_animation.dart';
-import 'package:invoice/pages/sale_order/main_detail.dart';
+import 'package:invoice/screens/toolScreen/tool_screen.dart';
 
 //ipad size 1366x1024
 class ToolCard extends StatelessWidget {
@@ -22,7 +22,7 @@ class ToolCard extends StatelessWidget {
           onTap: () => Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => MainOrderDetail(),
+              builder: (context) => ToolScreen(),
             ),
           ),
           child: Container(

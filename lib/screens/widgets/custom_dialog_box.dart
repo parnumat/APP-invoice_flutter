@@ -3,7 +3,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:invoice/constants/constants.dart';
-import 'package:invoice/pages/sale_order/choose_order_details.dart';
 import 'package:invoice/services/bloc/choose_goods_detail_bloc.dart';
 
 class CustomDialogBox extends StatefulWidget {
@@ -185,15 +184,7 @@ class _CustomDialogBoxState extends State<CustomDialogBox> {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20)),
                     color: Color(0XFFFFD05B),
-                    onPressed: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (BuildContext context) {
-                        return BlocProvider(
-                          create: (context) => ChooseGoodsDetailBloc(),
-                          child: ChooseOrderDetails(),
-                        );
-                      }),
-                    ),
+                    onPressed: () => Navigator.of(context).pop(),
                     child: Text("เลือก",
                         style: TextStyle(fontSize: 13, color: Colors.white)),
                   ),
@@ -210,32 +201,32 @@ class _CustomDialogBoxState extends State<CustomDialogBox> {
                     child: Text("ยกเลิก",
                         style: TextStyle(fontSize: 13, color: Colors.white)),
                   ),
-                  SizedBox(
-                    width: 37,
-                  ),
-                  RaisedButton(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20)),
-                    color: Color(0XFF29EAA4),
-                    onPressed: () {
-                      _bloc.add(MoveToKeepEvent(index: 0));
-                    },
-                    child: Text("MainToKeep",
-                        style: TextStyle(fontSize: 13, color: Colors.white)),
-                  ),
-                  SizedBox(
-                    width: 37,
-                  ),
-                  RaisedButton(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20)),
-                    color: Color(0XFF29EAA4),
-                    onPressed: () {
-                      _bloc.add(KeepToMoveEvent(index: 1));
-                    },
-                    child: Text("KeepToMain",
-                        style: TextStyle(fontSize: 13, color: Colors.white)),
-                  ),
+                  // SizedBox(
+                  //   width: 37,
+                  // ),
+                  // RaisedButton(
+                  //   shape: RoundedRectangleBorder(
+                  //       borderRadius: BorderRadius.circular(20)),
+                  //   color: Color(0XFF29EAA4),
+                  //   onPressed: () {
+                  //     _bloc.add(MoveToKeepEvent(index: 0));
+                  //   },
+                  //   child: Text("MainToKeep",
+                  //       style: TextStyle(fontSize: 13, color: Colors.white)),
+                  // ),
+                  // SizedBox(
+                  //   width: 37,
+                  // ),
+                  // RaisedButton(
+                  //   shape: RoundedRectangleBorder(
+                  //       borderRadius: BorderRadius.circular(20)),
+                  //   color: Color(0XFF29EAA4),
+                  //   onPressed: () {
+                  //     _bloc.add(KeepToMoveEvent(index: 1));
+                  //   },
+                  //   child: Text("KeepToMain",
+                  //       style: TextStyle(fontSize: 13, color: Colors.white)),
+                  // ),
                 ],
               ),
             ],

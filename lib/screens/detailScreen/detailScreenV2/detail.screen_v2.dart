@@ -4,20 +4,22 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:invoice/animations/test/test_animation.dart';
 import 'package:invoice/models/good_orders.dart';
 import 'package:invoice/models/tax_cards.dart';
-import 'package:invoice/pages/tool_page.dart';
-import 'package:invoice/pages/widget/custom_card_success.dart';
-import 'package:invoice/pages/widget/custom_card_tax.dart';
+import 'package:invoice/screens/detailScreen/detailScreenV2/widget/detail_tax.dart';
+import 'package:invoice/screens/detailScreen/detailScreenV2/widget/print_tax.dart';
+import 'package:invoice/screens/toolScreen/tool_screen.dart';
+import 'package:invoice/screens/widgets/custom_card_success.dart';
+import 'package:invoice/screens/widgets/custom_card_tax.dart';
 import 'package:invoice/services/bloc/invoice_tools_bloc.dart';
 import 'package:invoice/services/dummy/dummy.dart';
 
-class InvoiceToolDetailPage extends StatefulWidget {
-  InvoiceToolDetailPage({Key key}) : super(key: key);
+class DetailScreenV2 extends StatefulWidget {
+  DetailScreenV2({Key key}) : super(key: key);
 
   @override
-  _InvoiceToolDetailPageState createState() => _InvoiceToolDetailPageState();
+  _DetailScreenV2State createState() => _DetailScreenV2State();
 }
 
-class _InvoiceToolDetailPageState extends State<InvoiceToolDetailPage> {
+class _DetailScreenV2State extends State<DetailScreenV2> {
   // TextEditingController _controller = TextEditingController();
   List<TaxCards> taxCards = taxCardsFromJson(Dummy.taxCards);
   List<GoodOrders> goodOrders = goodOrdersFromJson(Dummy.goodOrders);
@@ -165,7 +167,7 @@ class _InvoiceToolDetailPageState extends State<InvoiceToolDetailPage> {
                                       builder: (context) => BlocProvider(
                                             create: (context) =>
                                                 InvoiceToolsBloc(),
-                                            child: ToolsPage(),
+                                            child: ToolScreen(),
                                           )),
                                   (Route<dynamic> route) => false);
                             },
@@ -190,7 +192,7 @@ class _InvoiceToolDetailPageState extends State<InvoiceToolDetailPage> {
                                       builder: (context) => BlocProvider(
                                             create: (context) =>
                                                 InvoiceToolsBloc(),
-                                            child: ToolsPage(),
+                                            child: ToolScreen(),
                                           )),
                                   (Route<dynamic> route) => false);
                             },
@@ -272,165 +274,12 @@ class _InvoiceToolDetailPageState extends State<InvoiceToolDetailPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     (_stateBotton)
-                        ? Column(
-                            children: [
-                              Container(
-                                padding: EdgeInsets.only(
-                                    left: 30, top: 8, bottom: 10, right: 32),
-                                width: _width * 0.85,
-                                height: _height * 0.70,
-                                child: Wrap(
-                                  crossAxisAlignment: WrapCrossAlignment.start,
-                                  alignment: WrapAlignment.start,
-                                  runAlignment: WrapAlignment.start,
-                                  // spacing: 20,
-                                  // runSpacing: 12,
-                                  children: List.generate(
-                                    taxCards.length,
-                                    (index) => CustomCardTax(
-                                      codeTax: taxCards[index].codeTax,
-                                      nameTax: taxCards[index].nameTax,
-                                      numTax: taxCards[index].numTax,
-                                    ),
-                                  ),
-                                ),
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10),
-                                  color: Colors.white,
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Colors.grey.withOpacity(0.5),
-                                      spreadRadius: 2,
-                                      blurRadius: 2,
-                                      offset: Offset(
-                                          0, 3), // changes position of shadow
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Container(
-                                  padding: EdgeInsets.only(top: 10),
-                                  height: 30,
-                                  child: Center(child: Text("OOOOO")))
-                            ],
-                          )
-                        : Container(
-                            padding: EdgeInsets.all(8),
-                            width: _width * 0.85,
-                            height: _height * 0.70,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                Column(
-                                  children: [
-                                    Container(
-                                      width: _width * 0.30,
-                                      child: Center(
-                                        child: Text(
-                                            "POF Shrink Regular 12.5u x 400 mm x 3,000 m. แกน 3 นิ้ว Flat/Non-Perforate เกรด A"),
-                                      ),
-                                    ),
-                                    Container(
-                                      width: _width * 0.30,
-                                      height: _height * 0.581,
-                                      decoration: BoxDecoration(
-                                        border:
-                                            Border.all(color: Colors.black12),
-                                      ),
-                                      child: Column(
-                                        children: [
-                                          DataTable(
-                                              headingRowHeight: 20,
-                                              columnSpacing: 5,
-                                              dataRowHeight: 22,
-                                              columns: [
-                                                DataColumn(
-                                                    label: Text('ลำดับ',
-                                                        style: TextStyle(
-                                                            fontSize: 12))),
-                                                DataColumn(
-                                                    label: Text('Barcode',
-                                                        style: TextStyle(
-                                                            fontSize: 12))),
-                                                DataColumn(
-                                                    label: Text('LOT',
-                                                        style: TextStyle(
-                                                            fontSize: 12))),
-                                                DataColumn(
-                                                    label: Text('จำนวน',
-                                                        style: TextStyle(
-                                                            fontSize: 12))),
-                                                DataColumn(
-                                                    label: Text('น้ำหนักรวม',
-                                                        style: TextStyle(
-                                                            fontSize: 12))),
-                                              ],
-                                              rows: List.generate(
-                                                goodOrders.length,
-                                                (index) => _customRow(
-                                                    index: index + 1,
-                                                    barCode: goodOrders[index]
-                                                        .barCode,
-                                                    lot: goodOrders[index].lot,
-                                                    number: goodOrders[index]
-                                                        .number,
-                                                    weight: goodOrders[index]
-                                                        .weight),
-                                              )),
-                                        ],
-                                      ),
-                                    ),
-                                    SizedBox(height: 4.5),
-                                    Text("OOOOO")
-                                  ],
-                                ),
-                                Column(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceAround,
-                                  children: [
-                                    CustomCardSuccess(
-                                      w: 0.45,
-                                      h: 0.6,
-                                    ),
-                                    RaisedButton(
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(20)),
-                                      color: Color(0XFFFFD05B),
-                                      onPressed: () {
-                                        Navigator.of(
-                                                context)
-                                            .pushAndRemoveUntil(
-                                                MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        TransitionsHomePage()),
-                                                (Route<dynamic> route) =>
-                                                    false);
-                                      },
-                                      child: Text(
-                                        "พิมพ์",
-                                        style: TextStyle(
-                                            fontSize: 13, color: Colors.white),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              color: Colors.white,
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.grey.withOpacity(0.5),
-                                  spreadRadius: 2,
-                                  blurRadius: 2,
-                                  offset: Offset(
-                                      0, 3), // changes position of shadow
-                                ),
-                              ],
-                            ),
-                          ),
+                        ? DetailTaxCard(
+                            width: _width, height: _height, taxCards: taxCards)
+                        : PrintTax(
+                            width: _width,
+                            height: _height,
+                            goodOrders: goodOrders),
                   ],
                 ),
                 SizedBox(
@@ -442,20 +291,5 @@ class _InvoiceToolDetailPageState extends State<InvoiceToolDetailPage> {
         ),
       ),
     );
-  }
-
-  _customRow({index, barCode, lot, number, weight}) {
-    var dataRow = DataRow(
-      color: MaterialStateProperty.all(
-          (index % 2 == 0) ? Color(0XFFFFD05B) : Color(0XFFFFFFFF)),
-      cells: <DataCell>[
-        DataCell(Text('$index', style: TextStyle(fontSize: 11))),
-        DataCell(Text(barCode, style: TextStyle(fontSize: 11))),
-        DataCell(Text(lot, style: TextStyle(fontSize: 11))),
-        DataCell(Text(number, style: TextStyle(fontSize: 11))),
-        DataCell(Text(weight, style: TextStyle(fontSize: 11))),
-      ],
-    );
-    return dataRow;
   }
 }

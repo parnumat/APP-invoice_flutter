@@ -1,21 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:invoice/models/book_tax.dart';
-import 'package:invoice/pages/widget/custom_dialog_box.dart';
-import 'package:invoice/pages/widget/custom_progressbar.dart';
-import 'package:invoice/services/bloc/choose_goods_detail_bloc.dart';
+import 'package:invoice/screens/formOrderScreen/form_order_screen.dart';
+import 'package:invoice/screens/widgets/custom_progressbar.dart';
 import 'package:invoice/services/dummy/dummy.dart';
 
-class BookTaxInvoice extends StatefulWidget {
-  BookTaxInvoice({Key key}) : super(key: key);
+class ChooseOrderScreenV1 extends StatefulWidget {
+  ChooseOrderScreenV1({Key key}) : super(key: key);
 
   @override
-  _BookTaxInvoiceState createState() => _BookTaxInvoiceState();
+  _ChooseOrderScreenV1State createState() => _ChooseOrderScreenV1State();
 }
 
 List<BookTax> taxDetails = bookTaxFromJson(Dummy.bookTax);
 
-class _BookTaxInvoiceState extends State<BookTaxInvoice> {
+class _ChooseOrderScreenV1State extends State<ChooseOrderScreenV1> {
   double _value = 0;
 
   List<bool> selected =
@@ -125,19 +123,24 @@ class _BookTaxInvoiceState extends State<BookTaxInvoice> {
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(20)),
                             color: Color(0XFFFFD05B),
-                            onPressed: () {
-                              Navigator.pop(context);
-                              showDialog(
-                                context: context,
-                                builder: (BuildContext context) {
-                                  return BlocProvider(
-                                    create: (context) =>
-                                        ChooseGoodsDetailBloc(),
-                                    child: CustomDialogBox(),
-                                  );
-                                },
-                              );
-                            },
+                            onPressed: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => FormOrderScreen(),
+                              ),
+                            ),
+                            // Navigator.pop(context);
+                            // showDialog(
+                            //   context: context,
+                            //   builder: (BuildContext context) {
+                            //     return BlocProvider(
+                            //       create: (context) =>
+                            //           ChooseGoodsDetailBloc(),
+                            //       child: CustomDialogBox(),
+                            //     );
+                            //   },
+                            // );
+                            // },
                             child: Text("เลือก",
                                 style: TextStyle(
                                     fontSize: 13, color: Colors.white)),

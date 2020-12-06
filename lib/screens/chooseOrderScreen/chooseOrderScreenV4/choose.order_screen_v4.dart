@@ -1,18 +1,18 @@
 import 'package:date_format/date_format.dart';
 import 'package:flutter/material.dart';
 import 'package:invoice/models/order.dart';
-import 'package:invoice/pages/sale_order/main_detail.dart';
-import 'package:invoice/pages/widget/custom_progressbar.dart';
+import 'package:invoice/screens/widgets/custom_progressbar.dart';
+import 'package:invoice/screens/formOrderScreen/form_order_screen.dart';
 import 'package:invoice/services/dummy/dummy.dart';
 
-class ChooseOrderDate2 extends StatefulWidget {
-  ChooseOrderDate2({Key key}) : super(key: key);
+class ChooseOrderScreenV4 extends StatefulWidget {
+  ChooseOrderScreenV4({Key key}) : super(key: key);
 
   @override
-  _ChooseOrderDate2State createState() => _ChooseOrderDate2State();
+  _ChooseOrderScreenV4State createState() => _ChooseOrderScreenV4State();
 }
 
-class _ChooseOrderDate2State extends State<ChooseOrderDate2> {
+class _ChooseOrderScreenV4State extends State<ChooseOrderScreenV4> {
   // TextEditingController _controller = TextEditingController();
   DateTime selectedDate = DateTime.now();
   _selectDate(BuildContext context) async {
@@ -228,7 +228,7 @@ class _ChooseOrderDate2State extends State<ChooseOrderDate2> {
                           color: Color(0XFFFFD05B),
                           onPressed: () => Navigator.of(context).push(
                             MaterialPageRoute(
-                                builder: (context) => MainOrderDetail()),
+                                builder: (context) => FormOrderScreen()),
                           ),
                           child: Text("เลือก",
                               style:

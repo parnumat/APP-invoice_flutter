@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:invoice/animations/fade_animation.dart';
-import 'package:invoice/models/invoice_tools.dart';
-import 'package:invoice/pages/widget/custom_card_tool.dart';
+import 'package:invoice/screens/toolScreen/widget/tool_card.dart';
 import 'package:invoice/services/bloc/invoice_tools_bloc.dart';
 
-class ToolsPage extends StatefulWidget {
+class ToolScreen extends StatefulWidget {
   @override
-  _ToolsPageState createState() => _ToolsPageState();
+  _ToolScreenState createState() => _ToolScreenState();
 }
 
-class _ToolsPageState extends State<ToolsPage> {
+class _ToolScreenState extends State<ToolScreen> {
   InvoiceToolsBloc _invoiceToolsBloc;
 
   @override

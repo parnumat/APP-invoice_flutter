@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:invoice/models/goods.dart';
-import 'package:invoice/pages/success/success_page.dart';
-import 'package:invoice/pages/widget/custom_progressbar.dart';
+import 'package:invoice/screens/successScreen/success_screen.dart';
+import 'package:invoice/screens/widgets/custom_progressbar.dart';
 import 'package:invoice/services/dummy/dummy.dart';
 
-class GoodsPage extends StatefulWidget {
-  GoodsPage({Key key}) : super(key: key);
+class GoodsScreen extends StatefulWidget {
+  GoodsScreen({Key key}) : super(key: key);
 
   @override
-  _GoodsPageState createState() => _GoodsPageState();
+  _GoodsScreenState createState() => _GoodsScreenState();
 }
 
-class _GoodsPageState extends State<GoodsPage> {
+class _GoodsScreenState extends State<GoodsScreen> {
   // TextEditingController _controller = TextEditingController();
   DateTime selectedDate = DateTime.now();
   double _value = 5;
@@ -314,7 +314,7 @@ _showDialog(BuildContext context) {
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
             color: Color(0XFFFFD05B),
             onPressed: () => Navigator.of(context).push(
-              MaterialPageRoute(builder: (context) => SuccessPage()),
+              MaterialPageRoute(builder: (context) => SuccessScreen()),
             ),
             child: Text("ตกลง",
                 style: TextStyle(fontSize: 13, color: Colors.white)),
