@@ -13,7 +13,6 @@ class ChooseOrderScreenV4 extends StatefulWidget {
 }
 
 class _ChooseOrderScreenV4State extends State<ChooseOrderScreenV4> {
-  // TextEditingController _controller = TextEditingController();
   DateTime selectedDate = DateTime.now();
   _selectDate(BuildContext context) async {
     final DateTime picked = await showDatePicker(
@@ -44,7 +43,6 @@ class _ChooseOrderScreenV4State extends State<ChooseOrderScreenV4> {
               children: [
                 Container(
                   padding: const EdgeInsets.all(20.0),
-                  // color: Colors.teal,
                   child: Center(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -136,8 +134,6 @@ class _ChooseOrderScreenV4State extends State<ChooseOrderScreenV4> {
                                             BorderSide(color: Colors.white))),
                                 icon: Icon(Icons.arrow_drop_down),
                                 value: _values,
-                                // style: TextStyle(
-                                //     fontSize: 14, color: Colors.black),
                                 items: [
                                   DropdownMenuItem(
                                     child: Text("FM63090011"),
@@ -226,10 +222,11 @@ class _ChooseOrderScreenV4State extends State<ChooseOrderScreenV4> {
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(20)),
                           color: Color(0XFFFFD05B),
-                          onPressed: () => Navigator.of(context).push(
-                            MaterialPageRoute(
-                                builder: (context) => FormOrderScreen()),
-                          ),
+                          onPressed: () => Navigator.pop(context),
+                          // Navigator.of(context).push(
+                          //   MaterialPageRoute(
+                          //       builder: (context) => FormOrderScreen()),
+                          // ),
                           child: Text("เลือก",
                               style:
                                   TextStyle(fontSize: 13, color: Colors.white)),
@@ -248,17 +245,6 @@ class _ChooseOrderScreenV4State extends State<ChooseOrderScreenV4> {
                               style:
                                   TextStyle(fontSize: 13, color: Colors.white)),
                         ),
-                        // RaisedButton(
-                        //   shape: RoundedRectangleBorder(
-                        //       borderRadius: BorderRadius.circular(20)),
-                        //   onPressed: () {
-                        //     showRoundedTimePicker(
-                        //       context: context,
-                        //       initialTime: TimeOfDay.now(),
-                        //     );
-                        //   },
-                        //   child: Text("Clock"),
-                        // )
                       ],
                     ),
                   ),

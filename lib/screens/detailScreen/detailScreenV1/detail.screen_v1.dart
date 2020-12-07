@@ -1,6 +1,6 @@
 import 'package:date_format/date_format.dart';
 import 'package:flutter/material.dart';
-import 'package:invoice/models/good_orders.dart';
+import 'package:invoice/models/goods_orders.dart';
 import 'package:invoice/models/tax_cards.dart';
 import 'package:invoice/screens/widgets/custom_card_tax.dart';
 import 'package:invoice/services/dummy/dummy.dart';
@@ -15,7 +15,7 @@ class DetailScreenV1 extends StatefulWidget {
 class _DetailScreenV1State extends State<DetailScreenV1> {
   // TextEditingController _controller = TextEditingController();
   List<TaxCards> taxCards = taxCardsFromJson(Dummy.taxCards);
-  List<GoodOrders> goodOrders = goodOrdersFromJson(Dummy.goodOrders);
+  List<GoodsOrders> goodOrders = goodsOrdersFromJson(Dummy.goodOrders);
 
   DateTime selectedDate = DateTime.now();
   _selectDate(BuildContext context) async {
@@ -43,8 +43,6 @@ class _DetailScreenV1State extends State<DetailScreenV1> {
           child: Center(
             child: Wrap(
               spacing: 15,
-              // mainAxisAlignment: MainAxisAlignment.center,
-              // crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Container(
                   width: _width,

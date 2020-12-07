@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:invoice/animations/test/test_animation.dart';
-import 'package:invoice/models/good_orders.dart';
+import 'package:invoice/models/goods_orders.dart';
 import 'package:invoice/screens/widgets/custom_card_success.dart';
 
 class PrintTax extends StatelessWidget {
@@ -15,7 +15,7 @@ class PrintTax extends StatelessWidget {
 
   final double _width;
   final double _height;
-  final List<GoodOrders> goodOrders;
+  final List<GoodsOrders> goodOrders;
 
   @override
   Widget build(BuildContext context) {

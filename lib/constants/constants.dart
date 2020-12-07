@@ -12,4 +12,5 @@ class Constants {
   static const Color iTextColor = Color(0xFF535353),
       iConColor = Color(0xFFACACAC);
   static const Color iTextLightColor = Color(0xFFACACAC);
+  static const Color iBackGroundColor = Color(0xFFFFFFFF);
 }

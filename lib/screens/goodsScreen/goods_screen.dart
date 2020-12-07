@@ -277,7 +277,10 @@ class _GoodsScreenState extends State<GoodsScreen> {
           children: [
             Text(weight),
             IconButton(
-              icon: Icon(Icons.delete),
+              icon: Icon(
+                Icons.close,
+                color: Colors.red,
+              ),
               onPressed: () {},
             )
           ],

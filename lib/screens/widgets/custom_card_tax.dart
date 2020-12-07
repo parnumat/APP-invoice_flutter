@@ -14,12 +14,6 @@ class CustomCardTax extends StatelessWidget {
     double _height = MediaQuery.of(context).size.height;
     return GestureDetector(
       onTap: () => Navigator.pop(context),
-      // Navigator.push(
-      //   context,
-      //   MaterialPageRoute(
-      //     builder: (context) => InvoiceToolDetailPage(),
-      //   ),
-      // ),
       child: Container(
         margin: EdgeInsets.only(left: 15, top: 15),
         width: _width * 0.18,

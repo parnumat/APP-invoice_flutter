@@ -1,9 +1,9 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:invoice/screens/chooseOrderScreen/bloc/choose_goods_detail_bloc.dart';
+import 'package:invoice/screens/chooseOrderScreen/widget/data_row.dart';
 import 'package:invoice/screens/widgets/custom_progressbar.dart';
-import 'package:invoice/screens/formOrderScreen/form_order_screen.dart';
-import 'package:invoice/services/bloc/choose_goods_detail_bloc.dart';
 
 class ChooseOrderScreenV2 extends StatefulWidget {
   ChooseOrderScreenV2({Key key}) : super(key: key);
@@ -22,7 +22,7 @@ class _ChooseOrderScreenV2State extends State<ChooseOrderScreenV2> {
     _bloc.add(GetOrderEvent());
 
     double _width = MediaQuery.of(context).size.width;
-    // double _height = MediaQuery.of(context).size.height;
+
     return Scaffold(
       body: SafeArea(
         child: Container(
@@ -31,7 +31,6 @@ class _ChooseOrderScreenV2State extends State<ChooseOrderScreenV2> {
               children: [
                 Container(
                   padding: const EdgeInsets.all(20.0),
-                  // color: Colors.teal,
                   child: Center(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -113,8 +112,8 @@ class _ChooseOrderScreenV2State extends State<ChooseOrderScreenV2> {
                                       state.mainData != [])
                                   ? List.generate(
                                       state.mainData.length,
-                                      (index) => _customRow(
-                                          press: () => _bloc.add(
+                                      (index) => customRow(
+                                          onPress: () => _bloc.add(
                                               MoveToKeepEvent(index: index)),
                                           numBuy: state.mainData[index].numBuy,
                                           returnDate:
@@ -178,8 +177,8 @@ class _ChooseOrderScreenV2State extends State<ChooseOrderScreenV2> {
                                       state.keepData != [])
                                   ? List.generate(
                                       state.keepData.length,
-                                      (index) => _customRow(
-                                          press: () => _bloc.add(
+                                      (index) => customRow(
+                                          onPress: () => _bloc.add(
                                               KeepToMoveEvent(index: index)),
                                           numBuy: state.keepData[index].numBuy,
                                           returnDate:
@@ -209,12 +208,9 @@ class _ChooseOrderScreenV2State extends State<ChooseOrderScreenV2> {
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(20)),
                           color: Color(0XFFFFD05B),
-                          onPressed: () => Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => FormOrderScreen(),
-                            ),
-                          ),
+                          onPressed: () =>
+                              // Navigator.pushNamed(context, 'second-screen'),
+                              Navigator.pop(context),
                           child: Text("เลือก",
                               style:
                                   TextStyle(fontSize: 13, color: Colors.white)),
@@ -243,37 +239,5 @@ class _ChooseOrderScreenV2State extends State<ChooseOrderScreenV2> {
         ),
       ),
     );
-  }
-
-  _customRow(
-      {numBuy,
-      returnDate,
-      goodsCode,
-      goodsName,
-      number,
-      weight,
-      unit,
-      Function press}) {
-    var dataRow = DataRow(
-      cells: <DataCell>[
-        DataCell(Text(numBuy), onTap: () {
-          print(1);
-          return press;
-        }),
-        DataCell(Text(returnDate), onTap: () => press),
-        DataCell(Text(goodsCode), onTap: () => press),
-        DataCell(
-            Text(
-              goodsName,
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
-            ),
-            onTap: () => press),
-        DataCell(Text(number), onTap: () => press),
-        DataCell(Text(weight), onTap: () => press),
-        DataCell(Text(unit), onTap: () => press),
-      ],
-    );
-    return dataRow;
   }
 }

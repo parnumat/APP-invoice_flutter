@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:invoice/models/book_tax.dart';
-import 'package:invoice/screens/formOrderScreen/form_order_screen.dart';
 import 'package:invoice/screens/widgets/custom_progressbar.dart';
 import 'package:invoice/services/dummy/dummy.dart';
 
@@ -19,11 +18,9 @@ class _ChooseOrderScreenV1State extends State<ChooseOrderScreenV1> {
   List<bool> selected =
       List<bool>.generate(taxDetails.length, (index) => false);
 
-  // List<DataCell> dataCell = ;
   @override
   Widget build(BuildContext context) {
     double _width = MediaQuery.of(context).size.width;
-    // double _height = MediaQuery.of(context).size.height;
     return Scaffold(
       body: SafeArea(
         child: Container(
@@ -71,7 +68,6 @@ class _ChooseOrderScreenV1State extends State<ChooseOrderScreenV1> {
                       children: [
                         Align(
                           alignment: Alignment.center,
-                          // alignment: Alignment(-0.50, 0),
                           child: Text(
                             "รายละเอียดการจองใบกำกับภาษี",
                             style: TextStyle(
@@ -87,7 +83,6 @@ class _ChooseOrderScreenV1State extends State<ChooseOrderScreenV1> {
                             columnSpacing: 150,
                             dataRowHeight: 35,
                             columns: [
-                              // DataColumn(label: Text('เลือก')),
                               DataColumn(label: Text('เลขที่ใบกำกับภาษี')),
                               DataColumn(label: Text('วันที่บันทึก')),
                               DataColumn(label: Text('ผู้บันทึก')),
@@ -123,24 +118,9 @@ class _ChooseOrderScreenV1State extends State<ChooseOrderScreenV1> {
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(20)),
                             color: Color(0XFFFFD05B),
-                            onPressed: () => Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => FormOrderScreen(),
-                              ),
-                            ),
-                            // Navigator.pop(context);
-                            // showDialog(
-                            //   context: context,
-                            //   builder: (BuildContext context) {
-                            //     return BlocProvider(
-                            //       create: (context) =>
-                            //           ChooseGoodsDetailBloc(),
-                            //       child: CustomDialogBox(),
-                            //     );
-                            //   },
-                            // );
-                            // },
+                            onPressed: () =>
+                                // Navigator.pushNamed(context, 'second-screen'),
+                                Navigator.pop(context),
                             child: Text("เลือก",
                                 style: TextStyle(
                                     fontSize: 13, color: Colors.white)),

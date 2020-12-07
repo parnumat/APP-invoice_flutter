@@ -28,8 +28,6 @@ class DetailTaxCard extends StatelessWidget {
             crossAxisAlignment: WrapCrossAlignment.start,
             alignment: WrapAlignment.start,
             runAlignment: WrapAlignment.start,
-            // spacing: 20,
-            // runSpacing: 12,
             children: List.generate(
               taxCards.length,
               (index) => CustomCardTax(

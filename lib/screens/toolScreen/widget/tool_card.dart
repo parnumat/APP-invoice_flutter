@@ -19,14 +19,17 @@ class ToolCard extends StatelessWidget {
       child: FadeYAnimation(
         delay: 0.5,
         child: GestureDetector(
-          onTap: () => Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => FormOrderScreen(
-                numTax: code,
+          onTap: () {
+            //  Navigator.pushNamed(context, '/second-screen');
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => FormOrderScreen(
+                  numTax: code,
+                ),
               ),
-            ),
-          ),
+            );
+          },
           child: Container(
             decoration: BoxDecoration(
               color: Colors.white,

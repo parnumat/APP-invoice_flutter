@@ -1,8 +1,12 @@
 import 'package:date_format/date_format.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:invoice/models/order.dart';
+import 'package:invoice/screens/chooseOrderScreen/bloc/choose_goods_detail_bloc.dart';
+import 'package:invoice/screens/chooseOrderScreen/widget/data_row.dart';
 import 'package:invoice/screens/widgets/custom_progressbar.dart';
 import 'package:invoice/screens/formOrderScreen/form_order_screen.dart';
+
 import 'package:invoice/services/dummy/dummy.dart';
 
 class ChooseOrderScreenV3 extends StatefulWidget {
@@ -34,6 +38,9 @@ class _ChooseOrderScreenV3State extends State<ChooseOrderScreenV3> {
 
   @override
   Widget build(BuildContext context) {
+    ChooseGoodsDetailBloc _bloc =
+        BlocProvider.of<ChooseGoodsDetailBloc>(context);
+    _bloc.add(GetOrderEvent());
     double _width = MediaQuery.of(context).size.width;
     return Scaffold(
       body: SafeArea(
@@ -43,7 +50,6 @@ class _ChooseOrderScreenV3State extends State<ChooseOrderScreenV3> {
               children: [
                 Container(
                   padding: const EdgeInsets.all(20.0),
-                  // color: Colors.teal,
                   child: Center(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -128,7 +134,6 @@ class _ChooseOrderScreenV3State extends State<ChooseOrderScreenV3> {
                               textAlignVertical: TextAlignVertical.top,
                               style: TextStyle(fontSize: 17),
                               controller: _controller,
-                              // obscureText: true,
                               decoration: InputDecoration(
                                 border: OutlineInputBorder(),
                                 labelText: 'หมายเลขใบสั่งขาย',
@@ -147,37 +152,42 @@ class _ChooseOrderScreenV3State extends State<ChooseOrderScreenV3> {
                         decoration: BoxDecoration(
                             border: Border.all(color: Colors.black12),
                             borderRadius: BorderRadius.circular(20)),
-                        child: DataTable(
-                          headingRowHeight: 35,
-                          columnSpacing: 20,
-                          dataRowHeight: 55,
-                          columns: [
-                            DataColumn(label: Text('เลขที่ใบสั่งซื้อ')),
-                            DataColumn(label: Text('กำหนดส่งสินค้า')),
-                            DataColumn(label: Text('รหัสสินค้า')),
-                            DataColumn(label: Text('ชื่อสินค้า')),
-                            DataColumn(label: Text('จำนวน')),
-                            DataColumn(label: Text('น้ำหนัก')),
-                            DataColumn(label: Text('หน่วย')),
-                          ],
-                          rows: [
-                            _customRow(
-                                numBuy: orders[0].numBuy,
-                                returnDate: orders[0].returnDate,
-                                goodsCode: orders[0].goodsCode,
-                                goodsName: orders[0].goodsName,
-                                number: orders[0].number,
-                                weight: orders[0].weight,
-                                unit: orders[0].unit),
-                            _customRow(
-                                numBuy: orders[1].numBuy,
-                                returnDate: orders[1].returnDate,
-                                goodsCode: orders[1].goodsCode,
-                                goodsName: orders[1].goodsName,
-                                number: orders[1].number,
-                                weight: orders[1].weight,
-                                unit: orders[1].unit),
-                          ],
+                        child: BlocBuilder<ChooseGoodsDetailBloc,
+                            ChooseGoodsDetailState>(
+                          builder: (context, state) {
+                            return DataTable(
+                              headingRowHeight: 35,
+                              columnSpacing: 20,
+                              dataRowHeight: 55,
+                              columns: [
+                                DataColumn(label: Text('เลขที่ใบสั่งซื้อ')),
+                                DataColumn(label: Text('กำหนดส่งสินค้า')),
+                                DataColumn(label: Text('รหัสสินค้า')),
+                                DataColumn(label: Text('ชื่อสินค้า')),
+                                DataColumn(label: Text('จำนวน')),
+                                DataColumn(label: Text('น้ำหนัก')),
+                                DataColumn(label: Text('หน่วย')),
+                              ],
+                              rows: (state is MoveDetailsState &&
+                                      state.mainData != [])
+                                  ? List.generate(
+                                      state.mainData.length,
+                                      (index) => customRow(
+                                          onPress: () => _bloc.add(
+                                              MoveToKeepEvent(index: index)),
+                                          numBuy: state.mainData[index].numBuy,
+                                          returnDate:
+                                              state.mainData[index].returnDate,
+                                          goodsCode:
+                                              state.mainData[index].goodsCode,
+                                          goodsName:
+                                              state.mainData[index].goodsName,
+                                          number: state.mainData[index].number,
+                                          weight: state.mainData[index].weight,
+                                          unit: state.mainData[index].unit))
+                                  : [],
+                            );
+                          },
                         ),
                       ),
                       Padding(
@@ -207,29 +217,42 @@ class _ChooseOrderScreenV3State extends State<ChooseOrderScreenV3> {
                         decoration: BoxDecoration(
                             border: Border.all(color: Colors.black12),
                             borderRadius: BorderRadius.circular(20)),
-                        child: DataTable(
-                          headingRowHeight: 35,
-                          columnSpacing: 20,
-                          dataRowHeight: 55,
-                          columns: [
-                            DataColumn(label: Text('เลขที่ใบสั่งซื้อ')),
-                            DataColumn(label: Text('กำหนดส่งสินค้า')),
-                            DataColumn(label: Text('รหัสสินค้า')),
-                            DataColumn(label: Text('ชื่อสินค้า')),
-                            DataColumn(label: Text('จำนวน')),
-                            DataColumn(label: Text('น้ำหนัก')),
-                            DataColumn(label: Text('หน่วย')),
-                          ],
-                          rows: [
-                            _customRow(
-                                numBuy: orders[2].numBuy,
-                                returnDate: orders[2].returnDate,
-                                goodsCode: orders[2].goodsCode,
-                                goodsName: orders[2].goodsName,
-                                number: orders[2].number,
-                                weight: orders[2].weight,
-                                unit: orders[2].unit),
-                          ],
+                        child: BlocBuilder<ChooseGoodsDetailBloc,
+                            ChooseGoodsDetailState>(
+                          builder: (context, state) {
+                            return DataTable(
+                              headingRowHeight: 35,
+                              columnSpacing: 20,
+                              dataRowHeight: 55,
+                              columns: [
+                                DataColumn(label: Text('เลขที่ใบสั่งซื้อ')),
+                                DataColumn(label: Text('กำหนดส่งสินค้า')),
+                                DataColumn(label: Text('รหัสสินค้า')),
+                                DataColumn(label: Text('ชื่อสินค้า')),
+                                DataColumn(label: Text('จำนวน')),
+                                DataColumn(label: Text('น้ำหนัก')),
+                                DataColumn(label: Text('หน่วย')),
+                              ],
+                              rows: (state is MoveDetailsState &&
+                                      state.keepData != [])
+                                  ? List.generate(
+                                      state.keepData.length,
+                                      (index) => customRow(
+                                          onPress: () => _bloc.add(
+                                              KeepToMoveEvent(index: index)),
+                                          numBuy: state.keepData[index].numBuy,
+                                          returnDate:
+                                              state.keepData[index].returnDate,
+                                          goodsCode:
+                                              state.keepData[index].goodsCode,
+                                          goodsName:
+                                              state.keepData[index].goodsName,
+                                          number: state.keepData[index].number,
+                                          weight: state.keepData[index].weight,
+                                          unit: state.keepData[index].unit))
+                                  : [],
+                            );
+                          },
                         ),
                       ),
                     ],
@@ -245,12 +268,9 @@ class _ChooseOrderScreenV3State extends State<ChooseOrderScreenV3> {
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(20)),
                           color: Color(0XFFFFD05B),
-                          onPressed: () => Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => FormOrderScreen(),
-                            ),
-                          ),
+                          onPressed: () =>
+                              // Navigator.pushNamed(context, 'second-screen'),
+                              Navigator.pop(context),
                           child: Text("เลือก",
                               style:
                                   TextStyle(fontSize: 13, color: Colors.white)),
@@ -279,24 +299,5 @@ class _ChooseOrderScreenV3State extends State<ChooseOrderScreenV3> {
         ),
       ),
     );
-  }
-
-  _customRow({numBuy, returnDate, goodsCode, goodsName, number, weight, unit}) {
-    var dataRow = DataRow(
-      cells: <DataCell>[
-        DataCell(Text(numBuy)),
-        DataCell(Text(returnDate)),
-        DataCell(Text(goodsCode)),
-        DataCell(Text(
-          goodsName,
-          maxLines: 2,
-          overflow: TextOverflow.ellipsis,
-        )),
-        DataCell(Text(number)),
-        DataCell(Text(weight)),
-        DataCell(Text(unit)),
-      ],
-    );
-    return dataRow;
   }
 }

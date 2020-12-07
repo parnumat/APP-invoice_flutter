@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:invoice/constants/constants.dart';
-import 'package:invoice/services/bloc/choose_goods_detail_bloc.dart';
+import 'package:invoice/screens/chooseOrderScreen/bloc/choose_goods_detail_bloc.dart';
 
 class CustomDialogBox extends StatefulWidget {
   const CustomDialogBox({Key key}) : super(key: key);

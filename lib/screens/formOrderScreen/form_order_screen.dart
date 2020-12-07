@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:invoice/animations/routes/route_animation.dart';
 import 'package:invoice/constants/constants.dart';
+import 'package:invoice/screens/chooseOrderScreen/bloc/choose_goods_detail_bloc.dart';
 import 'package:invoice/screens/chooseOrderScreen/chooseOrderScreenV1/choose_order_screen_v1.dart';
 import 'package:invoice/screens/chooseOrderScreen/chooseOrderScreenV2/choose.order_screen_v2.dart';
 import 'package:invoice/screens/chooseOrderScreen/chooseOrderScreenV3/choose.order_screen_v3.dart';
@@ -10,7 +11,6 @@ import 'package:invoice/screens/formOrderScreen/widget/form_detail.dart';
 import 'package:invoice/screens/goodsScreen/goods_screen.dart';
 import 'package:invoice/screens/widgets/control_progress_bar.dart';
 import 'package:invoice/screens/widgets/custom_dialog_box.dart';
-import 'package:invoice/services/bloc/choose_goods_detail_bloc.dart';
 
 class FormOrderScreen extends StatefulWidget {
   final String numTax;
@@ -67,8 +67,10 @@ class _FormOrderScreenState extends State<FormOrderScreen> {
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(20)),
                           color: Color(0XFFFFD05B),
-                          onPressed: () => Navigator.of(context)
-                              .push(createRoute(GoodsScreen())),
+                          onPressed: () =>
+                              Navigator.pushNamed(context, 'fourth-screen'),
+                          // Navigator.of(context)
+                          //     .push(createRoute(GoodsScreen())),
                           child: Text("ต่อไป",
                               style: TextStyle(
                                   fontSize: Constants.iTextSize,
@@ -79,8 +81,8 @@ class _FormOrderScreenState extends State<FormOrderScreen> {
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(20)),
                           color: Color(0XFFFFD05B),
-                          onPressed: () => Navigator.of(context)
-                              .push(createRoute(ChooseOrderScreenV1())),
+                          onPressed: () =>
+                              Navigator.pushNamed(context, 'third-screen-v1'),
                           child: Text("เลือกใบ V1",
                               style: TextStyle(
                                   fontSize: Constants.iTextSize,
@@ -92,7 +94,6 @@ class _FormOrderScreenState extends State<FormOrderScreen> {
                               borderRadius: BorderRadius.circular(20)),
                           color: Color(0XFFFFD05B),
                           onPressed: () {
-                            // Navigator.pop(context);
                             showDialog(
                               context: context,
                               builder: (BuildContext context) {
@@ -114,13 +115,7 @@ class _FormOrderScreenState extends State<FormOrderScreen> {
                               borderRadius: BorderRadius.circular(20)),
                           color: Color(0XFFFFD05B),
                           onPressed: () =>
-                              Navigator.of(context).push(createRoute(
-                            BlocProvider(
-                              create: (context) => ChooseGoodsDetailBloc(),
-                              child: ChooseOrderScreenV2(),
-                            ),
-                            // ChooseOrderScreenV2()
-                          )),
+                              Navigator.pushNamed(context, 'third-screen-v2'),
                           child: Text("เลือกใบ V2",
                               style: TextStyle(
                                   fontSize: Constants.iTextSize,
@@ -131,8 +126,8 @@ class _FormOrderScreenState extends State<FormOrderScreen> {
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(20)),
                           color: Color(0XFFFFD05B),
-                          onPressed: () => Navigator.of(context)
-                              .push(createRoute(ChooseOrderScreenV3())),
+                          onPressed: () =>
+                              Navigator.pushNamed(context, 'third-screen-v3'),
                           child: Text("เลือกใบ V3",
                               style: TextStyle(
                                   fontSize: Constants.iTextSize,
@@ -143,8 +138,8 @@ class _FormOrderScreenState extends State<FormOrderScreen> {
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(20)),
                           color: Color(0XFFFFD05B),
-                          onPressed: () => Navigator.of(context)
-                              .push(createRoute(ChooseOrderScreenV4())),
+                          onPressed: () =>
+                              Navigator.pushNamed(context, 'third-screen-v4'),
                           child: Text("เลือกใบ V4",
                               style: TextStyle(
                                   fontSize: Constants.iTextSize,

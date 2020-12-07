@@ -4,11 +4,10 @@ import 'package:invoice/screens/widgets/custom_progressbar.dart';
 class ControlProgressBar extends StatefulWidget {
   const ControlProgressBar({
     Key key,
-    @required double width,
-  })  : _width = width,
-        super(key: key);
+    this.width,
+  });
 
-  final double _width;
+  final double width;
 
   @override
   _ControlProgressBarState createState() => _ControlProgressBarState();
@@ -35,7 +34,7 @@ class _ControlProgressBarState extends State<ControlProgressBar> {
                 });
               },
               child: CustomProgressBar(
-                width: widget._width * 0.6,
+                width: widget.width * 0.6,
                 height: 10,
                 radius: 20,
                 value: _value,

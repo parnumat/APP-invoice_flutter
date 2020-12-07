@@ -34,18 +34,14 @@ class CustomProgressBar extends StatelessWidget {
             ),
             Column(
               children: [
-                SizedBox(height: 20),
-                Material(
-                  borderRadius: BorderRadius.circular(radius),
-                  child: AnimatedContainer(
-                    margin: EdgeInsets.only(left: 30),
-                    height: height,
-                    width: width * ratio,
-                    duration: Duration(milliseconds: 500),
-                    decoration: BoxDecoration(
-                        color: Color(0XFFFFD05B),
-                        borderRadius: BorderRadius.circular(radius)),
-                  ),
+                AnimatedContainer(
+                  margin: EdgeInsets.only(top: 20, left: 30),
+                  height: height,
+                  width: width * ratio,
+                  duration: Duration(milliseconds: 200),
+                  decoration: BoxDecoration(
+                      color: Color(0XFFFFD05B),
+                      borderRadius: BorderRadius.circular(radius)),
                 ),
               ],
             ),

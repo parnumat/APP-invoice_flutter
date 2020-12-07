@@ -1,15 +1,12 @@
 import 'package:date_format/date_format.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:invoice/animations/test/test_animation.dart';
-import 'package:invoice/models/good_orders.dart';
+import 'package:invoice/models/goods_orders.dart';
 import 'package:invoice/models/tax_cards.dart';
 import 'package:invoice/screens/detailScreen/detailScreenV2/widget/detail_tax.dart';
 import 'package:invoice/screens/detailScreen/detailScreenV2/widget/print_tax.dart';
+import 'package:invoice/screens/toolScreen/bloc/invoice_tools_bloc.dart';
 import 'package:invoice/screens/toolScreen/tool_screen.dart';
-import 'package:invoice/screens/widgets/custom_card_success.dart';
-import 'package:invoice/screens/widgets/custom_card_tax.dart';
-import 'package:invoice/services/bloc/invoice_tools_bloc.dart';
 import 'package:invoice/services/dummy/dummy.dart';
 
 class DetailScreenV2 extends StatefulWidget {
@@ -22,7 +19,7 @@ class DetailScreenV2 extends StatefulWidget {
 class _DetailScreenV2State extends State<DetailScreenV2> {
   // TextEditingController _controller = TextEditingController();
   List<TaxCards> taxCards = taxCardsFromJson(Dummy.taxCards);
-  List<GoodOrders> goodOrders = goodOrdersFromJson(Dummy.goodOrders);
+  List<GoodsOrders> goodOrders = goodsOrdersFromJson(Dummy.goodOrders);
 
   DateTime selectedDate = DateTime.now();
   _selectDate(BuildContext context) async {
@@ -270,17 +267,22 @@ class _DetailScreenV2State extends State<DetailScreenV2> {
                     ],
                   ),
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    (_stateBotton)
-                        ? DetailTaxCard(
-                            width: _width, height: _height, taxCards: taxCards)
-                        : PrintTax(
-                            width: _width,
-                            height: _height,
-                            goodOrders: goodOrders),
-                  ],
+                AnimatedContainer(
+                  duration: Duration(milliseconds: 200),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      (_stateBotton)
+                          ? DetailTaxCard(
+                              width: _width,
+                              height: _height,
+                              taxCards: taxCards)
+                          : PrintTax(
+                              width: _width,
+                              height: _height,
+                              goodOrders: goodOrders),
+                    ],
+                  ),
                 ),
                 SizedBox(
                   height: 30,

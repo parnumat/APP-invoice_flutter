@@ -37,7 +37,7 @@ class _FormDetailState extends State<FormDetail> {
   Widget build(BuildContext context) {
     return Form(
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,

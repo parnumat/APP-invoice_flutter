@@ -6,23 +6,6 @@ import 'fade_scale_transition.dart';
 import 'fade_through_transition.dart';
 import 'shared_axis_transition.dart';
 
-// void main() {
-//   runApp(
-//     MaterialApp(
-//       theme: ThemeData.from(
-//         colorScheme: const ColorScheme.light(),
-//       ).copyWith(
-//         pageTransitionsTheme: const PageTransitionsTheme(
-//           builders: <TargetPlatform, PageTransitionsBuilder>{
-//             TargetPlatform.android: ZoomPageTransitionsBuilder(),
-//           },
-//         ),
-//       ),
-//       home: TransitionsHomePage(),
-//     ),
-//   );
-// }
-
 class TransitionsHomePage extends StatefulWidget {
   @override
   _TransitionsHomePageState createState() => _TransitionsHomePageState();
