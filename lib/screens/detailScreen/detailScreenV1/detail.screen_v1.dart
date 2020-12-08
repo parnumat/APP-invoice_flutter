@@ -2,7 +2,7 @@ import 'package:date_format/date_format.dart';
 import 'package:flutter/material.dart';
 import 'package:invoice/models/goods_orders.dart';
 import 'package:invoice/models/tax_cards.dart';
-import 'package:invoice/screens/widgets/custom_card_tax.dart';
+import 'package:invoice/screens/detailScreen/widget/custom_card_tax.dart';
 import 'package:invoice/services/dummy/dummy.dart';
 
 class DetailScreenV1 extends StatefulWidget {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:invoice/models/tax_cards.dart';
-import 'package:invoice/screens/widgets/custom_card_tax.dart';
+import 'package:invoice/screens/detailScreen/widget/custom_card_tax.dart';
 
 class DetailTaxCard extends StatelessWidget {
   const DetailTaxCard({

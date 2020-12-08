@@ -1,16 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:invoice/animations/routes/route_animation.dart';
 import 'package:invoice/constants/constants.dart';
 import 'package:invoice/screens/chooseOrderScreen/bloc/choose_goods_detail_bloc.dart';
-import 'package:invoice/screens/chooseOrderScreen/chooseOrderScreenV1/choose_order_screen_v1.dart';
-import 'package:invoice/screens/chooseOrderScreen/chooseOrderScreenV2/choose.order_screen_v2.dart';
-import 'package:invoice/screens/chooseOrderScreen/chooseOrderScreenV3/choose.order_screen_v3.dart';
-import 'package:invoice/screens/chooseOrderScreen/chooseOrderScreenV4/choose.order_screen_v4.dart';
+import 'package:invoice/screens/formOrderScreen/widget/custom_dialog_box.dart';
 import 'package:invoice/screens/formOrderScreen/widget/form_detail.dart';
-import 'package:invoice/screens/goodsScreen/goods_screen.dart';
 import 'package:invoice/screens/widgets/control_progress_bar.dart';
-import 'package:invoice/screens/widgets/custom_dialog_box.dart';
 
 class FormOrderScreen extends StatefulWidget {
   final String numTax;
