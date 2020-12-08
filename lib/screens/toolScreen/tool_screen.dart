@@ -6,6 +6,7 @@ import 'package:invoice/models/http_test.dart';
 import 'package:invoice/screens/toolScreen/bloc/invoice_tools_bloc.dart';
 import 'package:invoice/screens/toolScreen/widget/tool_card.dart';
 import 'package:http/http.dart' as http;
+import 'package:invoice/services/http/connect_api.dart';
 
 class ToolScreen extends StatefulWidget {
   @override
@@ -45,16 +46,12 @@ class _ToolScreenState extends State<ToolScreen> {
                             CupertinoButton(
                               child: Text("HTTP"),
                               onPressed: () async {
-                                List<String> url = [
-                                  'https://reqres.in/api/users?page=2',
-                                  "https://192.168.55.100:1150/api/invoice/goods"
-                                ];
-                                var response = await http.get(url[0]);
+                                var response =
+                                    await http.get(ConnectAPI.url[0]);
                                 if (response.statusCode == 200) {
                                   var res = userTestFromJson(response.body);
                                   print(res.data[0].firstName);
-                                  _showCupertinoDialog(
-                                      title: res.data[0].email);
+                                  _showCupertinoDialog(title: response.body);
                                 } else {
                                   print(Exception(
                                       'Failed to load invoice tools'));
